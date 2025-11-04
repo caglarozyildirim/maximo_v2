@@ -84,11 +84,14 @@ Deploy ettikten sonra Vercel Dashboard'da şu ayarları yapın:
 
 Deploy tamamlandığında:
 
-1. Vercel size bir URL verecek (örn: `https://maximo-v2.vercel.app`)
-2. Bu URL'i tarayıcınızda açın
-3. Giriş bilgileri:
-   - Email: admin@example.com
-   - Password: admin123
+1. Production URL:
+   - https://frontend-jd6wayiag-caglar-ozyildirims-projects.vercel.app
+   - veya
+   - https://frontend-m6v01u8z1-caglar-ozyildirims-projects.vercel.app
+
+2. Giriş bilgileri:
+   - Email: Herhangi bir e-posta adresi
+   - Password: Herhangi bir şifre (mock authentication)
 
 ## Güncelleme
 
