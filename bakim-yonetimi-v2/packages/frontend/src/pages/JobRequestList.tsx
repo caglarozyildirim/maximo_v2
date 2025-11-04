@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, Chip, IconButton, Tooltip } from '@mui/material';
-import { Visibility as ViewIcon, Edit as EditIcon, Delete as DeleteIcon } from '@mui/icons-material';
+import { Visibility as ViewIcon, Edit as EditIcon, Delete as DeleteIcon, Assignment } from '@mui/icons-material';
 import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 import { useSnackbar } from 'notistack';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
@@ -252,7 +252,7 @@ const JobRequestList = () => {
 
       {showEmptyState ? (
         <EmptyState
-          icon="📋"
+          icon={<Assignment sx={{ fontSize: '4rem', color: '#3B82F6' }} />}
           title="Henüz İş Talebi Yok"
           description="Yeni bir iş talebi oluşturarak başlayın"
           action={

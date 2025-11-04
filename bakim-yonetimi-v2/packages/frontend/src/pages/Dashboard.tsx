@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, Typography, CircularProgress } from '@mui/material';
+import { Build, Assessment, ReportProblem, Assignment, Inventory, Warning } from '@mui/icons-material';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
@@ -189,7 +190,9 @@ const Dashboard = () => {
       {/* Statistics Cards */}
       <div className="stats-grid">
         <div className="stat-card">
-          <div className="stat-icon">📋</div>
+          <div className="stat-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Assignment style={{ fontSize: '2rem', color: '#3B82F6' }} />
+          </div>
           <div>
             <div className="stat-label">İş Talepleri</div>
             <div className="stat-value">{dashboardMockData.stats.totalJobRequests}</div>
@@ -200,7 +203,9 @@ const Dashboard = () => {
         </div>
 
         <div className="stat-card gray">
-          <div className="stat-icon">📦</div>
+          <div className="stat-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Inventory style={{ fontSize: '2rem', color: '#6B7280' }} />
+          </div>
           <div>
             <div className="stat-label">Varlık Sayısı</div>
             <div className="stat-value">1,247</div>
@@ -211,7 +216,9 @@ const Dashboard = () => {
         </div>
 
         <div className="stat-card">
-          <div className="stat-icon">🔧</div>
+          <div className="stat-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Build style={{ fontSize: '2rem', color: '#667eea' }} />
+          </div>
           <div>
             <div className="stat-label">Bakım İşleri</div>
             <div className="stat-value">89</div>
@@ -222,7 +229,9 @@ const Dashboard = () => {
         </div>
 
         <div className="stat-card gray">
-          <div className="stat-icon">🚨</div>
+          <div className="stat-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <ReportProblem style={{ fontSize: '2rem', color: '#DC2626' }} />
+          </div>
           <div>
             <div className="stat-label">Arıza Kayıtları</div>
             <div className="stat-value">{dashboardMockData.stats.openIncidents + dashboardMockData.stats.inProgressIncidents}</div>
@@ -237,7 +246,7 @@ const Dashboard = () => {
       <div className="modern-card" style={{ marginBottom: '2rem', border: '2px solid #FEF3C7', backgroundColor: '#FFFBEB' }}>
         <div className="card-header" style={{ borderBottom: '1px solid #FDE68A' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <span style={{ fontSize: '1.5rem' }}>⚠️</span>
+            <Warning style={{ fontSize: '1.75rem', color: '#F59E0B' }} />
             <span style={{ fontWeight: 700, color: '#92400E' }}>Kritik Uyarılar ve Bekleyen İşlemler</span>
           </div>
         </div>
@@ -344,7 +353,7 @@ const Dashboard = () => {
                 e.currentTarget.style.boxShadow = 'none';
               }}
             >
-              <div style={{ fontSize: '1.25rem', paddingTop: '0.125rem' }}>📊</div>
+              <Assessment style={{ fontSize: '1.5rem', paddingTop: '0.125rem', color: '#1E40AF' }} />
               <div style={{ flex: 1 }}>
                 <div style={{ fontWeight: 600, color: '#1E40AF', marginBottom: '0.25rem' }}>
                   Zimmet Takibi Gerekli ({dashboardMockData.stats.overdueAssignments} Gecikmiş)

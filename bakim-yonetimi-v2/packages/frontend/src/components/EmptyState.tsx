@@ -1,13 +1,14 @@
 import { Box, Typography } from '@mui/material';
+import { InboxOutlined } from '@mui/icons-material';
 
 interface EmptyStateProps {
-  icon?: string;
+  icon?: React.ReactNode;
   title: string;
   description?: string;
   action?: React.ReactNode;
 }
 
-const EmptyState = ({ icon = '📭', title, description, action }: EmptyStateProps) => {
+const EmptyState = ({ icon, title, description, action }: EmptyStateProps) => {
   return (
     <Box
       sx={{
@@ -19,9 +20,9 @@ const EmptyState = ({ icon = '📭', title, description, action }: EmptyStatePro
         textAlign: 'center',
       }}
     >
-      <div style={{ fontSize: '4rem', marginBottom: '1rem', opacity: 0.5 }}>
-        {icon}
-      </div>
+      <Box sx={{ fontSize: '4rem', marginBottom: '1rem', opacity: 0.5, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        {icon || <InboxOutlined sx={{ fontSize: '4rem' }} />}
+      </Box>
       <Typography variant="h6" gutterBottom sx={{ color: 'var(--gray-900)', fontWeight: 600 }}>
         {title}
       </Typography>

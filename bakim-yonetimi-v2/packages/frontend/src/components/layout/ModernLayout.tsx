@@ -1,18 +1,30 @@
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Box, Menu, MenuItem, Divider } from '@mui/material';
+import {
+  Dashboard as DashboardIcon,
+  Assignment,
+  Inventory,
+  Build,
+  Person,
+  Recycling,
+  AccountBalance,
+  Warning,
+  Factory,
+  Logout
+} from '@mui/icons-material';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { logout } from '../../features/auth/authSlice';
 
 const menuItems = [
-  { text: 'Dashboard', icon: '🏠', path: '/' },
-  { text: 'İş Talepleri', icon: '📋', path: '/job-requests' },
-  { text: 'Varlıklar', icon: '📦', path: '/assets' },
-  { text: 'Bakım İşleri', icon: '🔧', path: '/maintenance' },
-  { text: 'Zimmet', icon: '👤', path: '/assignments' },
-  { text: 'Hurda', icon: '♻️', path: '/retirements' },
-  { text: 'Masraf Merkezi', icon: '💰', path: '/cost-centers' },
-  { text: 'Olay Bildirimi', icon: '⚠️', path: '/incidents' },
+  { text: 'Dashboard', Icon: DashboardIcon, path: '/' },
+  { text: 'İş Talepleri', Icon: Assignment, path: '/job-requests' },
+  { text: 'Varlıklar', Icon: Inventory, path: '/assets' },
+  { text: 'Bakım İşleri', Icon: Build, path: '/maintenance' },
+  { text: 'Zimmet', Icon: Person, path: '/assignments' },
+  { text: 'Hurda', Icon: Recycling, path: '/retirements' },
+  { text: 'Masraf Merkezi', Icon: AccountBalance, path: '/cost-centers' },
+  { text: 'Olay Bildirimi', Icon: Warning, path: '/incidents' },
 ];
 
 interface ModernLayoutProps {
@@ -59,7 +71,9 @@ export default function ModernLayout({ children }: ModernLayoutProps) {
       <nav className="modern-navbar">
         <div className="navbar-container">
           <div className="navbar-brand">
-            <div className="navbar-logo">🚌</div>
+            <div className="navbar-logo">
+              <Factory sx={{ fontSize: '2rem', color: 'white' }} />
+            </div>
             <div>
               <div className="brand-name">Bakım Yönetimi</div>
               <div className="brand-subtitle">Üretim Tesisleri</div>
@@ -77,7 +91,7 @@ export default function ModernLayout({ children }: ModernLayoutProps) {
                 }}
                 className={`nav-link ${isActive(item.path) ? 'active' : ''}`}
               >
-                <span>{item.icon}</span> {item.text}
+                <item.Icon sx={{ fontSize: '1.25rem' }} /> {item.text}
               </a>
             ))}
           </div>
@@ -129,7 +143,7 @@ export default function ModernLayout({ children }: ModernLayoutProps) {
         </MenuItem>
         <Divider />
         <MenuItem onClick={handleLogout}>
-          <span style={{ marginRight: '8px' }}>🚪</span>
+          <Logout sx={{ mr: 1, fontSize: '1.25rem' }} />
           Çıkış Yap
         </MenuItem>
       </Menu>

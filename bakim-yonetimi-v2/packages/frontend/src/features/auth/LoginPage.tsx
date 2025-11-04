@@ -12,7 +12,17 @@ import {
   InputAdornment,
   IconButton,
 } from '@mui/material';
-import { Visibility, VisibilityOff, Email, Lock } from '@mui/icons-material';
+import {
+  Visibility,
+  VisibilityOff,
+  Email,
+  Lock,
+  Settings,
+  CheckCircle,
+  Assessment,
+  Speed,
+  Security
+} from '@mui/icons-material';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { login } from './authSlice';
 
@@ -81,9 +91,7 @@ export default function LoginPage() {
         }}
       >
         <Box sx={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
-          <Typography variant="h2" fontWeight={800} gutterBottom sx={{ fontSize: { md: '3rem', lg: '4rem' } }}>
-            🔧
-          </Typography>
+          <Settings sx={{ fontSize: { md: '4rem', lg: '5rem' }, mb: 2, opacity: 0.95 }} />
           <Typography variant="h3" fontWeight={700} gutterBottom>
             Bakım Yönetimi Sistemi
           </Typography>
@@ -93,13 +101,13 @@ export default function LoginPage() {
 
           <Box sx={{ marginTop: '3rem', display: 'flex', flexDirection: 'column', gap: '1.5rem', alignItems: 'flex-start' }}>
             {[
-              { icon: '✅', text: 'Kapsamlı varlık ve zimmet yönetimi' },
-              { icon: '📊', text: 'Gerçek zamanlı raporlama ve analiz' },
-              { icon: '⚡', text: 'Hızlı iş talebi ve onay süreçleri' },
-              { icon: '🔒', text: 'Güvenli ve rol tabanlı erişim' },
+              { Icon: CheckCircle, text: 'Kapsamlı varlık ve zimmet yönetimi' },
+              { Icon: Assessment, text: 'Gerçek zamanlı raporlama ve analiz' },
+              { Icon: Speed, text: 'Hızlı iş talebi ve onay süreçleri' },
+              { Icon: Security, text: 'Güvenli ve rol tabanlı erişim' },
             ].map((item, index) => (
               <Box key={index} sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                <Typography sx={{ fontSize: '1.5rem' }}>{item.icon}</Typography>
+                <item.Icon sx={{ fontSize: '1.75rem', opacity: 0.95 }} />
                 <Typography variant="body1" sx={{ opacity: 0.9 }}>
                   {item.text}
                 </Typography>

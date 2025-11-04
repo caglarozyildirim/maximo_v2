@@ -16,7 +16,7 @@ import {
   Chip,
   Stack,
 } from '@mui/material';
-import { Add as AddIcon } from '@mui/icons-material';
+import { Add as AddIcon, Build, Assignment, Inventory, MonetizationOn } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { Chart, ArcElement, Tooltip, Legend, DoughnutController } from 'chart.js';
 
@@ -287,7 +287,7 @@ export default function Dashboard() {
         <Card sx={{ boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
           <CardContent>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <Box sx={{ fontSize: '2rem' }}>📋</Box>
+              <Assignment sx={{ fontSize: '2rem', color: '#3B82F6' }} />
               <Box>
                 <Typography variant="body2" color="text.secondary">
                   İş Talepleri
@@ -303,7 +303,7 @@ export default function Dashboard() {
         <Card sx={{ boxShadow: '0 1px 3px rgba(0,0,0,0.1)', bgcolor: '#F9FAFB' }}>
           <CardContent>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <Box sx={{ fontSize: '2rem' }}>📦</Box>
+              <Inventory sx={{ fontSize: '2rem', color: '#6B7280' }} />
               <Box>
                 <Typography variant="body2" color="text.secondary">
                   Varlık Sayısı
@@ -319,7 +319,7 @@ export default function Dashboard() {
         <Card sx={{ boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
           <CardContent>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <Box sx={{ fontSize: '2rem' }}>🔧</Box>
+              <Build sx={{ fontSize: '2rem', color: '#667eea' }} />
               <Box>
                 <Typography variant="body2" color="text.secondary">
                   Bakım İşleri
@@ -335,7 +335,7 @@ export default function Dashboard() {
         <Card sx={{ boxShadow: '0 1px 3px rgba(0,0,0,0.1)', bgcolor: '#F9FAFB' }}>
           <CardContent>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <Box sx={{ fontSize: '2rem' }}>💰</Box>
+              <MonetizationOn sx={{ fontSize: '2rem', color: '#10B981' }} />
               <Box>
                 <Typography variant="body2" color="text.secondary">
                   Aylık Maliyet
