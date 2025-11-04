@@ -1,0 +1,2184 @@
+// Maintenance Management System - Complete Prisma Schema
+// Generated on: 2025-11-03 16:24:10
+// Total Entities: 39
+// Data Source: FIELD_LEVEL_DETAILS.json
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================================================
+// ENUMS
+// ============================================================================
+
+enum JobRequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+  
+  @@map("job_request_status")
+}
+
+enum MaintenanceRequirementStatus {
+  DRAFT
+  PENDING
+  APPROVED
+  REJECTED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+  
+  @@map("maintenance_requirement_status")
+}
+
+enum MaintenanceDutyStatus {
+  PENDING
+  ASSIGNED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+  
+  @@map("maintenance_duty_status")
+}
+
+enum MaintenanceTaskStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+  
+  @@map("maintenance_task_status")
+}
+
+enum VisitStatus {
+  SCHEDULED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+  
+  @@map("visit_status")
+}
+
+enum IncidentStatus {
+  REPORTED
+  INVESTIGATING
+  IN_PROGRESS
+  RESOLVED
+  CLOSED
+  
+  @@map("incident_status")
+}
+
+enum AssetStatusType {
+  ACTIVE
+  INACTIVE
+  MAINTENANCE
+  RETIRED
+  DISPOSED
+  
+  @@map("asset_status_type")
+}
+
+enum AssignmentStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+  IN_PROGRESS
+  COMPLETED
+  
+  @@map("assignment_status")
+}
+
+enum RecordStatusType {
+  ACTIVE
+  INACTIVE
+  DELETED
+  
+  @@map("record_status_type")
+}
+
+enum PriorityLevel {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+  URGENT
+  
+  @@map("priority_level")
+}
+
+enum DocumentStatus {
+  DRAFT
+  ACTIVE
+  ARCHIVED
+  DELETED
+  
+  @@map("document_status")
+}
+
+// ============================================================================
+// MODELS - Core Maintenance Management
+// ============================================================================
+
+
+// Job Request - Main work request entity
+model JobRequest {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  requestNumber         String                      @unique @map("request_number") @db.VarChar(50)
+  title                 String                      @map("title") @db.VarChar(255)
+  description           String?                     @map("description") @db.Text
+  status                JobRequestStatus            @default(PENDING) @map("status")
+  priority              PriorityLevel               @default(MEDIUM) @map("priority")
+  
+  // Requester information
+  requestedBy           Int                         @map("requested_by")
+  requester             User                        @relation("JobRequestRequester", fields: [requestedBy], references: [id])
+  requestDate           DateTime                    @default(now()) @map("request_date")
+  
+  // Assignment
+  assignedTo            Int?                        @map("assigned_to")
+  assignee              User?                       @relation("JobRequestAssignee", fields: [assignedTo], references: [id])
+  assignedDate          DateTime?                   @map("assigned_date")
+  
+  // Asset related
+  assetId               Int?                        @map("asset_id")
+  asset                 Asset?                      @relation(fields: [assetId], references: [id])
+  
+  // Location
+  locationId            Int?                        @map("location_id")
+  location              Location?                   @relation(fields: [locationId], references: [id])
+  
+  // Department & Cost Center
+  departmentId          Int?                        @map("department_id")
+  department            Department?                 @relation(fields: [departmentId], references: [id])
+  costCenterId          Int?                        @map("cost_center_id")
+  costCenter            CostCenter?                 @relation(fields: [costCenterId], references: [id])
+  
+  // Dates
+  expectedStartDate     DateTime?                   @map("expected_start_date")
+  expectedEndDate       DateTime?                   @map("expected_end_date")
+  actualStartDate       DateTime?                   @map("actual_start_date")
+  actualEndDate         DateTime?                   @map("actual_end_date")
+  
+  // Financial
+  estimatedCost         Decimal?                    @map("estimated_cost") @db.Decimal(15, 2)
+  actualCost            Decimal?                    @map("actual_cost") @db.Decimal(15, 2)
+  
+  // Approval workflow
+  approvedBy            Int?                        @map("approved_by")
+  approver              User?                       @relation("JobRequestApprover", fields: [approvedBy], references: [id])
+  approvalDate          DateTime?                   @map("approval_date")
+  approvalNotes         String?                     @map("approval_notes") @db.Text
+  
+  // Rejection
+  rejectedBy            Int?                        @map("rejected_by")
+  rejector              User?                       @relation("JobRequestRejector", fields: [rejectedBy], references: [id])
+  rejectionDate         DateTime?                   @map("rejection_date")
+  rejectionReason       String?                     @map("rejection_reason") @db.Text
+  
+  // Completion
+  completedBy           Int?                        @map("completed_by")
+  completer             User?                       @relation("JobRequestCompleter", fields: [completedBy], references: [id])
+  completionDate        DateTime?                   @map("completion_date")
+  completionNotes       String?                     @map("completion_notes") @db.Text
+  
+  // Additional fields
+  workOrderNumber       String?                     @map("work_order_number") @db.VarChar(50)
+  externalReference     String?                     @map("external_reference") @db.VarChar(100)
+  customerReference     String?                     @map("customer_reference") @db.VarChar(100)
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  deletedAt             DateTime?                   @map("deleted_at")
+  
+  // Relations
+  maintenanceRequirements MaintenanceRequirement[]
+  assignments             Assignment[]
+  comments                Comment[]
+  documents               Document[]
+  incidents               Incident[]
+  
+  @@index([requestNumber])
+  @@index([status])
+  @@index([priority])
+  @@index([requestedBy])
+  @@index([assignedTo])
+  @@index([assetId])
+  @@index([locationId])
+  @@index([departmentId])
+  @@index([requestDate])
+  @@index([createdAt])
+  @@map("job_requests")
+}
+
+// Asset - Equipment and assets to be maintained
+model Asset {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  assetNumber           String                      @unique @map("asset_number") @db.VarChar(50)
+  assetName             String                      @map("asset_name") @db.VarChar(255)
+  description           String?                     @map("description") @db.Text
+  
+  // Classification
+  assetTypeId           Int                         @map("asset_type_id")
+  assetType             AssetType                   @relation(fields: [assetTypeId], references: [id])
+  assetStatusId         Int                         @map("asset_status_id")
+  assetStatus           AssetStatus                 @relation(fields: [assetStatusId], references: [id])
+  assetClassId          Int?                        @map("asset_class_id")
+  assetClass            AssetClassDescription?      @relation(fields: [assetClassId], references: [id])
+  
+  // Asset Group
+  assetGroupHeaderId    Int?                        @map("asset_group_header_id")
+  assetGroupHeader      AssetGroupHeader?           @relation(fields: [assetGroupHeaderId], references: [id])
+  
+  // Location
+  locationId            Int?                        @map("location_id")
+  location              Location?                   @relation(fields: [locationId], references: [id])
+  
+  // Cost Center & Department
+  costCenterId          Int?                        @map("cost_center_id")
+  costCenter            CostCenter?                 @relation(fields: [costCenterId], references: [id])
+  departmentId          Int?                        @map("department_id")
+  department            Department?                 @relation(fields: [departmentId], references: [id])
+  
+  // Financial Information
+  purchasePrice         Decimal?                    @map("purchase_price") @db.Decimal(15, 2)
+  currentValue          Decimal?                    @map("current_value") @db.Decimal(15, 2)
+  residualValue         Decimal?                    @map("residual_value") @db.Decimal(15, 2)
+  depreciationRate      Decimal?                    @map("depreciation_rate") @db.Decimal(5, 2)
+  
+  // Dates
+  purchaseDate          DateTime?                   @map("purchase_date")
+  installationDate      DateTime?                   @map("installation_date")
+  warrantyStartDate     DateTime?                   @map("warranty_start_date")
+  warrantyEndDate       DateTime?                   @map("warranty_end_date")
+  lastMaintenanceDate   DateTime?                   @map("last_maintenance_date")
+  nextMaintenanceDate   DateTime?                   @map("next_maintenance_date")
+  
+  // Manufacturer & Supplier
+  manufacturer          String?                     @map("manufacturer") @db.VarChar(255)
+  model                 String?                     @map("model") @db.VarChar(255)
+  serialNumber          String?                     @map("serial_number") @db.VarChar(100)
+  supplierName          String?                     @map("supplier_name") @db.VarChar(255)
+  supplierContact       String?                     @map("supplier_contact") @db.VarChar(255)
+  
+  // Specifications
+  specifications        String?                     @map("specifications") @db.Text
+  capacity              String?                     @map("capacity") @db.VarChar(100)
+  dimensions            String?                     @map("dimensions") @db.VarChar(100)
+  weight                Decimal?                    @map("weight") @db.Decimal(10, 2)
+  
+  // Responsible person
+  responsibleUserId     Int?                        @map("responsible_user_id")
+  responsibleUser       User?                       @relation("AssetResponsible", fields: [responsibleUserId], references: [id])
+  
+  // Parent-Child relationship for sub-assets
+  parentAssetId         Int?                        @map("parent_asset_id")
+  parentAsset           Asset?                      @relation("AssetHierarchy", fields: [parentAssetId], references: [id])
+  childAssets           Asset[]                     @relation("AssetHierarchy")
+  
+  // QR Code / Barcode
+  qrCode                String?                     @map("qr_code") @db.VarChar(255)
+  barcode               String?                     @map("barcode") @db.VarChar(255)
+  
+  // Additional information
+  notes                 String?                     @map("notes") @db.Text
+  customField1          String?                     @map("custom_field_1") @db.VarChar(255)
+  customField2          String?                     @map("custom_field_2") @db.VarChar(255)
+  customField3          String?                     @map("custom_field_3") @db.VarChar(255)
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  deletedAt             DateTime?                   @map("deleted_at")
+  
+  // Relations
+  jobRequests           JobRequest[]
+  maintenanceRequirements MaintenanceRequirement[]
+  assignments           Assignment[]
+  visits                Visit[]
+  consumedMaterials     ConsumedMaterial[]
+  incidents             Incident[]
+  assetRetirements      AssetRetirement[]
+  documents             Document[]
+  comments              Comment[]
+  
+  @@index([assetNumber])
+  @@index([assetName])
+  @@index([assetTypeId])
+  @@index([assetStatusId])
+  @@index([locationId])
+  @@index([costCenterId])
+  @@index([departmentId])
+  @@index([responsibleUserId])
+  @@index([parentAssetId])
+  @@index([serialNumber])
+  @@index([createdAt])
+  @@map("assets")
+}
+
+// Assignment - Assignment of work to users/teams
+model Assignment {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  assignmentNumber      String                      @unique @map("assignment_number") @db.VarChar(50)
+  title                 String                      @map("title") @db.VarChar(255)
+  description           String?                     @map("description") @db.Text
+  status                AssignmentStatus            @default(PENDING) @map("status")
+  priority              PriorityLevel               @default(MEDIUM) @map("priority")
+  
+  // Job Request relation
+  jobRequestId          Int?                        @map("job_request_id")
+  jobRequest            JobRequest?                 @relation(fields: [jobRequestId], references: [id])
+  
+  // Maintenance Requirement relation
+  maintenanceRequirementId Int?                     @map("maintenance_requirement_id")
+  maintenanceRequirement   MaintenanceRequirement?  @relation(fields: [maintenanceRequirementId], references: [id])
+  
+  // Asset relation
+  assetId               Int?                        @map("asset_id")
+  asset                 Asset?                      @relation(fields: [assetId], references: [id])
+  
+  // Assignment details
+  assignedBy            Int                         @map("assigned_by")
+  assigner              User                        @relation("AssignmentAssigner", fields: [assignedBy], references: [id])
+  assignedTo            Int                         @map("assigned_to")
+  assignee              User                        @relation("AssignmentAssignee", fields: [assignedTo], references: [id])
+  assignedDate          DateTime                    @default(now()) @map("assigned_date")
+  
+  // User Group
+  userGroupId           Int?                        @map("user_group_id")
+  userGroup             UserGroup?                  @relation(fields: [userGroupId], references: [id])
+  
+  // Dates
+  scheduledStartDate    DateTime?                   @map("scheduled_start_date")
+  scheduledEndDate      DateTime?                   @map("scheduled_end_date")
+  actualStartDate       DateTime?                   @map("actual_start_date")
+  actualEndDate         DateTime?                   @map("actual_end_date")
+  
+  // Acceptance/Rejection
+  acceptedDate          DateTime?                   @map("accepted_date")
+  rejectedDate          DateTime?                   @map("rejected_date")
+  rejectionReason       String?                     @map("rejection_reason") @db.Text
+  
+  // Completion
+  completionDate        DateTime?                   @map("completion_date")
+  completionNotes       String?                     @map("completion_notes") @db.Text
+  
+  // Estimated effort
+  estimatedHours        Decimal?                    @map("estimated_hours") @db.Decimal(10, 2)
+  actualHours           Decimal?                    @map("actual_hours") @db.Decimal(10, 2)
+  
+  // Location
+  locationId            Int?                        @map("location_id")
+  location              Location?                   @relation(fields: [locationId], references: [id])
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  deletedAt             DateTime?                   @map("deleted_at")
+  
+  // Relations
+  maintenanceDuties     MaintenanceDuty[]
+  visits                Visit[]
+  comments              Comment[]
+  documents             Document[]
+  
+  @@index([assignmentNumber])
+  @@index([status])
+  @@index([priority])
+  @@index([jobRequestId])
+  @@index([maintenanceRequirementId])
+  @@index([assetId])
+  @@index([assignedBy])
+  @@index([assignedTo])
+  @@index([userGroupId])
+  @@index([assignedDate])
+  @@index([createdAt])
+  @@map("assignments")
+}
+
+// Maintenance Requirement - Planned maintenance requirements
+model MaintenanceRequirement {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  requirementNumber     String                      @unique @map("requirement_number") @db.VarChar(50)
+  title                 String                      @map("title") @db.VarChar(255)
+  description           String?                     @map("description") @db.Text
+  status                MaintenanceRequirementStatus @default(DRAFT) @map("status")
+  priority              PriorityLevel               @default(MEDIUM) @map("priority")
+  
+  // Job Request relation
+  jobRequestId          Int?                        @map("job_request_id")
+  jobRequest            JobRequest?                 @relation(fields: [jobRequestId], references: [id])
+  
+  // Asset relation
+  assetId               Int?                        @map("asset_id")
+  asset                 Asset?                      @relation(fields: [assetId], references: [id])
+  
+  // Maintenance type
+  maintenanceType       String?                     @map("maintenance_type") @db.VarChar(100)
+  isPreventive          Boolean                     @default(false) @map("is_preventive")
+  isCorrective          Boolean                     @default(false) @map("is_corrective")
+  isPredictive          Boolean                     @default(false) @map("is_predictive")
+  
+  // Frequency (for preventive maintenance)
+  frequencyDays         Int?                        @map("frequency_days")
+  frequencyMonths       Int?                        @map("frequency_months")
+  lastExecutionDate     DateTime?                   @map("last_execution_date")
+  nextExecutionDate     DateTime?                   @map("next_execution_date")
+  
+  // Created by
+  createdBy             Int                         @map("created_by")
+  creator               User                        @relation("MaintenanceRequirementCreator", fields: [createdBy], references: [id])
+  
+  // Approved by
+  approvedBy            Int?                        @map("approved_by")
+  approver              User?                       @relation("MaintenanceRequirementApprover", fields: [approvedBy], references: [id])
+  approvalDate          DateTime?                   @map("approval_date")
+  
+  // Department & Cost Center
+  departmentId          Int?                        @map("department_id")
+  department            Department?                 @relation(fields: [departmentId], references: [id])
+  costCenterId          Int?                        @map("cost_center_id")
+  costCenter            CostCenter?                 @relation(fields: [costCenterId], references: [id])
+  
+  // Estimated resources
+  estimatedCost         Decimal?                    @map("estimated_cost") @db.Decimal(15, 2)
+  estimatedHours        Decimal?                    @map("estimated_hours") @db.Decimal(10, 2)
+  
+  // Notes
+  notes                 String?                     @map("notes") @db.Text
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  deletedAt             DateTime?                   @map("deleted_at")
+  
+  // Relations
+  assignments           Assignment[]
+  maintenanceDuties     MaintenanceDuty[]
+  documents             Document[]
+  comments              Comment[]
+  
+  @@index([requirementNumber])
+  @@index([status])
+  @@index([priority])
+  @@index([jobRequestId])
+  @@index([assetId])
+  @@index([createdBy])
+  @@index([approvedBy])
+  @@index([nextExecutionDate])
+  @@index([createdAt])
+  @@map("maintenance_requirements")
+}
+
+// Maintenance Duty - Specific maintenance duties/work orders
+model MaintenanceDuty {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  dutyNumber            String                      @unique @map("duty_number") @db.VarChar(50)
+  title                 String                      @map("title") @db.VarChar(255)
+  description           String?                     @map("description") @db.Text
+  status                MaintenanceDutyStatus       @default(PENDING) @map("status")
+  priority              PriorityLevel               @default(MEDIUM) @map("priority")
+  
+  // Assignment relation
+  assignmentId          Int?                        @map("assignment_id")
+  assignment            Assignment?                 @relation(fields: [assignmentId], references: [id])
+  
+  // Maintenance Requirement relation
+  maintenanceRequirementId Int?                     @map("maintenance_requirement_id")
+  maintenanceRequirement   MaintenanceRequirement?  @relation(fields: [maintenanceRequirementId], references: [id])
+  
+  // Process relation
+  processId             Int?                        @map("process_id")
+  process               Process?                    @relation(fields: [processId], references: [id])
+  
+  // Assigned to
+  assignedTo            Int?                        @map("assigned_to")
+  assignee              User?                       @relation("MaintenanceDutyAssignee", fields: [assignedTo], references: [id])
+  
+  // Dates
+  scheduledDate         DateTime?                   @map("scheduled_date")
+  startDate             DateTime?                   @map("start_date")
+  completionDate        DateTime?                   @map("completion_date")
+  
+  // Effort
+  estimatedHours        Decimal?                    @map("estimated_hours") @db.Decimal(10, 2)
+  actualHours           Decimal?                    @map("actual_hours") @db.Decimal(10, 2)
+  
+  // Work details
+  workPerformed         String?                     @map("work_performed") @db.Text
+  findings              String?                     @map("findings") @db.Text
+  recommendations       String?                     @map("recommendations") @db.Text
+  
+  // Location
+  locationId            Int?                        @map("location_id")
+  location              Location?                   @relation(fields: [locationId], references: [id])
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  deletedAt             DateTime?                   @map("deleted_at")
+  
+  // Relations
+  maintenanceTasks      MaintenanceTask[]
+  visits                Visit[]
+  consumedMaterials     ConsumedMaterial[]
+  comments              Comment[]
+  documents             Document[]
+  
+  @@index([dutyNumber])
+  @@index([status])
+  @@index([priority])
+  @@index([assignmentId])
+  @@index([maintenanceRequirementId])
+  @@index([processId])
+  @@index([assignedTo])
+  @@index([scheduledDate])
+  @@index([createdAt])
+  @@map("maintenance_duties")
+}
+
+// Maintenance Task - Individual tasks within a duty
+model MaintenanceTask {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  taskNumber            String                      @unique @map("task_number") @db.VarChar(50)
+  title                 String                      @map("title") @db.VarChar(255)
+  description           String?                     @map("description") @db.Text
+  status                MaintenanceTaskStatus       @default(PENDING) @map("status")
+  priority              PriorityLevel               @default(MEDIUM) @map("priority")
+  
+  // Maintenance Duty relation
+  maintenanceDutyId     Int                         @map("maintenance_duty_id")
+  maintenanceDuty       MaintenanceDuty             @relation(fields: [maintenanceDutyId], references: [id], onDelete: Cascade)
+  
+  // Order within duty
+  sequenceOrder         Int                         @default(0) @map("sequence_order")
+  
+  // Assignment
+  assignedTo            Int?                        @map("assigned_to")
+  assignee              User?                       @relation(fields: [assignedTo], references: [id])
+  
+  // Completion
+  completedBy           Int?                        @map("completed_by")
+  completer             User?                       @relation("MaintenanceTaskCompleter", fields: [completedBy], references: [id])
+  completionDate        DateTime?                   @map("completion_date")
+  completionNotes       String?                     @map("completion_notes") @db.Text
+  
+  // Effort
+  estimatedMinutes      Int?                        @map("estimated_minutes")
+  actualMinutes         Int?                        @map("actual_minutes")
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  deletedAt             DateTime?                   @map("deleted_at")
+  
+  // Relations
+  comments              Comment[]
+  
+  @@index([taskNumber])
+  @@index([status])
+  @@index([maintenanceDutyId])
+  @@index([assignedTo])
+  @@index([sequenceOrder])
+  @@index([createdAt])
+  @@map("maintenance_tasks")
+}
+
+// Visit - Site visits for maintenance work
+model Visit {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  visitNumber           String                      @unique @map("visit_number") @db.VarChar(50)
+  status                VisitStatus                 @default(SCHEDULED) @map("status")
+  
+  // Assignment relation
+  assignmentId          Int?                        @map("assignment_id")
+  assignment            Assignment?                 @relation(fields: [assignmentId], references: [id])
+  
+  // Maintenance Duty relation
+  maintenanceDutyId     Int?                        @map("maintenance_duty_id")
+  maintenanceDuty       MaintenanceDuty?            @relation(fields: [maintenanceDutyId], references: [id])
+  
+  // Asset relation
+  assetId               Int?                        @map("asset_id")
+  asset                 Asset?                      @relation(fields: [assetId], references: [id])
+  
+  // Location relation
+  locationId            Int                         @map("location_id")
+  location              Location                    @relation(fields: [locationId], references: [id])
+  
+  // Technician
+  technicianId          Int                         @map("technician_id")
+  technician            User                        @relation(fields: [technicianId], references: [id])
+  
+  // Visit times
+  scheduledDate         DateTime                    @map("scheduled_date")
+  scheduledStartTime    DateTime?                   @map("scheduled_start_time")
+  scheduledEndTime      DateTime?                   @map("scheduled_end_time")
+  actualStartTime       DateTime?                   @map("actual_start_time")
+  actualEndTime         DateTime?                   @map("actual_end_time")
+  
+  // Visit details
+  purpose               String?                     @map("purpose") @db.Text
+  findings              String?                     @map("findings") @db.Text
+  workPerformed         String?                     @map("work_performed") @db.Text
+  notes                 String?                     @map("notes") @db.Text
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  deletedAt             DateTime?                   @map("deleted_at")
+  
+  // Relations
+  consumedMaterials     ConsumedMaterial[]
+  comments              Comment[]
+  
+  @@index([visitNumber])
+  @@index([status])
+  @@index([assignmentId])
+  @@index([maintenanceDutyId])
+  @@index([assetId])
+  @@index([locationId])
+  @@index([technicianId])
+  @@index([scheduledDate])
+  @@index([createdAt])
+  @@map("visits")
+}
+
+// Consumed Material - Materials used in maintenance
+model ConsumedMaterial {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  
+  // Maintenance Duty relation
+  maintenanceDutyId     Int?                        @map("maintenance_duty_id")
+  maintenanceDuty       MaintenanceDuty?            @relation(fields: [maintenanceDutyId], references: [id])
+  
+  // Visit relation
+  visitId               Int?                        @map("visit_id")
+  visit                 Visit?                      @relation(fields: [visitId], references: [id])
+  
+  // Asset relation
+  assetId               Int?                        @map("asset_id")
+  asset                 Asset?                      @relation(fields: [assetId], references: [id])
+  
+  // Material details
+  materialCode          String                      @map("material_code") @db.VarChar(100)
+  materialName          String                      @map("material_name") @db.VarChar(255)
+  materialDescription   String?                     @map("material_description") @db.Text
+  
+  // Quantity
+  quantity              Decimal                     @map("quantity") @db.Decimal(15, 3)
+  measureUnitId         Int                         @map("measure_unit_id")
+  measureUnit           MeasureUnit                 @relation(fields: [measureUnitId], references: [id])
+  
+  // Cost
+  unitPrice             Decimal?                    @map("unit_price") @db.Decimal(15, 2)
+  totalPrice            Decimal?                    @map("total_price") @db.Decimal(15, 2)
+  
+  // Consumed by
+  consumedBy            Int                         @map("consumed_by")
+  consumer              User                        @relation(fields: [consumedBy], references: [id])
+  consumedDate          DateTime                    @default(now()) @map("consumed_date")
+  
+  // Notes
+  notes                 String?                     @map("notes") @db.Text
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  deletedAt             DateTime?                   @map("deleted_at")
+  
+  @@index([maintenanceDutyId])
+  @@index([visitId])
+  @@index([assetId])
+  @@index([materialCode])
+  @@index([consumedBy])
+  @@index([consumedDate])
+  @@index([createdAt])
+  @@map("consumed_materials")
+}
+
+// Incident - Incidents related to assets or maintenance
+model Incident {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  incidentNumber        String                      @unique @map("incident_number") @db.VarChar(50)
+  title                 String                      @map("title") @db.VarChar(255)
+  description           String?                     @map("description") @db.Text
+  status                IncidentStatus              @default(REPORTED) @map("status")
+  priority              PriorityLevel               @default(MEDIUM) @map("priority")
+  
+  // Job Request relation
+  jobRequestId          Int?                        @map("job_request_id")
+  jobRequest            JobRequest?                 @relation(fields: [jobRequestId], references: [id])
+  
+  // Asset relation
+  assetId               Int?                        @map("asset_id")
+  asset                 Asset?                      @relation(fields: [assetId], references: [id])
+  
+  // Location
+  locationId            Int?                        @map("location_id")
+  location              Location?                   @relation(fields: [locationId], references: [id])
+  
+  // Incident type
+  incidentType          String?                     @map("incident_type") @db.VarChar(100)
+  incidentCategory      String?                     @map("incident_category") @db.VarChar(100)
+  severity              String?                     @map("severity") @db.VarChar(50)
+  
+  // Reported by
+  reportedBy            Int                         @map("reported_by")
+  reporter              User                        @relation("IncidentReporter", fields: [reportedBy], references: [id])
+  reportedDate          DateTime                    @default(now()) @map("reported_date")
+  
+  // Assigned to
+  assignedTo            Int?                        @map("assigned_to")
+  assignee              User?                       @relation("IncidentAssignee", fields: [assignedTo], references: [id])
+  assignedDate          DateTime?                   @map("assigned_date")
+  
+  // Dates
+  incidentDate          DateTime?                   @map("incident_date")
+  acknowledgedDate      DateTime?                   @map("acknowledged_date")
+  investigationStartDate DateTime?                  @map("investigation_start_date")
+  resolutionDate        DateTime?                   @map("resolution_date")
+  closedDate            DateTime?                   @map("closed_date")
+  
+  // Resolution
+  resolvedBy            Int?                        @map("resolved_by")
+  resolver              User?                       @relation("IncidentResolver", fields: [resolvedBy], references: [id])
+  resolutionDescription String?                     @map("resolution_description") @db.Text
+  
+  // Root cause analysis
+  rootCause             String?                     @map("root_cause") @db.Text
+  correctiveAction      String?                     @map("corrective_action") @db.Text
+  preventiveAction      String?                     @map("preventive_action") @db.Text
+  
+  // Impact
+  downtime              Decimal?                    @map("downtime") @db.Decimal(10, 2)
+  estimatedCost         Decimal?                    @map("estimated_cost") @db.Decimal(15, 2)
+  actualCost            Decimal?                    @map("actual_cost") @db.Decimal(15, 2)
+  
+  // Safety incident
+  isSafetyIncident      Boolean                     @default(false) @map("is_safety_incident")
+  injuryOccurred        Boolean                     @default(false) @map("injury_occurred")
+  
+  // Department & Cost Center
+  departmentId          Int?                        @map("department_id")
+  department            Department?                 @relation(fields: [departmentId], references: [id])
+  costCenterId          Int?                        @map("cost_center_id")
+  costCenter            CostCenter?                 @relation(fields: [costCenterId], references: [id])
+  
+  // Notes
+  notes                 String?                     @map("notes") @db.Text
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  deletedAt             DateTime?                   @map("deleted_at")
+  
+  // Relations
+  comments              Comment[]
+  documents             Document[]
+  
+  @@index([incidentNumber])
+  @@index([status])
+  @@index([priority])
+  @@index([jobRequestId])
+  @@index([assetId])
+  @@index([locationId])
+  @@index([reportedBy])
+  @@index([assignedTo])
+  @@index([reportedDate])
+  @@index([incidentDate])
+  @@index([createdAt])
+  @@map("incidents")
+}
+
+// ============================================================================
+// MODELS - Asset Management
+// ============================================================================
+
+// Asset Group Header - Grouping of assets
+model AssetGroupHeader {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  groupCode             String                      @unique @map("group_code") @db.VarChar(50)
+  groupName             String                      @map("group_name") @db.VarChar(255)
+  description           String?                     @map("description") @db.Text
+  
+  // Parent group (for hierarchical structure)
+  parentGroupId         Int?                        @map("parent_group_id")
+  parentGroup           AssetGroupHeader?           @relation("AssetGroupHierarchy", fields: [parentGroupId], references: [id])
+  childGroups           AssetGroupHeader[]          @relation("AssetGroupHierarchy")
+  
+  // Responsible person
+  responsibleUserId     Int?                        @map("responsible_user_id")
+  responsibleUser       User?                       @relation(fields: [responsibleUserId], references: [id])
+  
+  // Status
+  isActive              Boolean                     @default(true) @map("is_active")
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  deletedAt             DateTime?                   @map("deleted_at")
+  
+  // Relations
+  assets                Asset[]
+  assetGroupItems       AssetGroupItem[]
+  
+  @@index([groupCode])
+  @@index([groupName])
+  @@index([parentGroupId])
+  @@index([responsibleUserId])
+  @@index([createdAt])
+  @@map("asset_group_headers")
+}
+
+// Asset Group Item - Items within an asset group
+model AssetGroupItem {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  
+  // Asset Group Header relation
+  assetGroupHeaderId    Int                         @map("asset_group_header_id")
+  assetGroupHeader      AssetGroupHeader            @relation(fields: [assetGroupHeaderId], references: [id], onDelete: Cascade)
+  
+  // Item details
+  itemCode              String                      @map("item_code") @db.VarChar(50)
+  itemName              String                      @map("item_name") @db.VarChar(255)
+  itemDescription       String?                     @map("item_description") @db.Text
+  
+  // Quantity
+  quantity              Int?                        @map("quantity")
+  measureUnitId         Int?                        @map("measure_unit_id")
+  measureUnit           MeasureUnit?                @relation(fields: [measureUnitId], references: [id])
+  
+  // Specifications
+  specifications        String?                     @map("specifications") @db.Text
+  
+  // Order
+  sequenceOrder         Int                         @default(0) @map("sequence_order")
+  
+  // Status
+  isActive              Boolean                     @default(true) @map("is_active")
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  deletedAt             DateTime?                   @map("deleted_at")
+  
+  @@index([assetGroupHeaderId])
+  @@index([itemCode])
+  @@index([itemName])
+  @@index([sequenceOrder])
+  @@index([createdAt])
+  @@map("asset_group_items")
+}
+
+// Asset Retirement - Asset disposal and retirement tracking
+model AssetRetirement {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  retirementNumber      String                      @unique @map("retirement_number") @db.VarChar(50)
+  
+  // Asset relation
+  assetId               Int                         @map("asset_id")
+  asset                 Asset                       @relation(fields: [assetId], references: [id])
+  
+  // Retirement method
+  retiringMethodId      Int                         @map("retiring_method_id")
+  retiringMethod        AssetRetiringMethod         @relation(fields: [retiringMethodId], references: [id])
+  
+  // Retirement details
+  retirementDate        DateTime                    @map("retirement_date")
+  retirementReason      String                      @map("retirement_reason") @db.Text
+  
+  // Financial
+  bookValue             Decimal?                    @map("book_value") @db.Decimal(15, 2)
+  salvageValue          Decimal?                    @map("salvage_value") @db.Decimal(15, 2)
+  disposalCost          Decimal?                    @map("disposal_cost") @db.Decimal(15, 2)
+  gain Loss             Decimal?                    @map("gain_loss") @db.Decimal(15, 2)
+  
+  // Buyer information (if sold)
+  buyerName             String?                     @map("buyer_name") @db.VarChar(255)
+  buyerContact          String?                     @map("buyer_contact") @db.VarChar(255)
+  salePrice             Decimal?                    @map("sale_price") @db.Decimal(15, 2)
+  saleDate              DateTime?                   @map("sale_date")
+  
+  // Disposal details
+  disposalLocation      String?                     @map("disposal_location") @db.VarChar(255)
+  disposalMethod        String?                     @map("disposal_method") @db.VarChar(255)
+  disposalCompany       String?                     @map("disposal_company") @db.VarChar(255)
+  disposalDate          DateTime?                   @map("disposal_date")
+  
+  // Environmental compliance
+  environmentalCompliance Boolean?                  @map("environmental_compliance")
+  complianceNotes       String?                     @map("compliance_notes") @db.Text
+  
+  // Approval
+  approvedBy            Int?                        @map("approved_by")
+  approver              User?                       @relation("AssetRetirementApprover", fields: [approvedBy], references: [id])
+  approvalDate          DateTime?                   @map("approval_date")
+  
+  // Initiated by
+  initiatedBy           Int                         @map("initiated_by")
+  initiator             User                        @relation("AssetRetirementInitiator", fields: [initiatedBy], references: [id])
+  
+  // Certificate/Documentation
+  certificateNumber     String?                     @map("certificate_number") @db.VarChar(100)
+  certificateDate       DateTime?                   @map("certificate_date")
+  
+  // Notes
+  notes                 String?                     @map("notes") @db.Text
+  
+  // Department & Cost Center
+  departmentId          Int?                        @map("department_id")
+  department            Department?                 @relation(fields: [departmentId], references: [id])
+  costCenterId          Int?                        @map("cost_center_id")
+  costCenter            CostCenter?                 @relation(fields: [costCenterId], references: [id])
+  
+  // Additional fields
+  warrantyStatus        String?                     @map("warranty_status") @db.VarChar(100)
+  insuranceStatus       String?                     @map("insurance_status") @db.VarChar(100)
+  legalStatus           String?                     @map("legal_status") @db.VarChar(100)
+  
+  // Physical condition
+  physicalCondition     String?                     @map("physical_condition") @db.Text
+  functionalStatus      String?                     @map("functional_status") @db.Text
+  
+  // Replacement
+  replacementAssetId    Int?                        @map("replacement_asset_id")
+  replacementPlanned    Boolean                     @default(false) @map("replacement_planned")
+  replacementDate       DateTime?                   @map("replacement_date")
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  deletedAt             DateTime?                   @map("deleted_at")
+  
+  // Relations
+  documents             Document[]
+  comments              Comment[]
+  
+  @@index([retirementNumber])
+  @@index([assetId])
+  @@index([retiringMethodId])
+  @@index([retirementDate])
+  @@index([approvedBy])
+  @@index([initiatedBy])
+  @@index([createdAt])
+  @@map("asset_retirements")
+}
+
+// Cost Center Change - Tracking cost center changes for assets
+model CostCenterChange {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  
+  // Cost Center
+  oldCostCenterId       Int?                        @map("old_cost_center_id")
+  oldCostCenter         CostCenter?                 @relation("OldCostCenter", fields: [oldCostCenterId], references: [id])
+  newCostCenterId       Int                         @map("new_cost_center_id")
+  newCostCenter         CostCenter                  @relation("NewCostCenter", fields: [newCostCenterId], references: [id])
+  
+  // Change details
+  changeDate            DateTime                    @map("change_date")
+  changeReason          String?                     @map("change_reason") @db.Text
+  effectiveDate         DateTime                    @map("effective_date")
+  
+  // Changed by
+  changedBy             Int                         @map("changed_by")
+  changer               User                        @relation(fields: [changedBy], references: [id])
+  
+  // Approved by
+  approvedBy            Int?                        @map("approved_by")
+  approver              User?                       @relation("CostCenterChangeApprover", fields: [approvedBy], references: [id])
+  approvalDate          DateTime?                   @map("approval_date")
+  
+  // Reference (asset, department, etc)
+  referenceType         String                      @map("reference_type") @db.VarChar(50)
+  referenceId           Int                         @map("reference_id")
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  
+  @@index([oldCostCenterId])
+  @@index([newCostCenterId])
+  @@index([changeDate])
+  @@index([changedBy])
+  @@index([referenceType, referenceId])
+  @@index([createdAt])
+  @@map("cost_center_changes")
+}
+
+// ============================================================================
+// MODELS - User Management & Authorization
+// ============================================================================
+
+// User - System users
+model User {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  username              String                      @unique @map("username") @db.VarChar(100)
+  email                 String                      @unique @map("email") @db.VarChar(255)
+  passwordHash          String                      @map("password_hash") @db.VarChar(255)
+  
+  // Personal information
+  firstName             String                      @map("first_name") @db.VarChar(100)
+  lastName              String                      @map("last_name") @db.VarChar(100)
+  fullName              String                      @map("full_name") @db.VarChar(255)
+  phoneNumber           String?                     @map("phone_number") @db.VarChar(50)
+  mobileNumber          String?                     @map("mobile_number") @db.VarChar(50)
+  
+  // Employee information
+  employeeNumber        String?                     @unique @map("employee_number") @db.VarChar(50)
+  jobTitle              String?                     @map("job_title") @db.VarChar(255)
+  
+  // Department relation
+  primaryDepartmentId   Int?                        @map("primary_department_id")
+  primaryDepartment     Department?                 @relation("UserPrimaryDepartment", fields: [primaryDepartmentId], references: [id])
+  
+  // Status
+  isActive              Boolean                     @default(true) @map("is_active")
+  isLocked              Boolean                     @default(false) @map("is_locked")
+  emailVerified         Boolean                     @default(false) @map("email_verified")
+  
+  // Login tracking
+  lastLoginAt           DateTime?                   @map("last_login_at")
+  lastLoginIp           String?                     @map("last_login_ip") @db.VarChar(50)
+  loginAttempts         Int                         @default(0) @map("login_attempts")
+  
+  // Password reset
+  passwordResetToken    String?                     @unique @map("password_reset_token") @db.VarChar(255)
+  passwordResetExpiry   DateTime?                   @map("password_reset_expiry")
+  
+  // Profile
+  profilePicture        String?                     @map("profile_picture") @db.VarChar(500)
+  bio                   String?                     @map("bio") @db.Text
+  
+  // Preferences
+  language              String                      @default("tr") @map("language") @db.VarChar(10)
+  timezone              String                      @default("Europe/Istanbul") @map("timezone") @db.VarChar(50)
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  deletedAt             DateTime?                   @map("deleted_at")
+  
+  // Relations - Job Requests
+  jobRequestsCreated    JobRequest[]                @relation("JobRequestRequester")
+  jobRequestsAssigned   JobRequest[]                @relation("JobRequestAssignee")
+  jobRequestsApproved   JobRequest[]                @relation("JobRequestApprover")
+  jobRequestsRejected   JobRequest[]                @relation("JobRequestRejector")
+  jobRequestsCompleted  JobRequest[]                @relation("JobRequestCompleter")
+  
+  // Relations - Assignments
+  assignmentsCreated    Assignment[]                @relation("AssignmentAssigner")
+  assignmentsReceived   Assignment[]                @relation("AssignmentAssignee")
+  
+  // Relations - Maintenance Requirements
+  maintenanceRequirementsCreated MaintenanceRequirement[] @relation("MaintenanceRequirementCreator")
+  maintenanceRequirementsApproved MaintenanceRequirement[] @relation("MaintenanceRequirementApprover")
+  
+  // Relations - Maintenance Duties
+  maintenanceDutiesAssigned MaintenanceDuty[]       @relation("MaintenanceDutyAssignee")
+  
+  // Relations - Maintenance Tasks
+  maintenanceTasksAssigned MaintenanceTask[]
+  maintenanceTasksCompleted MaintenanceTask[]       @relation("MaintenanceTaskCompleter")
+  
+  // Relations - Visits
+  visits                Visit[]
+  
+  // Relations - Consumed Materials
+  consumedMaterials     ConsumedMaterial[]
+  
+  // Relations - Incidents
+  incidentsReported     Incident[]                  @relation("IncidentReporter")
+  incidentsAssigned     Incident[]                  @relation("IncidentAssignee")
+  incidentsResolved     Incident[]                  @relation("IncidentResolver")
+  
+  // Relations - Asset Retirements
+  assetRetirementsApproved AssetRetirement[]        @relation("AssetRetirementApprover")
+  assetRetirementsInitiated AssetRetirement[]       @relation("AssetRetirementInitiator")
+  
+  // Relations - Cost Center Changes
+  costCenterChanges     CostCenterChange[]
+  costCenterChangesApproved CostCenterChange[]      @relation("CostCenterChangeApprover")
+  
+  // Relations - Assets
+  responsibleAssets     Asset[]                     @relation("AssetResponsible")
+  
+  // Relations - Asset Groups
+  assetGroupHeaders     AssetGroupHeader[]
+  
+  // Relations - Cost Center Responsible
+  costCenterResponsibilities CostCenterResponsible[]
+  
+  // Relations - User Groups
+  userGroupMemberships  UserGroup[]                 @relation("UserGroupMembers")
+  
+  // Relations - User Department Assignments
+  departmentAssignments UserDepartmentAssignment[]
+  
+  // Relations - On Behalf
+  onBehalfRequests      OnBehalf[]                  @relation("OnBehalfRequestor")
+  onBehalfDelegates     OnBehalf[]                  @relation("OnBehalfDelegate")
+  onBehalfLogs          OnBehalfLog[]
+  
+  // Relations - Documents
+  documents             Document[]
+  
+  // Relations - Comments
+  comments              Comment[]
+  
+  // Relations - Workstations
+  workstations          Workstation[]
+  
+  @@index([username])
+  @@index([email])
+  @@index([employeeNumber])
+  @@index([isActive])
+  @@index([primaryDepartmentId])
+  @@index([createdAt])
+  @@map("users")
+}
+
+// Department - Organizational departments
+model Department {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  departmentCode        String                      @unique @map("department_code") @db.VarChar(50)
+  departmentName        String                      @map("department_name") @db.VarChar(255)
+  description           String?                     @map("description") @db.Text
+  
+  // Parent department (for hierarchical structure)
+  parentDepartmentId    Int?                        @map("parent_department_id")
+  parentDepartment      Department?                 @relation("DepartmentHierarchy", fields: [parentDepartmentId], references: [id])
+  childDepartments      Department[]                @relation("DepartmentHierarchy")
+  
+  // Manager
+  managerId             Int?                        @map("manager_id")
+  
+  // Status
+  isActive              Boolean                     @default(true) @map("is_active")
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  deletedAt             DateTime?                   @map("deleted_at")
+  
+  // Relations
+  users                 User[]                      @relation("UserPrimaryDepartment")
+  userAssignments       UserDepartmentAssignment[]
+  assets                Asset[]
+  jobRequests           JobRequest[]
+  maintenanceRequirements MaintenanceRequirement[]
+  incidents             Incident[]
+  assetRetirements      AssetRetirement[]
+  costCenterResponsibilities CostCenterResponsible[]
+  
+  @@index([departmentCode])
+  @@index([departmentName])
+  @@index([parentDepartmentId])
+  @@index([managerId])
+  @@index([isActive])
+  @@index([createdAt])
+  @@map("departments")
+}
+
+// User Department Assignment - Many-to-many relationship between users and departments
+model UserDepartmentAssignment {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  
+  // User relation
+  userId                Int                         @map("user_id")
+  user                  User                        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // Department relation
+  departmentId          Int                         @map("department_id")
+  department            Department                  @relation(fields: [departmentId], references: [id], onDelete: Cascade)
+  
+  // Role in department
+  role                  String?                     @map("role") @db.VarChar(100)
+  
+  // Assignment details
+  assignedDate          DateTime                    @default(now()) @map("assigned_date")
+  startDate             DateTime?                   @map("start_date")
+  endDate               DateTime?                   @map("end_date")
+  
+  // Status
+  isPrimary             Boolean                     @default(false) @map("is_primary")
+  isActive              Boolean                     @default(true) @map("is_active")
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  
+  @@unique([userId, departmentId])
+  @@index([userId])
+  @@index([departmentId])
+  @@index([isActive])
+  @@index([isPrimary])
+  @@index([createdAt])
+  @@map("user_department_assignments")
+}
+
+// Cost Center - Cost centers for financial tracking
+model CostCenter {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  costCenterCode        String                      @unique @map("cost_center_code") @db.VarChar(50)
+  costCenterName        String                      @map("cost_center_name") @db.VarChar(255)
+  description           String?                     @map("description") @db.Text
+  
+  // Parent cost center (for hierarchical structure)
+  parentCostCenterId    Int?                        @map("parent_cost_center_id")
+  parentCostCenter      CostCenter?                 @relation("CostCenterHierarchy", fields: [parentCostCenterId], references: [id])
+  childCostCenters      CostCenter[]                @relation("CostCenterHierarchy")
+  
+  // Budget
+  budget                Decimal?                    @map("budget") @db.Decimal(15, 2)
+  budgetYear            Int?                        @map("budget_year")
+  
+  // Status
+  isActive              Boolean                     @default(true) @map("is_active")
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  deletedAt             DateTime?                   @map("deleted_at")
+  
+  // Relations
+  assets                Asset[]
+  jobRequests           JobRequest[]
+  maintenanceRequirements MaintenanceRequirement[]
+  incidents             Incident[]
+  assetRetirements      AssetRetirement[]
+  costCenterChangesOld  CostCenterChange[]          @relation("OldCostCenter")
+  costCenterChangesNew  CostCenterChange[]          @relation("NewCostCenter")
+  costCenterResponsibilities CostCenterResponsible[]
+  
+  @@index([costCenterCode])
+  @@index([costCenterName])
+  @@index([parentCostCenterId])
+  @@index([isActive])
+  @@index([createdAt])
+  @@map("cost_centers")
+}
+
+// Cost Center Responsible - Responsible persons for cost centers
+model CostCenterResponsible {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  
+  // Cost Center relation
+  costCenterId          Int                         @map("cost_center_id")
+  costCenter            CostCenter                  @relation(fields: [costCenterId], references: [id], onDelete: Cascade)
+  
+  // User relation
+  userId                Int                         @map("user_id")
+  user                  User                        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // Department relation (optional)
+  departmentId          Int?                        @map("department_id")
+  department            Department?                 @relation(fields: [departmentId], references: [id])
+  
+  // Responsibility details
+  responsibilityType    String?                     @map("responsibility_type") @db.VarChar(100)
+  startDate             DateTime                    @default(now()) @map("start_date")
+  endDate               DateTime?                   @map("end_date")
+  
+  // Status
+  isPrimary             Boolean                     @default(false) @map("is_primary")
+  isActive              Boolean                     @default(true) @map("is_active")
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  
+  @@unique([costCenterId, userId])
+  @@index([costCenterId])
+  @@index([userId])
+  @@index([departmentId])
+  @@index([isActive])
+  @@index([isPrimary])
+  @@index([createdAt])
+  @@map("cost_center_responsibles")
+}
+
+// User Group - Groups for organizing users
+model UserGroup {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  groupCode             String                      @unique @map("group_code") @db.VarChar(50)
+  groupName             String                      @map("group_name") @db.VarChar(255)
+  description           String?                     @map("description") @db.Text
+  
+  // Group type (team, role-based, etc.)
+  groupType             String?                     @map("group_type") @db.VarChar(50)
+  
+  // Parent group (for hierarchical structure)
+  parentGroupId         Int?                        @map("parent_group_id")
+  parentGroup           UserGroup?                  @relation("UserGroupHierarchy", fields: [parentGroupId], references: [id])
+  childGroups           UserGroup[]                 @relation("UserGroupHierarchy")
+  
+  // Members
+  members               User[]                      @relation("UserGroupMembers")
+  
+  // Status
+  isActive              Boolean                     @default(true) @map("is_active")
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  deletedAt             DateTime?                   @map("deleted_at")
+  
+  // Relations
+  assignments           Assignment[]
+  authorizationGroups   AuthorizationGroup[]        @relation("UserGroupAuthorizations")
+  
+  @@index([groupCode])
+  @@index([groupName])
+  @@index([groupType])
+  @@index([parentGroupId])
+  @@index([isActive])
+  @@index([createdAt])
+  @@map("user_groups")
+}
+
+// Authorization - System permissions and authorizations
+model Authorization {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  authorizationCode     String                      @unique @map("authorization_code") @db.VarChar(50)
+  authorizationName     String                      @map("authorization_name") @db.VarChar(255)
+  description           String?                     @map("description") @db.Text
+  
+  // Authorization type (screen, action, data, etc.)
+  authorizationType     String                      @map("authorization_type") @db.VarChar(50)
+  
+  // Resource and action
+  resourceName          String?                     @map("resource_name") @db.VarChar(255)
+  actionName            String?                     @map("action_name") @db.VarChar(100)
+  
+  // Parent authorization (for hierarchical structure)
+  parentAuthorizationId Int?                        @map("parent_authorization_id")
+  parentAuthorization   Authorization?              @relation("AuthorizationHierarchy", fields: [parentAuthorizationId], references: [id])
+  childAuthorizations   Authorization[]             @relation("AuthorizationHierarchy")
+  
+  // Status
+  isActive              Boolean                     @default(true) @map("is_active")
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  
+  // Relations
+  authorizationGroups   AuthorizationGroup[]        @relation("GroupAuthorizations")
+  
+  @@index([authorizationCode])
+  @@index([authorizationName])
+  @@index([authorizationType])
+  @@index([resourceName])
+  @@index([parentAuthorizationId])
+  @@index([isActive])
+  @@index([createdAt])
+  @@map("authorizations")
+}
+
+// Authorization Group - Grouping authorizations
+model AuthorizationGroup {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  groupName             String                      @map("group_name") @db.VarChar(255)
+  description           String?                     @map("description") @db.Text
+  
+  // Authorizations in this group
+  authorizations        Authorization[]             @relation("GroupAuthorizations")
+  
+  // User Groups that have this authorization group
+  userGroups            UserGroup[]                 @relation("UserGroupAuthorizations")
+  
+  // Status
+  isActive              Boolean                     @default(true) @map("is_active")
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  
+  @@index([groupName])
+  @@index([isActive])
+  @@index([createdAt])
+  @@map("authorization_groups")
+}
+
+// ============================================================================
+// MODELS - Reference Data & Configuration
+// ============================================================================
+
+// Location - Physical locations
+model Location {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  locationCode          String                      @unique @map("location_code") @db.VarChar(50)
+  locationName          String                      @map("location_name") @db.VarChar(255)
+  description           String?                     @map("description") @db.Text
+  
+  // Address
+  address               String?                     @map("address") @db.VarChar(500)
+  city                  String?                     @map("city") @db.VarChar(100)
+  state                 String?                     @map("state") @db.VarChar(100)
+  country               String?                     @map("country") @db.VarChar(100)
+  postalCode            String?                     @map("postal_code") @db.VarChar(20)
+  
+  // Coordinates
+  latitude              Decimal?                    @map("latitude") @db.Decimal(10, 8)
+  longitude             Decimal?                    @map("longitude") @db.Decimal(11, 8)
+  
+  // Parent location (for hierarchical structure: building > floor > room)
+  parentLocationId      Int?                        @map("parent_location_id")
+  parentLocation        Location?                   @relation("LocationHierarchy", fields: [parentLocationId], references: [id])
+  childLocations        Location[]                  @relation("LocationHierarchy")
+  
+  // Location type (building, floor, room, warehouse, etc.)
+  locationType          String?                     @map("location_type") @db.VarChar(50)
+  
+  // Status
+  isActive              Boolean                     @default(true) @map("is_active")
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  deletedAt             DateTime?                   @map("deleted_at")
+  
+  // Relations
+  assets                Asset[]
+  jobRequests           JobRequest[]
+  assignments           Assignment[]
+  maintenanceDuties     MaintenanceDuty[]
+  visits                Visit[]
+  incidents             Incident[]
+  workstations          Workstation[]
+  
+  @@index([locationCode])
+  @@index([locationName])
+  @@index([city])
+  @@index([locationType])
+  @@index([parentLocationId])
+  @@index([isActive])
+  @@index([createdAt])
+  @@map("locations")
+}
+
+// Priority - Priority levels configuration
+model Priority {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  priorityCode          String                      @unique @map("priority_code") @db.VarChar(50)
+  priorityName          String                      @map("priority_name") @db.VarChar(100)
+  priorityLevel         Int                         @map("priority_level")
+  description           String?                     @map("description") @db.Text
+  
+  // SLA (Service Level Agreement)
+  responseSlaHours      Int?                        @map("response_sla_hours")
+  resolutionSlaHours    Int?                        @map("resolution_sla_hours")
+  
+  // Display
+  color                 String?                     @map("color") @db.VarChar(20)
+  icon                  String?                     @map("icon") @db.VarChar(50)
+  
+  // Status
+  isActive              Boolean                     @default(true) @map("is_active")
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  
+  @@index([priorityCode])
+  @@index([priorityLevel])
+  @@index([isActive])
+  @@index([createdAt])
+  @@map("priorities")
+}
+
+// Record Status - Record status reference
+model RecordStatus {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  statusCode            String                      @unique @map("status_code") @db.VarChar(50)
+  statusName            String                      @map("status_name") @db.VarChar(100)
+  description           String?                     @map("description") @db.Text
+  statusType            RecordStatusType            @map("status_type")
+  
+  // Display
+  color                 String?                     @map("color") @db.VarChar(20)
+  icon                  String?                     @map("icon") @db.VarChar(50)
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  
+  @@index([statusCode])
+  @@index([statusType])
+  @@index([createdAt])
+  @@map("record_statuses")
+}
+
+// Asset Type - Types of assets
+model AssetType {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  typeCode              String                      @unique @map("type_code") @db.VarChar(50)
+  typeName              String                      @map("type_name") @db.VarChar(255)
+  description           String?                     @map("description") @db.Text
+  
+  // Parent type (for hierarchical structure)
+  parentTypeId          Int?                        @map("parent_type_id")
+  parentType            AssetType?                  @relation("AssetTypeHierarchy", fields: [parentTypeId], references: [id])
+  childTypes            AssetType[]                 @relation("AssetTypeHierarchy")
+  
+  // Category
+  category              String?                     @map("category") @db.VarChar(100)
+  
+  // Depreciation
+  defaultDepreciationRate Decimal?                  @map("default_depreciation_rate") @db.Decimal(5, 2)
+  defaultLifespanYears  Int?                        @map("default_lifespan_years")
+  
+  // Status
+  isActive              Boolean                     @default(true) @map("is_active")
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  
+  // Relations
+  assets                Asset[]
+  
+  @@index([typeCode])
+  @@index([typeName])
+  @@index([category])
+  @@index([parentTypeId])
+  @@index([isActive])
+  @@index([createdAt])
+  @@map("asset_types")
+}
+
+// Asset Status - Status of assets
+model AssetStatus {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  statusCode            String                      @unique @map("status_code") @db.VarChar(50)
+  statusName            String                      @map("status_name") @db.VarChar(100)
+  description           String?                     @map("description") @db.Text
+  statusType            AssetStatusType             @map("status_type")
+  
+  // Availability for use
+  isAvailableForUse     Boolean                     @default(true) @map("is_available_for_use")
+  
+  // Display
+  color                 String?                     @map("color") @db.VarChar(20)
+  icon                  String?                     @map("icon") @db.VarChar(50)
+  
+  // Status
+  isActive              Boolean                     @default(true) @map("is_active")
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  
+  // Relations
+  assets                Asset[]
+  
+  @@index([statusCode])
+  @@index([statusType])
+  @@index([isActive])
+  @@index([createdAt])
+  @@map("asset_statuses")
+}
+
+// Measure Unit - Units of measurement
+model MeasureUnit {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  unitCode              String                      @unique @map("unit_code") @db.VarChar(20)
+  unitName              String                      @map("unit_name") @db.VarChar(100)
+  unitSymbol            String?                     @map("unit_symbol") @db.VarChar(20)
+  description           String?                     @map("description") @db.Text
+  
+  // Unit type (length, weight, volume, time, etc.)
+  unitType              String?                     @map("unit_type") @db.VarChar(50)
+  
+  // Conversion (to base unit)
+  baseUnitId            Int?                        @map("base_unit_id")
+  conversionFactor      Decimal?                    @map("conversion_factor") @db.Decimal(15, 6)
+  
+  // Status
+  isActive              Boolean                     @default(true) @map("is_active")
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  
+  // Relations
+  consumedMaterials     ConsumedMaterial[]
+  assetGroupItems       AssetGroupItem[]
+  
+  @@index([unitCode])
+  @@index([unitName])
+  @@index([unitType])
+  @@index([isActive])
+  @@index([createdAt])
+  @@map("measure_units")
+}
+
+// Process - Business processes for maintenance
+model Process {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  processCode           String                      @unique @map("process_code") @db.VarChar(50)
+  processName           String                      @map("process_name") @db.VarChar(255)
+  description           String?                     @map("description") @db.Text
+  
+  // Process type
+  processType           String?                     @map("process_type") @db.VarChar(100)
+  processCategory       String?                     @map("process_category") @db.VarChar(100)
+  
+  // Parent process (for hierarchical structure)
+  parentProcessId       Int?                        @map("parent_process_id")
+  parentProcess         Process?                    @relation("ProcessHierarchy", fields: [parentProcessId], references: [id])
+  childProcesses        Process[]                   @relation("ProcessHierarchy")
+  
+  // Duration estimates
+  estimatedDuration     Int?                        @map("estimated_duration")
+  durationUnit          String?                     @map("duration_unit") @db.VarChar(20)
+  
+  // Instructions
+  instructions          String?                     @map("instructions") @db.Text
+  safetyNotes           String?                     @map("safety_notes") @db.Text
+  
+  // Order
+  sequenceOrder         Int                         @default(0) @map("sequence_order")
+  
+  // Status
+  isActive              Boolean                     @default(true) @map("is_active")
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  
+  // Relations
+  maintenanceDuties     MaintenanceDuty[]
+  
+  @@index([processCode])
+  @@index([processName])
+  @@index([processType])
+  @@index([processCategory])
+  @@index([parentProcessId])
+  @@index([sequenceOrder])
+  @@index([isActive])
+  @@index([createdAt])
+  @@map("processes")
+}
+
+// Asset Retiring Method - Methods for asset retirement
+model AssetRetiringMethod {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  methodCode            String                      @unique @map("method_code") @db.VarChar(50)
+  methodName            String                      @map("method_name") @db.VarChar(255)
+  description           String?                     @map("description") @db.Text
+  
+  // Method type (sale, donation, disposal, scrap, etc.)
+  methodType            String?                     @map("method_type") @db.VarChar(50)
+  
+  // Requires environmental compliance
+  requiresCompliance    Boolean                     @default(false) @map("requires_compliance")
+  
+  // Status
+  isActive              Boolean                     @default(true) @map("is_active")
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  
+  // Relations
+  assetRetirements      AssetRetirement[]
+  
+  @@index([methodCode])
+  @@index([methodName])
+  @@index([methodType])
+  @@index([isActive])
+  @@index([createdAt])
+  @@map("asset_retiring_methods")
+}
+
+// Asset Class Description - Asset classification descriptions
+model AssetClassDescription {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  classCode             String                      @unique @map("class_code") @db.VarChar(50)
+  className             String                      @map("class_name") @db.VarChar(255)
+  description           String?                     @map("description") @db.Text
+  
+  // Parent class (for hierarchical structure)
+  parentClassId         Int?                        @map("parent_class_id")
+  parentClass           AssetClassDescription?      @relation("AssetClassHierarchy", fields: [parentClassId], references: [id])
+  childClasses          AssetClassDescription[]     @relation("AssetClassHierarchy")
+  
+  // Classification details
+  classLevel            Int                         @default(1) @map("class_level")
+  classPath             String?                     @map("class_path") @db.VarChar(500)
+  
+  // Accounting
+  accountingCode        String?                     @map("accounting_code") @db.VarChar(50)
+  depreciationMethod    String?                     @map("depreciation_method") @db.VarChar(50)
+  defaultDepreciationRate Decimal?                  @map("default_depreciation_rate") @db.Decimal(5, 2)
+  usefulLifeYears       Int?                        @map("useful_life_years")
+  
+  // Tax
+  taxCategory           String?                     @map("tax_category") @db.VarChar(50)
+  taxRate               Decimal?                    @map("tax_rate") @db.Decimal(5, 2)
+  
+  // Insurance
+  insuranceCategory     String?                     @map("insurance_category") @db.VarChar(100)
+  insuranceRequired     Boolean                     @default(false) @map("insurance_required")
+  
+  // Maintenance
+  requiresRegularMaintenance Boolean                @default(true) @map("requires_regular_maintenance")
+  defaultMaintenanceInterval Int?                   @map("default_maintenance_interval")
+  
+  // Attributes
+  attributes            String?                     @map("attributes") @db.Text
+  
+  // Status
+  isActive              Boolean                     @default(true) @map("is_active")
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  
+  // Relations
+  assets                Asset[]
+  
+  @@index([classCode])
+  @@index([className])
+  @@index([parentClassId])
+  @@index([classLevel])
+  @@index([isActive])
+  @@index([createdAt])
+  @@map("asset_class_descriptions")
+}
+
+// Workstation - User workstations/devices
+model Workstation {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  workstationCode       String                      @unique @map("workstation_code") @db.VarChar(50)
+  workstationName       String                      @map("workstation_name") @db.VarChar(255)
+  description           String?                     @map("description") @db.Text
+  
+  // User relation
+  userId                Int?                        @map("user_id")
+  user                  User?                       @relation(fields: [userId], references: [id])
+  
+  // Location
+  locationId            Int?                        @map("location_id")
+  location              Location?                   @relation(fields: [locationId], references: [id])
+  
+  // Device information
+  deviceType            String?                     @map("device_type") @db.VarChar(100)
+  ipAddress             String?                     @map("ip_address") @db.VarChar(50)
+  macAddress            String?                     @map("mac_address") @db.VarChar(50)
+  hostname              String?                     @map("hostname") @db.VarChar(255)
+  
+  // Status
+  isActive              Boolean                     @default(true) @map("is_active")
+  lastActiveAt          DateTime?                   @map("last_active_at")
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  
+  @@index([workstationCode])
+  @@index([userId])
+  @@index([locationId])
+  @@index([ipAddress])
+  @@index([isActive])
+  @@index([createdAt])
+  @@map("workstations")
+}
+
+// ============================================================================
+// MODELS - Document Management & Collaboration
+// ============================================================================
+
+// Document Group - Document categorization
+model DocumentGroup {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  groupCode             String                      @unique @map("group_code") @db.VarChar(50)
+  groupName             String                      @map("group_name") @db.VarChar(255)
+  description           String?                     @map("description") @db.Text
+  
+  // Parent group (for hierarchical structure)
+  parentGroupId         Int?                        @map("parent_group_id")
+  parentGroup           DocumentGroup?              @relation("DocumentGroupHierarchy", fields: [parentGroupId], references: [id])
+  childGroups           DocumentGroup[]             @relation("DocumentGroupHierarchy")
+  
+  // Status
+  isActive              Boolean                     @default(true) @map("is_active")
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  
+  // Relations
+  documents             Document[]
+  
+  @@index([groupCode])
+  @@index([groupName])
+  @@index([parentGroupId])
+  @@index([isActive])
+  @@index([createdAt])
+  @@map("document_groups")
+}
+
+// Document Type - Types of documents
+model DocumentType {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  typeCode              String                      @unique @map("type_code") @db.VarChar(50)
+  typeName              String                      @map("type_name") @db.VarChar(255)
+  description           String?                     @map("description") @db.Text
+  
+  // File extensions allowed
+  allowedExtensions     String?                     @map("allowed_extensions") @db.VarChar(255)
+  
+  // Max file size (in MB)
+  maxFileSizeMb         Int?                        @map("max_file_size_mb")
+  
+  // Status
+  isActive              Boolean                     @default(true) @map("is_active")
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  
+  // Relations
+  documents             Document[]
+  
+  @@index([typeCode])
+  @@index([typeName])
+  @@index([isActive])
+  @@index([createdAt])
+  @@map("document_types")
+}
+
+// Document - Documents attached to various entities
+model Document {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  documentNumber        String                      @unique @map("document_number") @db.VarChar(50)
+  title                 String                      @map("title") @db.VarChar(255)
+  description           String?                     @map("description") @db.Text
+  
+  // Document Type
+  documentTypeId        Int                         @map("document_type_id")
+  documentType          DocumentType                @relation(fields: [documentTypeId], references: [id])
+  
+  // Document Group
+  documentGroupId       Int?                        @map("document_group_id")
+  documentGroup         DocumentGroup?              @relation(fields: [documentGroupId], references: [id])
+  
+  // File information
+  fileName              String                      @map("file_name") @db.VarChar(255)
+  fileExtension         String                      @map("file_extension") @db.VarChar(20)
+  filePath              String                      @map("file_path") @db.VarChar(1000)
+  fileSize              Int                         @map("file_size")
+  mimeType              String?                     @map("mime_type") @db.VarChar(100)
+  
+  // Version
+  version               String                      @default("1.0") @map("version") @db.VarChar(20)
+  versionNotes          String?                     @map("version_notes") @db.Text
+  
+  // Status
+  status                DocumentStatus              @default(ACTIVE) @map("status")
+  
+  // Uploaded by
+  uploadedBy            Int                         @map("uploaded_by")
+  uploader              User                        @relation(fields: [uploadedBy], references: [id])
+  uploadedAt            DateTime                    @default(now()) @map("uploaded_at")
+  
+  // Related entities (polymorphic associations)
+  relatedEntityType     String?                     @map("related_entity_type") @db.VarChar(50)
+  relatedEntityId       Int?                        @map("related_entity_id")
+  
+  // Job Request relation
+  jobRequestId          Int?                        @map("job_request_id")
+  jobRequest            JobRequest?                 @relation(fields: [jobRequestId], references: [id])
+  
+  // Asset relation
+  assetId               Int?                        @map("asset_id")
+  asset                 Asset?                      @relation(fields: [assetId], references: [id])
+  
+  // Assignment relation
+  assignmentId          Int?                        @map("assignment_id")
+  assignment            Assignment?                 @relation(fields: [assignmentId], references: [id])
+  
+  // Maintenance Requirement relation
+  maintenanceRequirementId Int?                     @map("maintenance_requirement_id")
+  maintenanceRequirement   MaintenanceRequirement?  @relation(fields: [maintenanceRequirementId], references: [id])
+  
+  // Maintenance Duty relation
+  maintenanceDutyId     Int?                        @map("maintenance_duty_id")
+  maintenanceDuty       MaintenanceDuty?            @relation(fields: [maintenanceDutyId], references: [id])
+  
+  // Incident relation
+  incidentId            Int?                        @map("incident_id")
+  incident              Incident?                   @relation(fields: [incidentId], references: [id])
+  
+  // Asset Retirement relation
+  assetRetirementId     Int?                        @map("asset_retirement_id")
+  assetRetirement       AssetRetirement?            @relation(fields: [assetRetirementId], references: [id])
+  
+  // Tags
+  tags                  String?                     @map("tags") @db.VarChar(500)
+  
+  // Access control
+  isPublic              Boolean                     @default(false) @map("is_public")
+  accessLevel           String?                     @map("access_level") @db.VarChar(50)
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  deletedAt             DateTime?                   @map("deleted_at")
+  
+  @@index([documentNumber])
+  @@index([title])
+  @@index([documentTypeId])
+  @@index([documentGroupId])
+  @@index([uploadedBy])
+  @@index([status])
+  @@index([relatedEntityType, relatedEntityId])
+  @@index([jobRequestId])
+  @@index([assetId])
+  @@index([assignmentId])
+  @@index([uploadedAt])
+  @@index([createdAt])
+  @@map("documents")
+}
+
+// Comment - Comments on various entities
+model Comment {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  commentText           String                      @map("comment_text") @db.Text
+  
+  // Commented by
+  commentedBy           Int                         @map("commented_by")
+  commenter             User                        @relation(fields: [commentedBy], references: [id])
+  commentedAt           DateTime                    @default(now()) @map("commented_at")
+  
+  // Related entities (polymorphic associations)
+  relatedEntityType     String                      @map("related_entity_type") @db.VarChar(50)
+  relatedEntityId       Int                         @map("related_entity_id")
+  
+  // Job Request relation
+  jobRequestId          Int?                        @map("job_request_id")
+  jobRequest            JobRequest?                 @relation(fields: [jobRequestId], references: [id])
+  
+  // Asset relation
+  assetId               Int?                        @map("asset_id")
+  asset                 Asset?                      @relation(fields: [assetId], references: [id])
+  
+  // Assignment relation
+  assignmentId          Int?                        @map("assignment_id")
+  assignment            Assignment?                 @relation(fields: [assignmentId], references: [id])
+  
+  // Maintenance Requirement relation
+  maintenanceRequirementId Int?                     @map("maintenance_requirement_id")
+  maintenanceRequirement   MaintenanceRequirement?  @relation(fields: [maintenanceRequirementId], references: [id])
+  
+  // Maintenance Duty relation
+  maintenanceDutyId     Int?                        @map("maintenance_duty_id")
+  maintenanceDuty       MaintenanceDuty?            @relation(fields: [maintenanceDutyId], references: [id])
+  
+  // Maintenance Task relation
+  maintenanceTaskId     Int?                        @map("maintenance_task_id")
+  maintenanceTask       MaintenanceTask?            @relation(fields: [maintenanceTaskId], references: [id])
+  
+  // Visit relation
+  visitId               Int?                        @map("visit_id")
+  visit                 Visit?                      @relation(fields: [visitId], references: [id])
+  
+  // Incident relation
+  incidentId            Int?                        @map("incident_id")
+  incident              Incident?                   @relation(fields: [incidentId], references: [id])
+  
+  // Asset Retirement relation
+  assetRetirementId     Int?                        @map("asset_retirement_id")
+  assetRetirement       AssetRetirement?            @relation(fields: [assetRetirementId], references: [id])
+  
+  // Parent comment (for threaded comments)
+  parentCommentId       Int?                        @map("parent_comment_id")
+  parentComment         Comment?                    @relation("CommentThread", fields: [parentCommentId], references: [id])
+  replies               Comment[]                   @relation("CommentThread")
+  
+  // Edited
+  isEdited              Boolean                     @default(false) @map("is_edited")
+  editedAt              DateTime?                   @map("edited_at")
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  deletedAt             DateTime?                   @map("deleted_at")
+  
+  @@index([commentedBy])
+  @@index([relatedEntityType, relatedEntityId])
+  @@index([jobRequestId])
+  @@index([assetId])
+  @@index([assignmentId])
+  @@index([parentCommentId])
+  @@index([commentedAt])
+  @@index([createdAt])
+  @@map("comments")
+}
+
+// ============================================================================
+// MODELS - Multi-language & Delegation
+// ============================================================================
+
+// Language Text - Multi-language support
+model LanguageText {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  
+  // Text key (unique identifier for the text)
+  textKey               String                      @map("text_key") @db.VarChar(255)
+  
+  // Language code (ISO 639-1: en, tr, de, etc.)
+  languageCode          String                      @map("language_code") @db.VarChar(10)
+  
+  // Translated text
+  textValue             String                      @map("text_value") @db.Text
+  
+  // Context (screen, module, etc.)
+  context               String?                     @map("context") @db.VarChar(100)
+  
+  // Notes for translators
+  translatorNotes       String?                     @map("translator_notes") @db.Text
+  
+  // Status
+  isActive              Boolean                     @default(true) @map("is_active")
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  
+  @@unique([textKey, languageCode])
+  @@index([textKey])
+  @@index([languageCode])
+  @@index([context])
+  @@index([createdAt])
+  @@map("language_texts")
+}
+
+// On Behalf - On behalf authorization
+model OnBehalf {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  
+  // Requestor (person giving authorization)
+  requestorId           Int                         @map("requestor_id")
+  requestor             User                        @relation("OnBehalfRequestor", fields: [requestorId], references: [id])
+  
+  // Delegate (person receiving authorization)
+  delegateId            Int                         @map("delegate_id")
+  delegate              User                        @relation("OnBehalfDelegate", fields: [delegateId], references: [id])
+  
+  // Authorization scope
+  scope                 String?                     @map("scope") @db.VarChar(255)
+  permissions           String?                     @map("permissions") @db.Text
+  
+  // Date range
+  startDate             DateTime                    @map("start_date")
+  endDate               DateTime                    @map("end_date")
+  
+  // Reason
+  reason                String?                     @map("reason") @db.Text
+  
+  // Status
+  isActive              Boolean                     @default(true) @map("is_active")
+  
+  // Approval
+  approvedBy            Int?                        @map("approved_by")
+  approvalDate          DateTime?                   @map("approval_date")
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  
+  // Relations
+  logs                  OnBehalfLog[]
+  
+  @@index([requestorId])
+  @@index([delegateId])
+  @@index([startDate])
+  @@index([endDate])
+  @@index([isActive])
+  @@index([createdAt])
+  @@map("on_behalf")
+}
+
+// On Behalf Log - Tracking on behalf actions
+model OnBehalfLog {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  
+  // On Behalf relation
+  onBehalfId            Int                         @map("on_behalf_id")
+  onBehalf              OnBehalf                    @relation(fields: [onBehalfId], references: [id], onDelete: Cascade)
+  
+  // Action performed
+  actionType            String                      @map("action_type") @db.VarChar(100)
+  actionDescription     String?                     @map("action_description") @db.Text
+  
+  // Entity affected
+  entityType            String?                     @map("entity_type") @db.VarChar(50)
+  entityId              Int?                        @map("entity_id")
+  
+  // Performed by (delegate)
+  performedBy           Int                         @map("performed_by")
+  performer             User                        @relation(fields: [performedBy], references: [id])
+  performedAt           DateTime                    @default(now()) @map("performed_at")
+  
+  // IP address and other tracking info
+  ipAddress             String?                     @map("ip_address") @db.VarChar(50)
+  userAgent             String?                     @map("user_agent") @db.VarChar(500)
+  
+  // Additional data
+  metadata              String?                     @map("metadata") @db.Text
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  
+  @@index([onBehalfId])
+  @@index([performedBy])
+  @@index([actionType])
+  @@index([entityType, entityId])
+  @@index([performedAt])
+  @@index([createdAt])
+  @@map("on_behalf_logs")
+}
+
+// ============================================================================
+// MODELS - Maintenance Module Configuration
+// ============================================================================
+
+// Maintenance Module - Module configuration and metadata
+model MaintenanceModule {
+  id                    Int                         @id @default(autoincrement()) @map("id")
+  moduleName            String                      @unique @map("module_name") @db.VarChar(100)
+  moduleCode            String                      @unique @map("module_code") @db.VarChar(50)
+  description           String?                     @map("description") @db.Text
+  
+  // Module settings (JSON)
+  settings              String?                     @map("settings") @db.Text
+  
+  // Module status
+  isEnabled             Boolean                     @default(true) @map("is_enabled")
+  
+  // Version
+  version               String?                     @map("version") @db.VarChar(20)
+  
+  // Timestamps
+  createdAt             DateTime                    @default(now()) @map("created_at")
+  updatedAt             DateTime                    @updatedAt @map("updated_at")
+  
+  @@index([moduleName])
+  @@index([moduleCode])
+  @@index([isEnabled])
+  @@index([createdAt])
+  @@map("maintenance_modules")
+}

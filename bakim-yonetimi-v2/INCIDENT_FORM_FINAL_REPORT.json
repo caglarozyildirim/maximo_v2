@@ -1,0 +1,1952 @@
+{
+  "module_name": "Incident Management (Olay Bildirimi)",
+  "total_fields": 60,
+  "editable_fields_count": 60,
+  "readonly_fields_count": 0,
+  "workflow_stages": [
+    "a. Create incident",
+    "a. Handing over the asset to a maintenance responsible",
+    "b. Assignment to a solution responsible by one of SL-TL group",
+    "c. Sending asset to an outsource service",
+    "d. Enter delay reason",
+    "e. Solution explanation entered",
+    "f.  Consumed materials and quantities entered",
+    "i.  Manual approval",
+    "ii. manual approval without solution approval from SL & TL",
+    "iii.  Rejection",
+    "j. Solution approval from creator first manager or alternative approver",
+    "Incident"
+  ],
+  "fields_by_stage": {
+    "a. Create incident": [
+      "SAP Asset number",
+      "SAP Asset title",
+      "Maintenance asset number",
+      "Maintenance asset title",
+      "Incident Title",
+      "Incident description",
+      "Document Group Id",
+      "Document Id",
+      "Document Title",
+      "Document Description",
+      "Document Link",
+      "Creation date time",
+      "Created By User ID",
+      "Location",
+      "Location sub unit",
+      "Creation date time",
+      "Creating user Id",
+      "Creating user name",
+      "Creation user surname",
+      "Creating user department",
+      "Status",
+      "Comments",
+      "Alternative user to receive asset User Id",
+      "Alternative user to receive asset User Name",
+      "Alternative user to receive asset User Surname",
+      "Alternative user to receive asset User info",
+      "Current assignee user Id",
+      "Current assignee user Name",
+      "Current assignee user Surname",
+      "Current assignee user Department"
+    ],
+    "a. Handing over the asset to a maintenance responsible": [
+      "Asset recived by User Id",
+      "Asset recived by User name",
+      "Asset recived by User Surname",
+      "Asset recived by User Department",
+      "Asset recieved date time"
+    ],
+    "b. Assignment to a solution responsible by one of SL-TL group": [
+      "Responsible SL-TL User Id",
+      "Responsible SL-TL User Name",
+      "Responsible SL-TL User Surname",
+      "Responsible SL-TL Department"
+    ],
+    "c. Sending asset to an outsource service": [
+      "Outsource service explanation",
+      "Outsource service sent date time",
+      "Outsource service sent by user Id",
+      "Outsource service sent by user name",
+      "Outsource service sent by user surname",
+      "Outsource service sent by user department"
+    ],
+    "d. Enter delay reason": [
+      "Delay reason",
+      "Delay entered by user Id",
+      "Delay reason entering date time"
+    ],
+    "e. Solution explanation entered": [
+      "Solution Explanation",
+      "Solution Provided",
+      "Solution Provided date time",
+      "Solution Provided by User Id",
+      "Solution Provided by User Name",
+      "Solution Provided by User Surname",
+      "Solution Provided by User Department"
+    ],
+    "f.  Consumed materials and quantities entered": [
+      "Process type",
+      "Process Id",
+      "Material",
+      "Unit of Measure",
+      "Quantity"
+    ]
+  },
+  "fields_by_category": {
+    "Basic Information": [
+      "Incident Title",
+      "Incident description"
+    ],
+    "Asset Information": [
+      "SAP Asset number",
+      "SAP Asset title",
+      "Maintenance asset number",
+      "Maintenance asset title"
+    ],
+    "Location Information": [
+      "Location",
+      "Location sub unit"
+    ],
+    "Creator Information": [
+      "Created By User ID",
+      "Creating user Id",
+      "Creating user name",
+      "Creation user surname",
+      "Creating user department"
+    ],
+    "Maintenance Responsible": [
+      "Alternative user to receive asset User Id",
+      "Alternative user to receive asset User Name",
+      "Alternative user to receive asset User Surname",
+      "Alternative user to receive asset User info",
+      "Asset recived by User Id",
+      "Asset recived by User name",
+      "Asset recived by User Surname",
+      "Asset recived by User Department"
+    ],
+    "Solution Responsible": [
+      "Responsible SL-TL User Id",
+      "Responsible SL-TL User Name",
+      "Responsible SL-TL User Surname",
+      "Responsible SL-TL Department"
+    ],
+    "Outsource Service": [
+      "Outsource service explanation",
+      "Outsource service sent date time",
+      "Outsource service sent by user Id",
+      "Outsource service sent by user name",
+      "Outsource service sent by user surname",
+      "Outsource service sent by user department"
+    ],
+    "Delay Information": [
+      "Delay reason",
+      "Delay entered by user Id",
+      "Delay reason entering date time"
+    ],
+    "Solution Information": [
+      "Solution Explanation",
+      "Solution Provided",
+      "Solution Provided date time",
+      "Solution Provided by User Id",
+      "Solution Provided by User Name",
+      "Solution Provided by User Surname",
+      "Solution Provided by User Department"
+    ],
+    "Material Consumption": [
+      "Process type",
+      "Process Id",
+      "Material",
+      "Unit of Measure",
+      "Quantity"
+    ],
+    "Document/Attachment": [
+      "Document Group Id",
+      "Document Id",
+      "Document Title",
+      "Document Description",
+      "Document Link"
+    ],
+    "Comments": [
+      "Comments"
+    ],
+    "System Fields": [
+      "Creation date time",
+      "Creation date time",
+      "Status",
+      "Current assignee user Id",
+      "Current assignee user Name",
+      "Current assignee user Surname",
+      "Current assignee user Department"
+    ]
+  },
+  "all_fields": [
+    {
+      "row": 5,
+      "field_name": "SAP Asset number",
+      "visibility_matrix": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "a. Create incident",
+        "a. Handing over the asset to a maintenance responsible",
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "f.  Consumed materials and quantities entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 6,
+      "field_name": "SAP Asset title",
+      "visibility_matrix": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "a. Create incident",
+        "a. Handing over the asset to a maintenance responsible",
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "f.  Consumed materials and quantities entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 7,
+      "field_name": "Maintenance asset number",
+      "visibility_matrix": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "a. Create incident",
+        "a. Handing over the asset to a maintenance responsible",
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "f.  Consumed materials and quantities entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 8,
+      "field_name": "Maintenance asset title",
+      "visibility_matrix": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "a. Create incident",
+        "a. Handing over the asset to a maintenance responsible",
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "f.  Consumed materials and quantities entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 9,
+      "field_name": "Incident Title",
+      "visibility_matrix": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "a. Create incident",
+        "a. Handing over the asset to a maintenance responsible",
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "f.  Consumed materials and quantities entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 10,
+      "field_name": "Incident description",
+      "visibility_matrix": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "a. Create incident",
+        "a. Handing over the asset to a maintenance responsible",
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "f.  Consumed materials and quantities entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 11,
+      "field_name": "Document Group Id",
+      "visibility_matrix": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "a. Create incident",
+        "a. Handing over the asset to a maintenance responsible",
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "f.  Consumed materials and quantities entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 12,
+      "field_name": "Document Id",
+      "visibility_matrix": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "a. Create incident",
+        "a. Handing over the asset to a maintenance responsible",
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "f.  Consumed materials and quantities entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 13,
+      "field_name": "Document Title",
+      "visibility_matrix": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "a. Create incident",
+        "a. Handing over the asset to a maintenance responsible",
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "f.  Consumed materials and quantities entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 14,
+      "field_name": "Document Description",
+      "visibility_matrix": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "a. Create incident",
+        "a. Handing over the asset to a maintenance responsible",
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "f.  Consumed materials and quantities entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 15,
+      "field_name": "Document Link",
+      "visibility_matrix": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "a. Create incident",
+        "a. Handing over the asset to a maintenance responsible",
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "f.  Consumed materials and quantities entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 16,
+      "field_name": "Creation date time",
+      "visibility_matrix": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "a. Create incident",
+        "a. Handing over the asset to a maintenance responsible",
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "f.  Consumed materials and quantities entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 17,
+      "field_name": "Created By User ID",
+      "visibility_matrix": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "a. Create incident",
+        "a. Handing over the asset to a maintenance responsible",
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "f.  Consumed materials and quantities entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 18,
+      "field_name": "Location",
+      "visibility_matrix": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "a. Create incident",
+        "a. Handing over the asset to a maintenance responsible",
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "f.  Consumed materials and quantities entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 19,
+      "field_name": "Location sub unit",
+      "visibility_matrix": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "a. Create incident",
+        "a. Handing over the asset to a maintenance responsible",
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "f.  Consumed materials and quantities entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 20,
+      "field_name": "Creation date time",
+      "visibility_matrix": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "a. Create incident",
+        "a. Handing over the asset to a maintenance responsible",
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "f.  Consumed materials and quantities entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 21,
+      "field_name": "Creating user Id",
+      "visibility_matrix": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "a. Create incident",
+        "a. Handing over the asset to a maintenance responsible",
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "f.  Consumed materials and quantities entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 22,
+      "field_name": "Creating user name",
+      "visibility_matrix": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "a. Create incident",
+        "a. Handing over the asset to a maintenance responsible",
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "f.  Consumed materials and quantities entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 23,
+      "field_name": "Creation user surname",
+      "visibility_matrix": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "a. Create incident",
+        "a. Handing over the asset to a maintenance responsible",
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "f.  Consumed materials and quantities entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 24,
+      "field_name": "Creating user department",
+      "visibility_matrix": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "a. Create incident",
+        "a. Handing over the asset to a maintenance responsible",
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "f.  Consumed materials and quantities entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 25,
+      "field_name": "Status",
+      "visibility_matrix": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "a. Create incident",
+        "a. Handing over the asset to a maintenance responsible",
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "f.  Consumed materials and quantities entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 26,
+      "field_name": "Comments",
+      "visibility_matrix": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "a. Create incident",
+        "a. Handing over the asset to a maintenance responsible",
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "f.  Consumed materials and quantities entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 27,
+      "field_name": "Alternative user to receive asset User Id",
+      "visibility_matrix": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "a. Create incident",
+        "a. Handing over the asset to a maintenance responsible",
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "f.  Consumed materials and quantities entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 28,
+      "field_name": "Alternative user to receive asset User Name",
+      "visibility_matrix": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "a. Create incident",
+        "a. Handing over the asset to a maintenance responsible",
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "f.  Consumed materials and quantities entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 29,
+      "field_name": "Alternative user to receive asset User Surname",
+      "visibility_matrix": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "a. Create incident",
+        "a. Handing over the asset to a maintenance responsible",
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "f.  Consumed materials and quantities entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 30,
+      "field_name": "Alternative user to receive asset User info",
+      "visibility_matrix": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "a. Create incident",
+        "a. Handing over the asset to a maintenance responsible",
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "f.  Consumed materials and quantities entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 31,
+      "field_name": "Current assignee user Id",
+      "visibility_matrix": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "a. Create incident",
+        "a. Handing over the asset to a maintenance responsible",
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "f.  Consumed materials and quantities entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 32,
+      "field_name": "Current assignee user Name",
+      "visibility_matrix": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "a. Create incident",
+        "a. Handing over the asset to a maintenance responsible",
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "f.  Consumed materials and quantities entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 33,
+      "field_name": "Current assignee user Surname",
+      "visibility_matrix": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "a. Create incident",
+        "a. Handing over the asset to a maintenance responsible",
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "f.  Consumed materials and quantities entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 34,
+      "field_name": "Current assignee user Department",
+      "visibility_matrix": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "a. Create incident",
+        "a. Handing over the asset to a maintenance responsible",
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "f.  Consumed materials and quantities entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 35,
+      "field_name": "Asset recived by User Id",
+      "visibility_matrix": [
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "a. Handing over the asset to a maintenance responsible",
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 36,
+      "field_name": "Asset recived by User name",
+      "visibility_matrix": [
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "a. Handing over the asset to a maintenance responsible",
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 37,
+      "field_name": "Asset recived by User Surname",
+      "visibility_matrix": [
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "a. Handing over the asset to a maintenance responsible",
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 38,
+      "field_name": "Asset recived by User Department",
+      "visibility_matrix": [
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "a. Handing over the asset to a maintenance responsible",
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 39,
+      "field_name": "Asset recieved date time",
+      "visibility_matrix": [
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "a. Handing over the asset to a maintenance responsible",
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 40,
+      "field_name": "Responsible SL-TL User Id",
+      "visibility_matrix": [
+        "0",
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 41,
+      "field_name": "Responsible SL-TL User Name",
+      "visibility_matrix": [
+        "0",
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 42,
+      "field_name": "Responsible SL-TL User Surname",
+      "visibility_matrix": [
+        "0",
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 43,
+      "field_name": "Responsible SL-TL Department",
+      "visibility_matrix": [
+        "0",
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "b. Assignment to a solution responsible by one of SL-TL group",
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 44,
+      "field_name": "Outsource service explanation",
+      "visibility_matrix": [
+        "0",
+        "0",
+        "0",
+        "1",
+        "1",
+        "1",
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 45,
+      "field_name": "Outsource service sent date time",
+      "visibility_matrix": [
+        "0",
+        "0",
+        "0",
+        "1",
+        "1",
+        "1",
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 46,
+      "field_name": "Outsource service sent by user Id",
+      "visibility_matrix": [
+        "0",
+        "0",
+        "0",
+        "1",
+        "1",
+        "1",
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 47,
+      "field_name": "Outsource service sent by user name",
+      "visibility_matrix": [
+        "0",
+        "0",
+        "0",
+        "1",
+        "1",
+        "1",
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 48,
+      "field_name": "Outsource service sent by user surname",
+      "visibility_matrix": [
+        "0",
+        "0",
+        "0",
+        "1",
+        "1",
+        "1",
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 49,
+      "field_name": "Outsource service sent by user department",
+      "visibility_matrix": [
+        "0",
+        "0",
+        "0",
+        "1",
+        "1",
+        "1",
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "c. Sending asset to an outsource service",
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 50,
+      "field_name": "Delay reason",
+      "visibility_matrix": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "1",
+        "1",
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 51,
+      "field_name": "Delay entered by user Id",
+      "visibility_matrix": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "1",
+        "1",
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 52,
+      "field_name": "Delay reason entering date time",
+      "visibility_matrix": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "1",
+        "1",
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "d. Enter delay reason",
+        "e. Solution explanation entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 53,
+      "field_name": "Solution Explanation",
+      "visibility_matrix": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "1",
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "e. Solution explanation entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 54,
+      "field_name": "Solution Provided",
+      "visibility_matrix": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "1",
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "e. Solution explanation entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 55,
+      "field_name": "Solution Provided date time",
+      "visibility_matrix": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "1",
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "e. Solution explanation entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 56,
+      "field_name": "Solution Provided by User Id",
+      "visibility_matrix": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "1",
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "e. Solution explanation entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 57,
+      "field_name": "Solution Provided by User Name",
+      "visibility_matrix": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "1",
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "e. Solution explanation entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 58,
+      "field_name": "Solution Provided by User Surname",
+      "visibility_matrix": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "1",
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "e. Solution explanation entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 59,
+      "field_name": "Solution Provided by User Department",
+      "visibility_matrix": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "1",
+        "0",
+        "1",
+        "1",
+        "1",
+        "1",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "e. Solution explanation entered",
+        "i.  Manual approval",
+        "ii. manual approval without solution approval from SL & TL",
+        "iii.  Rejection",
+        "j. Solution approval from creator first manager or alternative approver"
+      ]
+    },
+    {
+      "row": 60,
+      "field_name": "Process type",
+      "visibility_matrix": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "f.  Consumed materials and quantities entered"
+      ]
+    },
+    {
+      "row": 61,
+      "field_name": "Process Id",
+      "visibility_matrix": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "f.  Consumed materials and quantities entered"
+      ]
+    },
+    {
+      "row": 62,
+      "field_name": "Material",
+      "visibility_matrix": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "f.  Consumed materials and quantities entered"
+      ]
+    },
+    {
+      "row": 63,
+      "field_name": "Unit of Measure",
+      "visibility_matrix": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "f.  Consumed materials and quantities entered"
+      ]
+    },
+    {
+      "row": 64,
+      "field_name": "Quantity",
+      "visibility_matrix": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "is_editable": true,
+      "editable_in_stages": [
+        "f.  Consumed materials and quantities entered"
+      ]
+    }
+  ]
+}

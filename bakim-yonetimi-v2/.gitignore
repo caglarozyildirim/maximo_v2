@@ -1,0 +1,73 @@
+# Dependencies
+node_modules/
+/.pnp
+.pnp.js
+
+# Testing
+/coverage
+
+# Production
+/build
+/dist
+
+# Misc
+.DS_Store
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+pnpm-debug.log*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+Thumbs.db
+
+# Python
+*.py
+*.pyc
+__pycache__/
+
+# Documentation temp files
+*.md.backup
+~$*.docx
+
+# Analysis files
+analysis_data.json
+*_analysis.json
+*_requirements.json
+COMPREHENSIVE_*.json
+FIELD_LEVEL_*.json
+
+# Parent directory files (outside project)
+../.DS_Store
+../.idea/
+../BAKIM_*.md
+../FARK_*.md
+../KAPSAMLI_*.md
+../MODERNIZASYON_*.md
+../PROJE_*.md
+../TAMAMLANAN_*.md
+../*.pdf
+../*.py
+../analizler/
+../bakim-sistemi/
+../bakim-yonetim-app/
+../screenshots/
+../screenshots_complete/
+../tedarik_html/
+../diagrams/
+../*.json
+../*.html

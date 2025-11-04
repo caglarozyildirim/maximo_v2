@@ -1,0 +1,252 @@
+================================================================================
+HURDA (ASSET RETIREMENT) FORM ALANLAR VE GEREKSINIMLER - ARAŞTIRMA ÖZETİ
+================================================================================
+
+ARAŞTIRMA TARİHİ: 2025-11-04
+ARAŞTIRMA KONUSU: Belirtilen klasördeki dokümanlarda "hurda" veya "retirement" 
+                  ile ilgili tüm form alanlarını ve gereksinimlerini bulma
+
+================================================================================
+1. ARAŞTIRMA KAPSAMINDA TARAMA YAPILAN DOSYALAR
+================================================================================
+
+Başlıca Kaynaklar:
+  - /Users/caglarozyildirim/Desktop/new/Asset Retirement Printout.docx
+  - /Users/caglarozyildirim/Desktop/new/Data Structure.xlsx
+  - /Users/caglarozyildirim/Desktop/new/Maintenance Management Application...docx
+  - /Users/caglarozyildirim/WebstormProjects/Deneme/bakim-yonetimi-v2/complete_requirements.json
+  - /Users/caglarozyildirim/WebstormProjects/Deneme/bakim-yonetimi-v2/detailed_requirements_complete.json
+  - /Users/caglarozyildirim/WebstormProjects/Deneme/bakim-yonetimi-v2/COMPREHENSIVE_REQUIREMENTS_REPORT.json
+
+================================================================================
+2. BULUNAN ÖNEMLİ BİLGİLER
+================================================================================
+
+2.1 TEMEL İSTATİSTİKLER
+  - Toplam Form Alanı: 70+ alan
+  - Zorunlu Alanlar: 45+
+  - Opsiyonel Alanlar: 25+
+  - Onay Seviyeleri: 4 (Maliyet Merkezi, Teknik Şef, Bakım Müdürü, Muhasebe)
+  - Ekran Sayısı: 4 ekran (Oluşturma, Liste, Yazdırma, Rapor)
+
+2.2 TEMEL VARLıK BİLGİSİ (MANDATORY)
+  - SAP Varlık Numarası (Text) - SAP'ten otomatik
+  - SAP Varlık Adı (Text) - SAP'ten otomatik
+  - Bakım Varlık ID (Text/Number) - Sistem tarafından otomatik
+  - Bakım Varlık Adı (Text) - SAP'ten otomatik
+  - Üretici Adı, Modeli, Seri Numarası
+
+2.3 MALİ BİLGİLER (MANDATORY - READ ONLY)
+  - IFRS Amortisman Anahtarı, Faydalı Ömrü, Aktifleştirme Tarihi
+  - IFRS Para Birimi, APC, Birikmiş Amortisman, Cari Defter Değeri
+  - Yerel Standart: Amortisman, Faydalı Ömrü, Para Birimi, APC, vb.
+  - Hepsi SAP'ten otomatik doldurulur, düzenlenmez
+
+2.4 HURDA YÖNTEMİ BİLGİSİ (MANDATORY)
+  - Hurda Yöntemi Dropdown: Selling, Scrapping, Donation, Write-off
+  - Selling seçilirse:
+    - Satış Fiyatı (Currency) - MANDATORY
+    - Para Birimi (EUR, USD, TRY) - MANDATORY
+    - Fatura İsteme Formu (Checkbox) - MANDATORY
+
+2.5 ONAY SÜRECİ (MANDATORY)
+  Adım 1: İstek Oluştur
+  Adım 2: Maliyet Merkezi Sorumlusu Onayı
+    - Approval from cost center responsible (Checkbox)
+    - Approval datetime (Auto)
+    - Approver Info (User Lookup)
+  
+  Adım 3: Teknik Şef (SL-Engineer) Onayı (Koşullu: bakım varlık ID varsa)
+    - Approval from SL-Engineer (Checkbox)
+    - Approval datetime (Auto)
+    - Approver Info (User Lookup)
+  
+  Adım 4: Bakım Müdürü Onayı
+    - Approval of Maintenance manager (Checkbox)
+    - Approval datetime (Auto)
+    - Approver Info (User Lookup)
+  
+  Adım 5: Mali/Muhasebe Onayı
+    - Asset Retirement Accounting Approval (Checkbox)
+    - Approval Options: Approve, Reject, Reevaluate
+    - Reevaluate seçilirse:
+      - Reevaluation date (Date) - MANDATORY
+      - Reevaluation Explanation (Textarea) - MANDATORY
+  
+  Adım 6: Fiziksel Hurda Onayı
+    - Physical Retirement approval (Checkbox)
+    - Status: "Not yet Required" (Gelecekte aktif olacak)
+
+2.6 KULLANıCI BİLGİ ALANLAR
+  - Request created by user info (Otomatik - Oturum açan)
+  - Requestor user info (Manuel/Otomatik)
+  - Cost Center Asset Responsible info (SAP'ten otomatik)
+  - Approvers at each step (Manuel seçim)
+  - Format: **[ID] - [Name] - [Department]
+  - Örnek: **23 - Yasin Taşdelen - FIPC
+
+2.7 BELGELENDİRME
+  - Documents Grid (Attachment Table)
+  - Sütunlar: ID, Type, Title, Creation Date time
+  - Add Document Button: PDF, DOCX, XLSX, JPG, PNG, vb. destekler
+
+2.8 TARİH/ZAMAN ALANLAR
+  - SAP Veri Alış Tarihi (Auto - Read-only)
+  - İstek Oluşturma Tarihi (Auto - Read-only)
+  - Onay Tarihleri (Auto sırasında)
+  - Yeniden Değerlendirme Tarihi (Manuel - Koşullu)
+
+2.9 İŞLEM BİLGİSİ
+  - İstek ID: Auto-generated
+  - Durum: Waiting, In Progress, Approved, Rejected, Completed
+  - Hurda Nedeni (Reason): Textarea - Zorunlu
+
+2.10 BUSINESS KURALLAR
+  - SAP Entegrasyonu: Varlık ve mali bilgiler otomatik SAP'ten
+  - Bakım Varlık Desteği: Bakım varlığı olmayan varlıklar da işlenebilir
+  - IFRS ve Yerel Standart Uyumluluğu
+  - 4 seviye zorunlu onay (Cost Center > Engineer > Manager > Accounting)
+  - Koşullu görünürlük (Selling seçilince satış fiyatı görül, vb.)
+
+2.11 KOŞULLU GÖRÜNÜRLÜK (Conditional Visibility)
+  - Satış Fiyatı + Fatura Formu: IF Retirement Method = "Selling"
+  - Teknik Şef Onayı: IF Maintenance asset ID EXISTS
+  - Reevaluation Alanları: IF Accounting Approval = "Reevaluate"
+
+================================================================================
+3. ALAN TİPLERİ ÖZETİ
+================================================================================
+
+Text Fields: ~15 (SAP varlık adı, üretici, vb.)
+Number/Currency: ~8 (Satış fiyatı, APC, Amortisman, vb.)
+Date/Datetime: ~12 (Onay tarihleri, reevaluation tarihi, vb.)
+Dropdown/Select: ~5 (Hurda yöntemi, sınıf, para birimi, durum, vb.)
+Checkbox/Boolean: ~5 (Onaylar, fatura formu, vb.)
+User Lookup: ~8 (Onaylayıcılar, istek yapan, vb.)
+Textarea: ~2 (Nedeni, reevaluation açıklaması)
+System ID: ~2 (İstek ID, belge grubu ID)
+Attachment Grid: ~1 (Belgeler tablosu)
+
+================================================================================
+4. EKRAN YAPISI
+================================================================================
+
+Screen 25 AR (Asset Retirement Form):
+  - Temel varlık bilgileri
+  - Hurda yöntemi seçimi
+  - Onay süreci (tüm adımlar)
+  - Belgeler
+  - Düzen: Sol taraf varlık bilgileri, Sağ taraf onaylar + detaylar
+
+Screen 25 (Asset Retirement List View):
+  - Hurda talepleri listesi
+  - Detay görünümü
+
+Screen 26 ARP (Asset Retirement Printout):
+  - Hurda raporu yazdırma
+  - Hurda yöntemi, satış fiyatı, onay durumları görüntülenir
+
+Screen 27 (Asset Retirement List):
+  - Hurda varlıkları listesi (rapor)
+
+================================================================================
+5. DROPOUT SEÇENEKLERİ
+================================================================================
+
+Hurda Yöntemi (Retirement Method):
+  - Selling (Satış)
+  - Scrapping (Hurdaya Ayırma)
+  - Donation (Bağış)
+  - Write-off (Silinme/İptal)
+
+Durum (Status):
+  - Waiting (Beklemede)
+  - In Progress (İşlemde)
+  - Approved (Onaylandı)
+  - Rejected (Reddedildi)
+  - Completed (Tamamlandı)
+
+Mali Onay Seçenekleri:
+  - Approve (Onay)
+  - Reject (Reddet)
+  - Reevaluate (Yeniden Değerlendir)
+
+Para Birimleri:
+  - EUR (Avro)
+  - USD (ABD Doları)
+  - TRY (Türk Lirası)
+  - (SAP'ten dinamik olarak yüklenir)
+
+================================================================================
+6. ÖNEMLİ NOT VE ÖZEL DURUMLAR
+================================================================================
+
+1. Fiziksel Hurda Onayı: "Not yet Required" - Gelecekte etkinleştirilecek
+2. Satış Yöntemi: Fatura formu kaydı ve satış fiyatı ZORUNLUDUR
+3. Yeniden Değerlendirme: Mali onayda "Reevaluate" seçilirse tarih+açıklama gerekir
+4. Bakım Varlık ID: Varsa, Teknik Şef onayı zorunlu olur
+5. SAP Entegrasyonu: Çoğu varlık bilgisi SAP'ten otomatik, manuel değiştirilemez
+6. Reevaluation Date Set by: Otomatik olarak sistem tarafından kaydedilir (kullanıcı+zaman)
+
+================================================================================
+7. ÜRETİLEN RAPORLAR
+================================================================================
+
+Bu araştırma sonucunda iki detaylı rapor oluşturulmuştur:
+
+1. ASSET_RETIREMENT_FORM_FIELDS.md (17KB)
+   - Komprehensif ve detaylı gereksinimler
+   - Her alan için tip, zorunluluk, SAP entegrasyonu
+   - Business kurallar ve koşullu görünürlük
+   - Onay süreci akış diyagramı
+   - Bağımlılıklar ve validasyon kuralları
+
+2. HURDA_QUICK_REFERENCE.md (12KB)
+   - Hızlı referans rehberi
+   - Ana alanlar özeti
+   - Dropdown seçenekleri
+   - Kontrol listesi
+   - Özel notlar
+
+Her iki rapor da:
+  - Proje dizinine kaydedilmiştir
+  - Türkçe ve İngilizce alan adlarını içerir
+  - Örnekler ve açıklamalar ile desteklenir
+
+================================================================================
+8. ARAŞTIRMA SÜRECİNDE KULLANILAN YÖNTEMLER
+================================================================================
+
+1. Dosya Taraması: Glob patterns ve grep regex ile kapsamlı arama
+2. JSON Analizi: Python betiği ile JSON dosyaları parse edildi
+3. Veri Çıkarım: Yapılandırılmış veriler JSON dosyalarından çıkarıldı
+4. Raporlama: Bulguların başlık başlığa organize ve belgelenmesi
+
+Tarama Kapsamı:
+  - Desktop/new/ klasöründe tüm dosyalar kontrol edildi
+  - JSON gereksinim dosyaları derinlemesine analiz edildi
+  - "retirement" ve "hurda" terimler için tüm belgeler tarandı
+  - COMPREHENSIVE_REQUIREMENTS_REPORT.json 148KB analiz edildi
+
+================================================================================
+9. SONUÇ
+================================================================================
+
+Araştırma başarıyla tamamlanmıştır. Hurda Yönetimi (Asset Retirement) modülü
+için eksiksiz form alanları ve gereksinimler belgelenmiştir.
+
+Ana Bulgular:
+  - 70+ form alanı tanımlanmış
+  - 4 seviye onay süreci dokumente edilmiş
+  - SAP entegrasyonu özelleştirilmiş
+  - Koşullu görünürlük kuralları açıklanmış
+  - Business kurallar tanımlanmış
+
+Raporlar proje dizinine kaydedilmiştir ve geliştirme ekibi tarafından
+kullanılabilir durumdadır.
+
+================================================================================
+Rapor Hazırlayanlar: Claude Code Analysis
+Rapor Tarihi: 2025-11-04
+Versiyon: 1.0
+================================================================================

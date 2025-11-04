@@ -1,0 +1,292 @@
+// Prisma Schema for Bakım Yönetimi Sistemi
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================================================
+// AUTHENTICATION & AUTHORIZATION
+// ============================================================================
+
+model User {
+  id                    String    @id @default(cuid())
+  email                 String    @unique
+  password              String
+  firstName             String
+  lastName              String
+  role                  Role      @relation(fields: [roleId], references: [id])
+  roleId                String
+  department            String?
+  phone                 String?
+  isActive              Boolean   @default(true)
+  lastLoginAt           DateTime?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  // Relations
+  createdJobRequests    JobRequest[]        @relation("RequestedBy")
+  assignedJobRequests   JobRequest[]        @relation("AssignedTo")
+  approvals             Approval[]
+  workflowHistories     WorkflowHistory[]
+  notifications         Notification[]
+  auditLogs             AuditLog[]
+  attachments           Attachment[]
+
+  @@map("users")
+}
+
+model Role {
+  id          String       @id @default(cuid())
+  name        String       @unique
+  displayName String
+  description String?
+  permissions Permission[]
+  users       User[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  @@map("roles")
+}
+
+model Permission {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  module      String
+  action      String
+  description String?
+  roles       Role[]
+  createdAt   DateTime @default(now())
+
+  @@map("permissions")
+}
+
+// ============================================================================
+// İŞ TALEPLERİ (JOB REQUESTS)
+// ============================================================================
+
+model JobRequest {
+  id                String               @id @default(cuid())
+  requestNumber     String               @unique
+  title             String
+  description       String
+  priority          Priority             @default(MEDIUM)
+  status            JobRequestStatus     @default(NEW)
+  currentStep       String?
+  department        String
+  location          String?
+  costEstimate      Decimal?             @db.Decimal(10, 2)
+
+  // Workflow tracking
+  requestedBy       User                 @relation("RequestedBy", fields: [requestedById], references: [id])
+  requestedById     String
+  assignedTo        User?                @relation("AssignedTo", fields: [assignedToId], references: [id])
+  assignedToId      String?
+
+  // Timestamps
+  createdAt         DateTime             @default(now())
+  updatedAt         DateTime             @updatedAt
+  completedAt       DateTime?
+  dueDate           DateTime?
+
+  // Relations
+  approvals         Approval[]
+  workflowHistory   WorkflowHistory[]
+  attachments       Attachment[]
+  comments          Comment[]
+
+  @@map("job_requests")
+}
+
+enum JobRequestStatus {
+  NEW
+  MANAGER_APPROVAL
+  SL_ENGINEER_TAKEOVER
+  TECHNICAL_APPROVAL
+  COST_CALCULATION
+  BUSINESS_COST_APPROVAL
+  SOLUTION_ASSIGNMENT
+  IMPLEMENTATION
+  SOLUTION_APPROVAL
+  DONE
+  REJECTED
+  CANCELLED
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+// ============================================================================
+// WORKFLOW ENGINE
+// ============================================================================
+
+model WorkflowDefinition {
+  id          String         @id @default(cuid())
+  name        String         @unique
+  module      String
+  version     Int            @default(1)
+  description String?
+  isActive    Boolean        @default(true)
+  config      Json
+  steps       WorkflowStep[]
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  @@map("workflow_definitions")
+}
+
+model WorkflowStep {
+  id                  String              @id @default(cuid())
+  workflow            WorkflowDefinition  @relation(fields: [workflowId], references: [id], onDelete: Cascade)
+  workflowId          String
+  stepNumber          Int
+  name                String
+  displayName         String
+  type                WorkflowStepType
+  assigneeRole        String?
+  config              Json?
+  nextStepOnApprove   String?
+  nextStepOnReject    String?
+  isOptional          Boolean             @default(false)
+  createdAt           DateTime            @default(now())
+
+  @@unique([workflowId, stepNumber])
+  @@map("workflow_steps")
+}
+
+enum WorkflowStepType {
+  APPROVAL
+  TASK
+  NOTIFICATION
+  DECISION
+  INTEGRATION
+}
+
+model WorkflowHistory {
+  id            String       @id @default(cuid())
+  entityType    String
+  entityId      String
+  jobRequest    JobRequest?  @relation(fields: [jobRequestId], references: [id], onDelete: Cascade)
+  jobRequestId  String?
+  stepName      String
+  stepNumber    Int?
+  action        String
+  fromStatus    String?
+  toStatus      String?
+  comment       String?
+  metadata      Json?
+  actor         User         @relation(fields: [actorId], references: [id])
+  actorId       String
+  createdAt     DateTime     @default(now())
+
+  @@index([entityType, entityId])
+  @@index([jobRequestId])
+  @@map("workflow_history")
+}
+
+model Approval {
+  id            String          @id @default(cuid())
+  jobRequest    JobRequest?     @relation(fields: [jobRequestId], references: [id], onDelete: Cascade)
+  jobRequestId  String?
+  stepName      String
+  stepNumber    Int
+  status        ApprovalStatus  @default(PENDING)
+  approver      User            @relation(fields: [approverId], references: [id])
+  approverId    String
+  comment       String?
+  approvedAt    DateTime?
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  @@index([jobRequestId, status])
+  @@map("approvals")
+}
+
+enum ApprovalStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+// ============================================================================
+// COMMON TABLES
+// ============================================================================
+
+model Attachment {
+  id              String       @id @default(cuid())
+  fileName        String
+  originalName    String
+  mimeType        String
+  size            Int
+  path            String
+
+  // Polymorphic relation
+  entityType      String
+  entityId        String
+  jobRequest      JobRequest?  @relation(fields: [jobRequestId], references: [id], onDelete: Cascade)
+  jobRequestId    String?
+
+  uploadedBy      User         @relation(fields: [uploadedById], references: [id])
+  uploadedById    String
+  createdAt       DateTime     @default(now())
+
+  @@index([entityType, entityId])
+  @@map("attachments")
+}
+
+model Comment {
+  id            String       @id @default(cuid())
+  entityType    String
+  entityId      String
+  jobRequest    JobRequest?  @relation(fields: [jobRequestId], references: [id], onDelete: Cascade)
+  jobRequestId  String?
+  content       String
+  authorId      String
+  authorName    String
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  @@index([entityType, entityId])
+  @@map("comments")
+}
+
+model Notification {
+  id              String    @id @default(cuid())
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId          String
+  title           String
+  message         String
+  type            String
+  entityType      String?
+  entityId        String?
+  isRead          Boolean   @default(false)
+  readAt          DateTime?
+  createdAt       DateTime  @default(now())
+
+  @@index([userId, isRead])
+  @@map("notifications")
+}
+
+model AuditLog {
+  id              String    @id @default(cuid())
+  user            User?     @relation(fields: [userId], references: [id])
+  userId          String?
+  action          String
+  entityType      String
+  entityId        String
+  changes         Json?
+  ipAddress       String?
+  userAgent       String?
+  createdAt       DateTime  @default(now())
+
+  @@index([entityType, entityId])
+  @@index([userId])
+  @@map("audit_logs")
+}

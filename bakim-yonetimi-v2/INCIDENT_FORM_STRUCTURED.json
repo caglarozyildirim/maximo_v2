@@ -1,0 +1,890 @@
+{
+  "workflow_stages": [
+    "Incident"
+  ],
+  "fields": [
+    {
+      "row": 6,
+      "field_name": "Incident Id",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "12345678",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 7,
+      "field_name": "Incident Title",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus i",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 10,
+      "field_name": "Incident description",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus iLorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus iLorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus iLorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus i",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 16,
+      "field_name": "Created By",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "**24",
+        "",
+        "Emre Kunduroğlu - FIPC",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 19,
+      "field_name": "SAP Asset number",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 20,
+      "field_name": "SAP Asset title",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus i",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 22,
+      "field_name": "M. asset number",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 23,
+      "field_name": "M. asset title",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus i",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 25,
+      "field_name": "Location",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 26,
+      "field_name": "Location sub unit 2",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 28,
+      "field_name": "Asset Received By",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "**25",
+        "",
+        "Aleynanur Kutlu - FIPC",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 29,
+      "field_name": "Alt. User to Receive",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "**23",
+        "",
+        "Yasin Taşdelen - FIPC",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 30,
+      "field_name": "Current Assignee",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "**23",
+        "",
+        "Yasin Taşdelen - FIPC",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 31,
+      "field_name": "Responsible SL-TL",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "**23",
+        "",
+        "Yasin Taşdelen - FIPC",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 32,
+      "field_name": "Solution responsible",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "**23",
+        "",
+        "Yasin Taşdelen - FIPC",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 34,
+      "field_name": "Outsource Service",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "Not Required Yet",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 35,
+      "field_name": "O. Service Sent By",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "**23",
+        "",
+        "Yasin Taşdelen - FIPC",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 36,
+      "field_name": "O. service Explanation",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus iLorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus i",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 41,
+      "field_name": "Delay declared by",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "**23",
+        "",
+        "Yasin Taşdelen - FIPC",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 42,
+      "field_name": "Delay Reason",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus iLorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus i",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 47,
+      "field_name": "Solution Provided By",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "**23",
+        "",
+        "Yasin Taşdelen - FIPC",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 48,
+      "field_name": "Solution explanation",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus iLorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus i",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 53,
+      "field_name": "Consumed Materials",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 54,
+      "field_name": "Item",
+      "visibility": [
+        "",
+        "Material Number",
+        "",
+        "",
+        "",
+        "",
+        "Material title",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 55,
+      "field_name": "1",
+      "visibility": [
+        "",
+        "12.56321-4569",
+        "",
+        "",
+        "",
+        "",
+        "Green high performance gloves",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 56,
+      "field_name": "2",
+      "visibility": [
+        "",
+        "25.98745-0000",
+        "",
+        "",
+        "",
+        "",
+        "Blue Grease",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 57,
+      "field_name": "3",
+      "visibility": [
+        "",
+        "PN15222",
+        "",
+        "",
+        "",
+        "",
+        "High density polyethilen",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 58,
+      "field_name": "4",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 61,
+      "field_name": "Documents",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 62,
+      "field_name": "Id",
+      "visibility": [
+        "",
+        "",
+        "",
+        "Type",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "Title",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 63,
+      "field_name": "12345678",
+      "visibility": [
+        "",
+        "",
+        "",
+        "Request detail 1",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "new request detailed with reques",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 66,
+      "field_name": "Comments",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 67,
+      "field_name": "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus iLorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus i",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 69,
+      "field_name": "**23",
+      "visibility": [
+        "",
+        "Yasin Taşdelen - FIPC",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 70,
+      "field_name": "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus iLorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus i",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 72,
+      "field_name": "**23",
+      "visibility": [
+        "",
+        "Emre Kunduroğlu - FIPC",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 75,
+      "field_name": "Enter Comment",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 77,
+      "field_name": "Approval Type",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "SL - TL Approval",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 78,
+      "field_name": "Approver",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "**23",
+        "",
+        "Yasin Taşdelen - FIPC",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 79,
+      "field_name": "Approved By",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 80,
+      "field_name": "Approval Date",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "Pending",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 82,
+      "field_name": "Approval Type",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "Requestor Approval",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 83,
+      "field_name": "Approver",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "**23",
+        "",
+        "Yasin Taşdelen - FIPC",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 84,
+      "field_name": "Approved By",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 85,
+      "field_name": "Approval Date",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "Pending",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 87,
+      "field_name": "Rejection Reason",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "Lorem ipsum dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien vitae pellentesque sem placerat in id cursus mi pretium tellus duis convallis tempus leo eu aenean sed diam urna tempor pulvinar vivamus fringilla lacus nec metus bibendum egestas iaculis massa nisl malesuada lacinia integer nunc posuere ut hendrerit semper vel class aptent taciti sociosqu ad litora torquent per conubia nostra inceptos himenaeos orci varius natoque penatibus et magnis dis parturient montes nascetur ridiculus m",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 95,
+      "field_name": "Rejected by",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "**23",
+        "",
+        "Yasin Taşdelen - FIPC",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 96,
+      "field_name": "Rejected Approval Type",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "SL - TL Approval",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    },
+    {
+      "row": 98,
+      "field_name": "Save Changes",
+      "visibility": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "is_editable": false
+    }
+  ],
+  "total_fields": 49
+}
