@@ -1,0 +1,1309 @@
+{
+  "screens": {
+    "CVCD": {
+      "column": 28,
+      "activities": []
+    },
+    "List": {
+      "column": 7,
+      "activities": []
+    }
+  },
+  "data_structures": {
+    "M": [
+      {
+        "name": "Job Request list",
+        "type": "List",
+        "length": ""
+      },
+      {
+        "name": "Job Reqest View",
+        "type": "Create",
+        "length": ""
+      },
+      {
+        "name": "Assets",
+        "type": "Create",
+        "length": ""
+      },
+      {
+        "name": "Embezzlement",
+        "type": "List",
+        "length": ""
+      },
+      {
+        "name": "Maintenance Requirement",
+        "type": "List",
+        "length": ""
+      },
+      {
+        "name": "Incident",
+        "type": "List",
+        "length": ""
+      },
+      {
+        "name": "Scrapping",
+        "type": "List",
+        "length": ""
+      }
+    ],
+    "Job Req.": [
+      {
+        "name": "Request Id",
+        "type": "integer",
+        "length": "8"
+      },
+      {
+        "name": "Request Title",
+        "type": "text",
+        "length": "128"
+      },
+      {
+        "name": "Request Description",
+        "type": "text",
+        "length": "1024"
+      },
+      {
+        "name": "Asset Id",
+        "type": "integer",
+        "length": "8"
+      },
+      {
+        "name": "Cost",
+        "type": "float",
+        "length": "16"
+      },
+      {
+        "name": "Cost Currency",
+        "type": "text",
+        "length": "3"
+      },
+      {
+        "name": "Business Approval",
+        "type": "bool",
+        "length": "1"
+      },
+      {
+        "name": "Cost Approval",
+        "type": "bool",
+        "length": "1"
+      },
+      {
+        "name": "Technical Approval",
+        "type": "bool",
+        "length": "1"
+      },
+      {
+        "name": "Job Request Finish Approval",
+        "type": "bool",
+        "length": "1"
+      },
+      {
+        "name": "Business Approval Date Time",
+        "type": "date time",
+        "length": ""
+      },
+      {
+        "name": "Cost Approval Date Time",
+        "type": "date time",
+        "length": ""
+      },
+      {
+        "name": "Technical Approval Date Time",
+        "type": "date time",
+        "length": ""
+      },
+      {
+        "name": "Job Request Finish Approval Date Time",
+        "type": "date time",
+        "length": ""
+      },
+      {
+        "name": "Business Approver",
+        "type": "integer",
+        "length": "8"
+      },
+      {
+        "name": "Cost Approver",
+        "type": "integer",
+        "length": "8"
+      },
+      {
+        "name": "Technical Approver",
+        "type": "integer",
+        "length": "8"
+      },
+      {
+        "name": "Job Request Finish decision taker",
+        "type": "integer",
+        "length": "8"
+      },
+      {
+        "name": "Solution Responsible",
+        "type": "integer",
+        "length": "8"
+      },
+      {
+        "name": "Location",
+        "type": "integer",
+        "length": "4"
+      },
+      {
+        "name": "Location sub unit 1",
+        "type": "integer",
+        "length": "4"
+      },
+      {
+        "name": "Location sub unit 2",
+        "type": "integer",
+        "length": "4"
+      },
+      {
+        "name": "SAP Asset number",
+        "type": "integer",
+        "length": "8"
+      },
+      {
+        "name": "Maintenance asset number",
+        "type": "integer",
+        "length": "8"
+      },
+      {
+        "name": "Priority",
+        "type": "integer",
+        "length": "2"
+      },
+      {
+        "name": "Request reason",
+        "type": "text",
+        "length": "512"
+      },
+      {
+        "name": "Rejection type",
+        "type": "char",
+        "length": "1"
+      },
+      {
+        "name": "Rejection date time",
+        "type": "date time",
+        "length": ""
+      },
+      {
+        "name": "Rejected by",
+        "type": "integer",
+        "length": "8"
+      },
+      {
+        "name": "Rejection explanation",
+        "type": "text",
+        "length": "512"
+      },
+      {
+        "name": "Current Assignee",
+        "type": "integer",
+        "length": "8"
+      },
+      {
+        "name": "Last update date time",
+        "type": "date time",
+        "length": ""
+      },
+      {
+        "name": "Last update by",
+        "type": "integer",
+        "length": "8"
+      },
+      {
+        "name": "Record status",
+        "type": "integer",
+        "length": "4"
+      },
+      {
+        "name": "Document Group Id",
+        "type": "integer",
+        "length": "8"
+      }
+    ],
+    "Asset": [
+      {
+        "name": "Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Maintenance Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Maintenance Title",
+        "type": "text",
+        "length": "128"
+      },
+      {
+        "name": "SAP Id",
+        "type": "int",
+        "length": "12"
+      },
+      {
+        "name": "SAP Title",
+        "type": "text",
+        "length": "100"
+      },
+      {
+        "name": "Asset description",
+        "type": "text",
+        "length": "512"
+      },
+      {
+        "name": "Asset Type",
+        "type": "int",
+        "length": "4"
+      },
+      {
+        "name": "Asset Status",
+        "type": "char",
+        "length": "1"
+      },
+      {
+        "name": "SRM Number",
+        "type": "int",
+        "length": "10"
+      },
+      {
+        "name": "SRM item number",
+        "type": "int",
+        "length": "4"
+      },
+      {
+        "name": "SRM Created by",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Location",
+        "type": "int",
+        "length": "4"
+      },
+      {
+        "name": "Location sub unit",
+        "type": "int",
+        "length": "4"
+      },
+      {
+        "name": "Location sub unit",
+        "type": "int",
+        "length": "4"
+      },
+      {
+        "name": "Producer name",
+        "type": "text",
+        "length": "32"
+      },
+      {
+        "name": "Producer Model Name",
+        "type": "text",
+        "length": "64"
+      },
+      {
+        "name": "Producer Serial Number",
+        "type": "text",
+        "length": "32"
+      },
+      {
+        "name": "Document Group Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Last changed by",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Last changed date time",
+        "type": "date time",
+        "length": ""
+      },
+      {
+        "name": "Creation date time",
+        "type": "date time",
+        "length": ""
+      },
+      {
+        "name": "Created by",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Assigned user Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Last Asset assignment Proces Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "SAP Cost Center",
+        "type": "int",
+        "length": "10"
+      },
+      {
+        "name": "Original asset number",
+        "type": "int",
+        "length": "12"
+      },
+      {
+        "name": "Asset Class",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "PSP – Element",
+        "type": "text",
+        "length": "17"
+      },
+      {
+        "name": "Assigned workstation Id",
+        "type": "text",
+        "length": "8"
+      }
+    ],
+    "Assigment": [
+      {
+        "name": "Request Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Asset Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Current holder user",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Current holder first manager",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Requested User Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Requestor first manager Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Change Reason explanation",
+        "type": "text",
+        "length": "512"
+      },
+      {
+        "name": "Exchange date",
+        "type": "date",
+        "length": ""
+      },
+      {
+        "name": "Creation date",
+        "type": "date time",
+        "length": ""
+      },
+      {
+        "name": "Approval of current holder user",
+        "type": "bool",
+        "length": ""
+      },
+      {
+        "name": "Approval of current holder user Approver Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Approval of current holder date time",
+        "type": "date time",
+        "length": ""
+      },
+      {
+        "name": "Approval of current holder first manager",
+        "type": "bool",
+        "length": ""
+      },
+      {
+        "name": "Approval of current holder first manager approver Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Approval of current holder first manager date time",
+        "type": "date time",
+        "length": ""
+      },
+      {
+        "name": "Approval of new holder first manager",
+        "type": "bool",
+        "length": ""
+      },
+      {
+        "name": "Approval of new holder first manager approver Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Approval of new holder first manager date time",
+        "type": "date time",
+        "length": ""
+      },
+      {
+        "name": "Approval of new holder user",
+        "type": "bool",
+        "length": ""
+      },
+      {
+        "name": "Approval of new holder user Approver Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Approval of new holder user date time",
+        "type": "date time",
+        "length": ""
+      },
+      {
+        "name": "Rejection by user id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Rejection date time",
+        "type": "date time",
+        "length": ""
+      },
+      {
+        "name": "Rejection reason",
+        "type": "text",
+        "length": "256"
+      },
+      {
+        "name": "Record status",
+        "type": "integer",
+        "length": "4"
+      }
+    ],
+    "M. Req.": [
+      {
+        "name": "Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Asset Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Asset Group Id",
+        "type": "int",
+        "length": "4"
+      },
+      {
+        "name": "Period indicator",
+        "type": "char",
+        "length": ""
+      },
+      {
+        "name": "Perion value",
+        "type": "int",
+        "length": "4"
+      },
+      {
+        "name": "Starting date",
+        "type": "date",
+        "length": ""
+      },
+      {
+        "name": "Title",
+        "type": "text",
+        "length": "128"
+      },
+      {
+        "name": "Description",
+        "type": "text",
+        "length": "256"
+      },
+      {
+        "name": "Document Group Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Duration of duty",
+        "type": "int",
+        "length": "2"
+      },
+      {
+        "name": "Created by user Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Creation date time",
+        "type": "date time",
+        "length": ""
+      },
+      {
+        "name": "Last change by user Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Last change date time",
+        "type": "date time",
+        "length": ""
+      },
+      {
+        "name": "Measured Maintenance indicator",
+        "type": "bool",
+        "length": ""
+      },
+      {
+        "name": "Measure unit ",
+        "type": "char",
+        "length": ""
+      },
+      {
+        "name": "Milestone value",
+        "type": "float",
+        "length": "8 and 3"
+      },
+      {
+        "name": "Measure Method",
+        "type": "text",
+        "length": "128"
+      },
+      {
+        "name": "Communication person 1 user id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Communication person 2 user id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Communication information 1",
+        "type": "text",
+        "length": "64"
+      },
+      {
+        "name": "Communication information 2",
+        "type": "text",
+        "length": "64"
+      },
+      {
+        "name": "Task List Id",
+        "type": "int",
+        "length": "8"
+      }
+    ],
+    "M. Duty": [
+      {
+        "name": "Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Title",
+        "type": "text",
+        "length": "256"
+      },
+      {
+        "name": "Descriptipon",
+        "type": "text",
+        "length": "256"
+      },
+      {
+        "name": "Maintenance final day",
+        "type": "date",
+        "length": ""
+      },
+      {
+        "name": "Asset Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Task List Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Document Group Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Responsible User Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Record status",
+        "type": "int",
+        "length": "4"
+      },
+      {
+        "name": "Finish Approval",
+        "type": "bool",
+        "length": ""
+      },
+      {
+        "name": "Finish Approval by user Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Finish Approval date time",
+        "type": "date time",
+        "length": ""
+      },
+      {
+        "name": "Rejection reason",
+        "type": "text",
+        "length": "256"
+      },
+      {
+        "name": "Rejection user Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Rejection date time",
+        "type": "date time",
+        "length": ""
+      },
+      {
+        "name": "Finish request",
+        "type": "bool",
+        "length": ""
+      },
+      {
+        "name": "Finish  requested by id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Finish request date time",
+        "type": "date time",
+        "length": ""
+      },
+      {
+        "name": "Current assignee",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Total duration",
+        "type": "time",
+        "length": ""
+      },
+      {
+        "name": "Record status",
+        "type": "integer",
+        "length": "4"
+      }
+    ],
+    "M. Task": [
+      {
+        "name": "Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Process",
+        "type": "char",
+        "length": ""
+      },
+      {
+        "name": "Process Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Item number",
+        "type": "int",
+        "length": "3"
+      },
+      {
+        "name": "Title",
+        "type": "text",
+        "length": "128"
+      },
+      {
+        "name": "check",
+        "type": "bool",
+        "length": ""
+      },
+      {
+        "name": "check date time",
+        "type": "date time",
+        "length": ""
+      },
+      {
+        "name": "checked by",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Inactivated",
+        "type": "bool",
+        "length": ""
+      },
+      {
+        "name": "Inactivated by user Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Inactivation date time",
+        "type": "date time",
+        "length": ""
+      }
+    ],
+    "Visit": [
+      {
+        "name": "Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Starting date time",
+        "type": "date time",
+        "length": ""
+      },
+      {
+        "name": "Finish date time",
+        "type": "date time",
+        "length": ""
+      },
+      {
+        "name": "Duration Time",
+        "type": "time",
+        "length": ""
+      },
+      {
+        "name": "User Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Duty Id",
+        "type": "int",
+        "length": "8"
+      }
+    ],
+    "Consumed Materials": [
+      {
+        "name": "Id",
+        "type": "int",
+        "length": "16"
+      },
+      {
+        "name": "Process type",
+        "type": "char",
+        "length": ""
+      },
+      {
+        "name": "Process Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Material",
+        "type": "char",
+        "length": "13"
+      },
+      {
+        "name": "Unit of Measure",
+        "type": "text",
+        "length": "3"
+      },
+      {
+        "name": "Value",
+        "type": "float",
+        "length": ""
+      }
+    ],
+    "Asset Group header": [
+      {
+        "name": "Asset group Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Asset Group Title",
+        "type": "text",
+        "length": "128"
+      },
+      {
+        "name": "Created by user Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Created date time",
+        "type": "date time",
+        "length": ""
+      },
+      {
+        "name": "Last change user ID",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Last change date time",
+        "type": "date time",
+        "length": ""
+      }
+    ],
+    "Asset Group item": [
+      {
+        "name": "Record ID",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Asset group Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Asset Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Created by user Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Created date time",
+        "type": "date time",
+        "length": ""
+      },
+      {
+        "name": "deactivated user ID",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "deactivation date time",
+        "type": "date time",
+        "length": ""
+      },
+      {
+        "name": "Deactivation",
+        "type": "bool",
+        "length": ""
+      }
+    ],
+    "Incident": [
+      {
+        "name": "Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Asset Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Title",
+        "type": "Text",
+        "length": "128"
+      },
+      {
+        "name": "Description",
+        "type": "text",
+        "length": "512"
+      },
+      {
+        "name": "Document Group Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Solution responsible Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Responsible SL-TL",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Asset recived by User Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Asset recived date time",
+        "type": "date time",
+        "length": ""
+      },
+      {
+        "name": "Solution explanation",
+        "type": "text",
+        "length": "256"
+      },
+      {
+        "name": "Solution Provided",
+        "type": "bool",
+        "length": ""
+      },
+      {
+        "name": "Solution Provided date time",
+        "type": "date time",
+        "length": ""
+      },
+      {
+        "name": "Solution Provided by",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Solution approval by SL_TL",
+        "type": "bool",
+        "length": ""
+      },
+      {
+        "name": "Solution approval by SL_TL date time",
+        "type": "date time",
+        "length": ""
+      },
+      {
+        "name": "Solution approval by SL_TL ID",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Solution approval by Requestor ",
+        "type": "bool",
+        "length": ""
+      },
+      {
+        "name": "Solution approval by requester date time",
+        "type": "date time",
+        "length": ""
+      },
+      {
+        "name": "Solution approval by Requestor Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Created by user Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Auto approved check mark",
+        "type": "bool",
+        "length": ""
+      },
+      {
+        "name": "Rejection reason",
+        "type": "text",
+        "length": "256"
+      },
+      {
+        "name": "Rejected by User Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Rejection date time",
+        "type": "date time",
+        "length": ""
+      },
+      {
+        "name": "Outsource service explanation",
+        "type": "text",
+        "length": "256"
+      },
+      {
+        "name": "Outsource service sent by user Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Outsource service sent date time",
+        "type": "date time",
+        "length": ""
+      },
+      {
+        "name": "Delay reason",
+        "type": "text",
+        "length": "256"
+      },
+      {
+        "name": "Delay entered by user Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Dlay reason entering date time",
+        "type": "date time",
+        "length": ""
+      },
+      {
+        "name": "Record status",
+        "type": "integer",
+        "length": "4"
+      }
+    ],
+    "Cost Center Change": [
+      {
+        "name": "Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "New cost center",
+        "type": "int",
+        "length": "10"
+      },
+      {
+        "name": "Exchange date",
+        "type": "datetime",
+        "length": ""
+      },
+      {
+        "name": "created by id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "creation date time",
+        "type": "datetime",
+        "length": ""
+      },
+      {
+        "name": "Record status",
+        "type": "integer",
+        "length": "4"
+      }
+    ],
+    "Asset Retirement": [
+      {
+        "name": "Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Asset Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Requestor Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Creation date time",
+        "type": "date time",
+        "length": ""
+      },
+      {
+        "name": "Reason",
+        "type": "text",
+        "length": "512"
+      },
+      {
+        "name": "Approval From Requestor First Manager",
+        "type": "bool",
+        "length": ""
+      },
+      {
+        "name": "Approval From RequestorFirst Manager ID",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Approval From RequestorFirst Manager date time",
+        "type": "datetime",
+        "length": ""
+      },
+      {
+        "name": "Approval From SL-Engineer",
+        "type": "bool",
+        "length": ""
+      },
+      {
+        "name": "Approval From SL-Engineer Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Approval From SL-Engineer Date time",
+        "type": "datetime",
+        "length": ""
+      },
+      {
+        "name": "Approval of Maintenance Manager",
+        "type": "bool",
+        "length": ""
+      },
+      {
+        "name": "Approval of Maintenance Manager Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Approval of Maintenance Manager date time",
+        "type": "datetime",
+        "length": ""
+      },
+      {
+        "name": "Approval of Accounting",
+        "type": "bool",
+        "length": ""
+      },
+      {
+        "name": "Approval of Accounting Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Approval of Accounting date time",
+        "type": "datetime",
+        "length": ""
+      },
+      {
+        "name": "reevaluation decision",
+        "type": "bool",
+        "length": ""
+      },
+      {
+        "name": "reevaluation decision date time",
+        "type": "date time",
+        "length": ""
+      },
+      {
+        "name": "reevaluation decision User Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Reevaluation explanation",
+        "type": "text",
+        "length": "256"
+      },
+      {
+        "name": "Scrapping method",
+        "type": "char",
+        "length": ""
+      },
+      {
+        "name": "Document Group Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "SAP data received date time",
+        "type": "date time",
+        "length": ""
+      },
+      {
+        "name": "Cost Center",
+        "type": "int",
+        "length": "10"
+      },
+      {
+        "name": "Maintenance Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Title",
+        "type": "text",
+        "length": "128"
+      },
+      {
+        "name": "SAP Id",
+        "type": "int",
+        "length": "12"
+      },
+      {
+        "name": "IFRS Current APC",
+        "type": "APC transactions",
+        "length": ""
+      },
+      {
+        "name": "IFRS Accumulated depreciation",
+        "type": "Ordinary Depreciat.",
+        "length": ""
+      },
+      {
+        "name": "IFRS Current booking Value",
+        "type": "Net book value",
+        "length": ""
+      },
+      {
+        "name": "Record status",
+        "type": "integer",
+        "length": "4"
+      }
+    ],
+    "User": [
+      {
+        "name": "ID",
+        "type": "int",
+        "length": "primary ID"
+      },
+      {
+        "name": "User Windows authorization ID",
+        "type": "Text",
+        "length": "5"
+      },
+      {
+        "name": "User company Id",
+        "type": "int",
+        "length": "8"
+      },
+      {
+        "name": "Name",
+        "type": "Text",
+        "length": "64"
+      },
+      {
+        "name": "Surname",
+        "type": "Text",
+        "length": "64"
+      }
+    ]
+  },
+  "workflows": [
+    "Work Flow Cost Center Change",
+    "Work Flow of Maintenance",
+    "Work Flow of Job Request",
+    "Work Flow of Asset Entry",
+    "Workflow of Incident Notification",
+    "Work Flow Asset Retirement",
+    "Work flow of asset assigment"
+  ],
+  "requirements": {}
+}

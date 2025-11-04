@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAP Ürün Detay - Bağlı Satış Kodları</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 11px;
+            background: #f7f7f7;
+            color: #333;
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Sol Panel */
+        .sidebar {
+            width: 180px;
+            background: #fff;
+            border-right: 1px solid #d0d0d0;
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+
+        .sidebar-tabs {
+            display: flex;
+            border-bottom: 1px solid #d0d0d0;
+            background: #fafafa;
+        }
+
+        .sidebar-tab {
+            flex: 1;
+            padding: 8px 4px;
+            text-align: center;
+            font-size: 10px;
+            color: #666;
+            border-right: 1px solid #e0e0e0;
+            cursor: pointer;
+            background: #fafafa;
+        }
+
+        .sidebar-tab.active {
+            background: #fff;
+            color: #000;
+            font-weight: 500;
+        }
+
+        .tree {
+            padding: 5px 0;
+        }
+
+        .tree-item {
+            padding: 0;
+            user-select: none;
+        }
+
+        .tree-item-content {
+            display: flex;
+            align-items: center;
+            padding: 2px 5px 2px 10px;
+            cursor: pointer;
+            font-size: 11px;
+        }
+
+        .tree-item-content:hover {
+            background: #f5f5f5;
+        }
+
+        .tree-item.selected > .tree-item-content {
+            background: #e8f4fd;
+            color: #000;
+        }
+
+        .tree-icon {
+            margin-right: 3px;
+            font-size: 9px;
+            width: 12px;
+            display: inline-block;
+        }
+
+        .tree-children {
+            margin-left: 12px;
+        }
+
+        /* Ana İçerik */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .toolbar {
+            display: flex;
+            align-items: center;
+            padding: 5px 10px;
+            border-bottom: 1px solid #d0d0d0;
+            background: #fafafa;
+            gap: 8px;
+        }
+
+        .toolbar-label {
+            font-size: 10px;
+            color: #555;
+        }
+
+        .toolbar-input {
+            padding: 3px 6px;
+            border: 1px solid #c0c0c0;
+            border-radius: 2px;
+            font-size: 10px;
+            min-width: 80px;
+        }
+
+        .toolbar-btn {
+            padding: 4px 12px;
+            background: #f0f0f0;
+            border: 1px solid #c0c0c0;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 10px;
+            color: #333;
+        }
+
+        /* Tablo */
+        .table-container {
+            flex: 1;
+            overflow: auto;
+            position: relative;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            font-size: 10px;
+        }
+
+        thead {
+            position: sticky;
+            top: 0;
+            z-index: 5;
+        }
+
+        th {
+            background: #f0f0f0;
+            padding: 6px 4px;
+            text-align: left;
+            font-weight: 500;
+            border-right: 1px solid #e0e0e0;
+            border-bottom: 1px solid #c0c0c0;
+            font-size: 10px;
+            color: #333;
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 4px;
+            border-right: 1px solid #e8e8e8;
+            border-bottom: 1px solid #e8e8e8;
+            font-size: 10px;
+            white-space: nowrap;
+        }
+
+        tr:hover {
+            background: #f9f9f9;
+        }
+
+        tr.selected {
+            background: #0078d4 !important;
+            color: white;
+        }
+
+        tr.selected td {
+            border-bottom: 1px solid #0066b8;
+        }
+
+        .icon-col {
+            width: 30px;
+            text-align: center;
+            padding: 2px;
+        }
+
+        .product-icon {
+            width: 16px;
+            height: 16px;
+            background: linear-gradient(135deg, #ffa726 0%, #fb8c00 100%);
+            border-radius: 2px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .product-icon::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border-radius: 50%;
+            top: 4px;
+            left: 4px;
+        }
+
+        .chair-icon {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            color: #666;
+            font-size: 16px;
+        }
+
+        .number-cell {
+            text-align: right;
+            font-family: 'Courier New', monospace;
+        }
+
+        .code-cell {
+            font-family: 'Courier New', monospace;
+            color: #0066cc;
+        }
+
+        /* Modal Popup */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal {
+            background: white;
+            border: 1px solid #999;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            width: 600px;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            padding: 8px 12px;
+            background: #f0f0f0;
+            border-bottom: 1px solid #c0c0c0;
+            font-weight: 500;
+            font-size: 11px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-close {
+            cursor: pointer;
+            color: #666;
+            font-size: 16px;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            color: #000;
+        }
+
+        .modal-body {
+            flex: 1;
+            overflow: auto;
+            padding: 15px;
+        }
+
+        .modal-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 10px;
+        }
+
+        .modal-table th {
+            background: #f5f5f5;
+            padding: 6px 8px;
+            text-align: left;
+            font-weight: 500;
+            border: 1px solid #d0d0d0;
+            font-size: 10px;
+        }
+
+        .modal-table td {
+            padding: 5px 8px;
+            border: 1px solid #e0e0e0;
+            font-size: 10px;
+        }
+
+        .modal-table tr:hover {
+            background: #f9f9f9;
+        }
+
+        .modal-footer {
+            padding: 10px 15px;
+            border-top: 1px solid #d0d0d0;
+            background: #fafafa;
+            display: flex;
+            gap: 8px;
+            justify-content: flex-start;
+        }
+
+        .modal-btn {
+            padding: 5px 20px;
+            background: #f0f0f0;
+            border: 1px solid #c0c0c0;
+            border-radius: 2px;
+            cursor: pointer;
+            font-size: 10px;
+        }
+
+        .modal-btn:hover {
+            background: #e0e0e0;
+        }
+
+        .modal-btn-primary {
+            background: #0078d4;
+            color: white;
+            border-color: #0066b8;
+        }
+
+        .modal-btn-primary:hover {
+            background: #0066b8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sol Panel -->
+        <div class="sidebar">
+            <div class="sidebar-tabs">
+                <div class="sidebar-tab active">BTD</div>
+                <div class="sidebar-tab">Ürün Kodu</div>
+                <div class="sidebar-tab">Ürün Tanımı</div>
+            </div>
+
+            <div class="tree">
+                <div class="tree-item selected">
+                    <div class="tree-item-content">
+                        <span class="tree-icon">▼</span>
+                        <span>BTD</span>
+                    </div>
+                    <div class="tree-children">
+                        <div class="tree-item">
+                            <div class="tree-item-content">
+                                <span class="tree-icon">▶</span>
+                                <span>Koleksiyon</span>
+                            </div>
+                        </div>
+                        <div class="tree-item">
+                            <div class="tree-item-content">
+                                <span class="tree-icon">▶</span>
+                                <span>Tanımlayıcılar</span>
+                            </div>
+                        </div>
+                        <div class="tree-item">
+                            <div class="tree-item-content">
+                                <span class="tree-icon">▼</span>
+                                <span>Üretim</span>
+                            </div>
+                            <div class="tree-children">
+                                <div class="tree-item">
+                                    <div class="tree-item-content">
+                                        <span class="tree-icon">▶</span>
+                                        <span>Dy Malzat</span>
+                                    </div>
+                                </div>
+                                <div class="tree-item">
+                                    <div class="tree-item-content">
+                                        <span class="tree-icon">▼</span>
+                                        <span>Katalog ve Kampanyalar</span>
+                                    </div>
+                                    <div class="tree-children">
+                                        <div class="tree-item">
+                                            <div class="tree-item-content">
+                                                <span class="tree-icon">▶</span>
+                                                <span>Üretimize</span>
+                                            </div>
+                                        </div>
+                                        <div class="tree-item">
+                                            <div class="tree-item-content">
+                                                <span class="tree-icon">▶</span>
+                                                <span>Satışa</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tree-item">
+                                    <div class="tree-item-content">
+                                        <span class="tree-icon">▶</span>
+                                        <span>E V</span>
+                                    </div>
+                                </div>
+                                <div class="tree-item">
+                                    <div class="tree-item-content">
+                                        <span class="tree-icon">▼</span>
+                                        <span>Üretik</span>
+                                    </div>
+                                    <div class="tree-children">
+                                        <div class="tree-item">
+                                            <div class="tree-item-content">
+                                                <span class="tree-icon">▶</span>
+                                                <span>Ürün Gruplaması</span>
+                                            </div>
+                                        </div>
+                                        <div class="tree-item">
+                                            <div class="tree-item-content">
+                                                <span class="tree-icon">▶</span>
+                                                <span>Lam</span>
+                                            </div>
+                                        </div>
+                                        <div class="tree-item">
+                                            <div class="tree-item-content">
+                                                <span class="tree-icon">▶</span>
+                                                <span>Malzik</span>
+                                            </div>
+                                        </div>
+                                        <div class="tree-item">
+                                            <div class="tree-item-content">
+                                                <span class="tree-icon">▶</span>
+                                                <span>Plan</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ana İçerik -->
+        <div class="main-content">
+            <div class="toolbar">
+                <span class="toolbar-label">Resim</span>
+                <input type="text" class="toolbar-input">
+                <span class="toolbar-label">Ürün Kodu</span>
+                <input type="text" class="toolbar-input" value="36000001">
+                <span class="toolbar-label">Tip Kodu</span>
+                <input type="text" class="toolbar-input" value="ASY900">
+                <span class="toolbar-label">Ürün Tanımı</span>
+                <input type="text" class="toolbar-input" value="OLAMLAR S4 ASY900 EL/CHARL 31*HMP PRTZIE">
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="icon-col"></th>
+                            <th class="icon-col"></th>
+                            <th>Resim</th>
+                            <th>Ürün Kodu</th>
+                            <th>Tip Kodu</th>
+                            <th>Ürün Tanımı</th>
+                            <th>Fiyat</th>
+                            <th>Tip Kodu</th>
+                            <th>Boy</th>
+                            <th>En</th>
+                            <th>Yüks</th>
+                            <th>Çap</th>
+                            <th>Ağırlık</th>
+                            <th>Hacim</th>
+                            <th>Pak</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="icon-col"><div class="product-icon"></div></td>
+                            <td class="icon-col"><span class="chair-icon">🪑</span></td>
+                            <td></td>
+                            <td class="code-cell">36000001367</td>
+                            <td>ASY900</td>
+                            <td>OLAMLAR S4 ASY900 KAPLAML_EL/CHARL_SP</td>
+                            <td class="number-cell">10.000,00</td>
+                            <td>ASY900</td>
+                            <td class="number-cell">900</td>
+                            <td class="number-cell">900</td>
+                            <td class="number-cell">900</td>
+                            <td></td>
+                            <td class="number-cell">12</td>
+                            <td class="number-cell">32,95</td>
+                            <td class="number-cell">1</td>
+                        </tr>
+                        <tr>
+                            <td class="icon-col"><div class="product-icon"></div></td>
+                            <td class="icon-col"><span class="chair-icon">🪑</span></td>
+                            <td></td>
+                            <td class="code-cell">36000001366</td>
+                            <td>ASY450</td>
+                            <td>OLAMLAR S4 ASY450 LAMINAT_ELCHAPL</td>
+                            <td class="number-cell">9.091,00</td>
+                            <td>ASY450</td>
+                            <td class="number-cell">450</td>
+                            <td class="number-cell">450</td>
+                            <td class="number-cell">450</td>
+                            <td></td>
+                            <td class="number-cell">32</td>
+                            <td class="number-cell">12,95</td>
+                            <td class="number-cell">1</td>
+                        </tr>
+                        <tr>
+                            <td class="icon-col"><div class="product-icon"></div></td>
+                            <td class="icon-col"><span class="chair-icon">🪑</span></td>
+                            <td></td>
+                            <td class="code-cell">36000001365</td>
+                            <td>ASY900</td>
+                            <td>OLAMLAR S4 ASY900 LAMINAT_ELCHAPL_EPOKSE</td>
+                            <td class="number-cell">8.091,00</td>
+                            <td>ASY900</td>
+                            <td class="number-cell">900</td>
+                            <td class="number-cell">900</td>
+                            <td class="number-cell">900</td>
+                            <td></td>
+                            <td class="number-cell">32</td>
+                            <td class="number-cell">12,95</td>
+                            <td class="number-cell">1</td>
+                        </tr>
+                        <tr class="selected">
+                            <td class="icon-col"><div class="product-icon"></div></td>
+                            <td class="icon-col"><span class="chair-icon">🪑</span></td>
+                            <td></td>
+                            <td class="code-cell">36000001278</td>
+                            <td>ASY900</td>
+                            <td style="text-decoration: underline; cursor: pointer;" onclick="toggleModal()">OLAMLAR S4 ASY900 SEBPA_LAMINAT TABLA / ELCHARL_KORK / EPOKSE BORU / EPOKSE AYAK</td>
+                            <td class="number-cell">9.773,00</td>
+                            <td>ASY900</td>
+                            <td class="number-cell">900</td>
+                            <td class="number-cell">900</td>
+                            <td class="number-cell">900</td>
+                            <td></td>
+                            <td class="number-cell">34</td>
+                            <td></td>
+                            <td class="number-cell">1</td>
+                        </tr>
+                        <tr>
+                            <td class="icon-col"><div class="product-icon"></div></td>
+                            <td class="icon-col"><span class="chair-icon">🪑</span></td>
+                            <td></td>
+                            <td class="code-cell">36000001277</td>
+                            <td>ASY900</td>
+                            <td>OLAMLAR S4 ASY900 LAMINAT_ELCHARL_SP</td>
+                            <td class="number-cell">12.727,00</td>
+                            <td>ASY900</td>
+                            <td class="number-cell">900</td>
+                            <td class="number-cell">900</td>
+                            <td class="number-cell">900</td>
+                            <td></td>
+                            <td class="number-cell">34</td>
+                            <td></td>
+                            <td class="number-cell">2</td>
+                        </tr>
+                        <tr>
+                            <td class="icon-col"><div class="product-icon"></div></td>
+                            <td class="icon-col"><span class="chair-icon">🪑</span></td>
+                            <td></td>
+                            <td class="code-cell">36000001276</td>
+                            <td>CSY450</td>
+                            <td>OLAMLAR S4 CSY450 CAML_EL/CHARL_EPOKSE</td>
+                            <td class="number-cell">17.273,00</td>
+                            <td>CSY450</td>
+                            <td class="number-cell">450</td>
+                            <td class="number-cell">450</td>
+                            <td class="number-cell">450</td>
+                            <td class="number-cell">646</td>
+                            <td class="number-cell">34,8</td>
+                            <td></td>
+                            <td class="number-cell">2</td>
+                        </tr>
+                        <tr>
+                            <td class="icon-col"><div class="product-icon"></div></td>
+                            <td class="icon-col"><span class="chair-icon">🪑</span></td>
+                            <td></td>
+                            <td class="code-cell">36000001275</td>
+                            <td>CSY450</td>
+                            <td>OLAMLAR S4 CSY450 CAML_EL/CHARL_EP</td>
+                            <td class="number-cell">12.727,00</td>
+                            <td>CSY450</td>
+                            <td class="number-cell">450</td>
+                            <td class="number-cell">450</td>
+                            <td class="number-cell">450</td>
+                            <td class="number-cell">646</td>
+                            <td class="number-cell">34,8</td>
+                            <td></td>
+                            <td class="number-cell">2</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Popup -->
+    <div class="modal-overlay" id="modalOverlay" onclick="toggleModal()">
+        <div class="modal" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <span>Bağlı Satış Kodları</span>
+                <span class="modal-close" onclick="toggleModal()">✕</span>
+            </div>
+            <div class="modal-body">
+                <table class="modal-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Ürün Kodu</th>
+                            <th>Ürün Tanımı</th>
+                            <th>Fiyat</th>
+                            <th>Tip Kodu</th>
+                            <th>Boy</th>
+                            <th>En</th>
+                            <th>Yüks</th>
+                            <th>Çap</th>
+                            <th>Ağırlık</th>
+                            <th>Hacim</th>
+                            <th>Pak</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td class="code-cell">36000001765</td>
+                            <td>OLAMLAR S4 ASY900 EL/CHARL 31*HMP PRTZIE</td>
+                            <td class="number-cell">9.773,00</td>
+                            <td>ASY900</td>
+                            <td class="number-cell">900</td>
+                            <td class="number-cell">900</td>
+                            <td class="number-cell">900</td>
+                            <td></td>
+                            <td class="number-cell">34</td>
+                            <td></td>
+                            <td class="number-cell">1</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="code-cell">36000001754</td>
+                            <td>OLAMLAR S4 ASY900 EL/CHARL 3*HMP PRTZIE</td>
+                            <td class="number-cell">9.773,00</td>
+                            <td>ASY900</td>
+                            <td class="number-cell">900</td>
+                            <td class="number-cell">900</td>
+                            <td class="number-cell">900</td>
+                            <td></td>
+                            <td class="number-cell">34</td>
+                            <td></td>
+                            <td class="number-cell">1</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="code-cell">36000001753</td>
+                            <td>OLAMLAR S4 ASY900 EL/CHARL YFROM PRTZIE</td>
+                            <td class="number-cell">9.773,00</td>
+                            <td>ASY900</td>
+                            <td class="number-cell">900</td>
+                            <td class="number-cell">900</td>
+                            <td class="number-cell">900</td>
+                            <td></td>
+                            <td class="number-cell">34</td>
+                            <td></td>
+                            <td class="number-cell">1</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="code-cell">36000001740</td>
+                            <td>OLAMLAR S4 ASY900 EL/CHARL YFROM PRTZIE</td>
+                            <td class="number-cell">9.773,00</td>
+                            <td>ASY900</td>
+                            <td class="number-cell">900</td>
+                            <td class="number-cell">900</td>
+                            <td class="number-cell">900</td>
+                            <td></td>
+                            <td class="number-cell">34</td>
+                            <td></td>
+                            <td class="number-cell">1</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="code-cell">36000001739</td>
+                            <td>OLAMLAR S4 ASY900 EL/CHARL YFROM PRTZIE</td>
+                            <td class="number-cell">9.773,00</td>
+                            <td>ASY900</td>
+                            <td class="number-cell">900</td>
+                            <td class="number-cell">900</td>
+                            <td class="number-cell">900</td>
+                            <td></td>
+                            <td class="number-cell">34</td>
+                            <td></td>
+                            <td class="number-cell">1</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="code-cell">36000001138</td>
+                            <td>OLAMLAR S4 ASY900 EL/CHARL YF*OM PRTZIE</td>
+                            <td class="number-cell">9.773,00</td>
+                            <td>ASY900</td>
+                            <td class="number-cell">900</td>
+                            <td class="number-cell">900</td>
+                            <td class="number-cell">900</td>
+                            <td></td>
+                            <td class="number-cell">34</td>
+                            <td></td>
+                            <td class="number-cell">1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn">Kapat</button>
+                <button class="modal-btn">Satır Eklenenleri Kapat Yerel</button>
+                <button class="modal-btn">Alternatif Komplekto</button>
+                <button class="modal-btn">Fiyat Versiyle</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleModal() {
+            const modal = document.getElementById('modalOverlay');
+            modal.style.display = modal.style.display === 'none' ? 'flex' : 'none';
+        }
+
+        // Modal varsayılan olarak açık
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('modalOverlay').style.display = 'flex';
+        });
+    </script>
+</body>
+</html>

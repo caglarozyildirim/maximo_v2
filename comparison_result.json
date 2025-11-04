@@ -1,0 +1,167 @@
+{
+  "existing_pages": [
+    "asset-create",
+    "asset-detail",
+    "assets",
+    "incident-create",
+    "incident-detail",
+    "incidents",
+    "job-request-create",
+    "job-request-detail",
+    "job-requests",
+    "maintenance-create",
+    "maintenance-detail",
+    "maintenance-visit",
+    "maintenance",
+    "periodic-maintenance",
+    "reports"
+  ],
+  "expected_modules": {
+    "Job Request": {
+      "turkish": "İş Talebi",
+      "pages": [
+        "Create Job Request",
+        "Job Request List",
+        "Job Request Detail"
+      ],
+      "workflows": [
+        "Work Flow of Job Request"
+      ],
+      "description": "İş taleplerinin oluşturulması, listelenmesi ve detaylarının görüntülenmesi"
+    },
+    "Asset Management": {
+      "turkish": "Varlık Yönetimi",
+      "pages": [
+        "Asset Entry",
+        "Asset List",
+        "Asset Detail"
+      ],
+      "workflows": [
+        "Work Flow of Asset Entry"
+      ],
+      "description": "Varlıkların kaydı, listelenmesi ve detaylarının yönetimi"
+    },
+    "Asset Assignment": {
+      "turkish": "Varlık Zimmeti",
+      "pages": [
+        "Asset Assignment",
+        "Asset Assignment List",
+        "Asset Assignment Print"
+      ],
+      "workflows": [
+        "Work flow of asset assigment"
+      ],
+      "description": "Varlıkların kullanıcılara zimmetlenmesi ve zimmet takibi"
+    },
+    "Asset Retirement": {
+      "turkish": "Varlık Hurdaya Çıkarma",
+      "pages": [
+        "Asset Retirement",
+        "Asset Retirement List",
+        "Asset Retirement Printout"
+      ],
+      "workflows": [
+        "Work Flow Asset Retirement"
+      ],
+      "description": "Varlıkların hurdaya çıkarılması ve kayıtlarının tutulması"
+    },
+    "Maintenance Management": {
+      "turkish": "Bakım Yönetimi",
+      "pages": [
+        "Maintenance Requirement",
+        "Maintenance Duty List",
+        "Maintenance Visit",
+        "Maintenance Detail"
+      ],
+      "workflows": [
+        "Work Flow of Maintenance"
+      ],
+      "description": "Bakım gereksinimlerinin yönetimi ve bakım ziyaretlerinin planlanması"
+    },
+    "Periodic Maintenance": {
+      "turkish": "Periyodik Bakım",
+      "pages": [
+        "Periodic Maintenance Requirement List",
+        "Periodic Maintenance Creation"
+      ],
+      "workflows": [],
+      "description": "Periyodik bakım gereksinimlerinin tanımlanması ve takibi"
+    },
+    "Incident Management": {
+      "turkish": "Olay Yönetimi",
+      "pages": [
+        "Incident Notification",
+        "Incident List"
+      ],
+      "workflows": [
+        "Workflow of Incident Notification"
+      ],
+      "description": "Olayların bildirilmesi ve takibi"
+    },
+    "Cost Center Change": {
+      "turkish": "Masraf Merkezi Değişikliği",
+      "pages": [
+        "Cost Center Change",
+        "Cost Center Change List"
+      ],
+      "workflows": [
+        "Work Flow Cost Center Change"
+      ],
+      "description": "Varlıkların masraf merkezi değişikliklerinin yönetimi"
+    },
+    "Asset Groups": {
+      "turkish": "Varlık Grupları",
+      "pages": [
+        "Asset Group List"
+      ],
+      "workflows": [],
+      "description": "Varlık gruplarının tanımlanması ve yönetimi"
+    },
+    "Reports": {
+      "turkish": "Raporlar",
+      "pages": [
+        "Reports"
+      ],
+      "workflows": [],
+      "description": "Çeşitli raporların oluşturulması ve görüntülenmesi"
+    }
+  },
+  "found_modules": {
+    "Asset Management": [
+      "asset-create",
+      "asset-detail",
+      "assets"
+    ],
+    "Incident Management": [
+      "incident-create",
+      "incident-detail",
+      "incidents"
+    ],
+    "Job Request": [
+      "job-request-create",
+      "job-request-detail",
+      "job-requests"
+    ],
+    "Maintenance Management": [
+      "maintenance-create",
+      "maintenance-detail",
+      "maintenance-visit",
+      "maintenance",
+      "periodic-maintenance"
+    ],
+    "Reports": [
+      "reports"
+    ]
+  },
+  "missing_modules": [
+    "Asset Assignment",
+    "Asset Retirement",
+    "Periodic Maintenance",
+    "Cost Center Change",
+    "Asset Groups"
+  ],
+  "page_count": {
+    "existing": 15,
+    "expected": 24
+  }
+}

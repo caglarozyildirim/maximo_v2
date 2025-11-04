@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bakım Yönetimi Sistemi</title>
+    <link rel="stylesheet" href="css/style.css?v=3">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <!-- MODERN NAVIGATION BAR -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">
+                <div class="logo">🚌</div>
+                <div>
+                    <div class="brand-name">Bakım Yönetimi</div>
+                    <div class="brand-subtitle">Üretim Tesisleri</div>
+                </div>
+            </div>
+
+            <div class="navbar-menu">
+                <a href="index.html" class="nav-link active">
+                    <span>🏠</span> Dashboard
+                </a>
+                <a href="sayfalar/is-talepleri-liste.html" class="nav-link">
+                    <span>📋</span> İş Talepleri
+                </a>
+                <a href="sayfalar/varliklar-liste.html" class="nav-link">
+                    <span>📦</span> Varlıklar
+                </a>
+                <a href="sayfalar/bakim-isleri-liste.html" class="nav-link">
+                    <span>🔧</span> Bakım İşleri
+                </a>
+                <a href="sayfalar/zimmet-liste.html" class="nav-link">
+                    <span>👤</span> Zimmet
+                </a>
+                <a href="sayfalar/hurda-liste.html" class="nav-link">
+                    <span>♻️</span> Hurda
+                </a>
+                <a href="sayfalar/masraf-liste.html" class="nav-link">
+                    <span>💰</span> Masraf Merkezi
+                </a>
+            </div>
+
+            <div class="navbar-user">
+                <span class="user-name">Admin</span>
+                <div class="user-avatar">A</div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- PAGE HEADER -->
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">Dashboard</h1>
+                <p class="page-subtitle">Bakım Yönetimi Sistem Özeti - Kasım 2025</p>
+            </div>
+            <div style="display: flex; gap: 0.75rem; align-items: center;">
+                <select class="form-control" style="width: 150px; padding: 0.625rem;">
+                    <option>Bu Ay</option>
+                    <option>Son 3 Ay</option>
+                    <option>Bu Yıl</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- HIZLI İŞLEMLER -->
+        <div style="display: flex; gap: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+            <a href="sayfalar/is-talepleri-ekle.html" class="btn btn-primary">
+                <span>+</span> Yeni İş Talebi
+            </a>
+            <a href="sayfalar/varliklar-ekle.html" class="btn btn-secondary">
+                <span>+</span> Varlık Ekle
+            </a>
+            <a href="sayfalar/bakim-isleri-ekle.html" class="btn btn-secondary">
+                <span>+</span> Bakım İşi
+            </a>
+            <a href="sayfalar/zimmet-ekle.html" class="btn btn-secondary">
+                <span>+</span> Zimmet Oluştur
+            </a>
+            <a href="sayfalar/hurda-ekle.html" class="btn btn-secondary">
+                <span>+</span> Hurda Kaydı
+            </a>
+            <a href="sayfalar/masraf-ekle.html" class="btn btn-secondary">
+                <span>+</span> Masraf Merkezi
+            </a>
+        </div>
+
+        <!-- İSTATİSTİKLER -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">📋</div>
+                <div>
+                    <div class="stat-label">İş Talepleri</div>
+                    <div class="stat-value">156</div>
+                </div>
+            </div>
+
+            <div class="stat-card gray">
+                <div class="stat-icon">📦</div>
+                <div>
+                    <div class="stat-label">Varlık Sayısı</div>
+                    <div class="stat-value">1,247</div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">🔧</div>
+                <div>
+                    <div class="stat-label">Bakım İşleri</div>
+                    <div class="stat-value">89</div>
+                </div>
+            </div>
+
+            <div class="stat-card gray">
+                <div class="stat-icon">💰</div>
+                <div>
+                    <div class="stat-label">Aylık Maliyet</div>
+                    <div class="stat-value">₺847K</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GRAFİKLER - MODÜL DURUMLARI -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+            <!-- İş Talepleri Durumu -->
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div style="font-weight: 700; color: var(--gray-900);">İş Talepleri Durumu</div>
+                        <div style="font-size: 0.875rem; color: var(--gray-500);">Bu ay</div>
+                    </div>
+                </div>
+                <div style="height: 280px; position: relative; display: flex; justify-content: center; align-items: center;">
+                    <canvas id="requestsStatusChart" style="max-width: 280px;"></canvas>
+                </div>
+            </div>
+
+            <!-- Varlıklar Durumu -->
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div style="font-weight: 700; color: var(--gray-900);">Varlıklar Durumu</div>
+                        <div style="font-size: 0.875rem; color: var(--gray-500);">Toplam varlıklar</div>
+                    </div>
+                </div>
+                <div style="height: 280px; position: relative; display: flex; justify-content: center; align-items: center;">
+                    <canvas id="assetsStatusChart" style="max-width: 280px;"></canvas>
+                </div>
+            </div>
+
+            <!-- Bakım İşleri Durumu -->
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div style="font-weight: 700; color: var(--gray-900);">Bakım İşleri Durumu</div>
+                        <div style="font-size: 0.875rem; color: var(--gray-500);">Bu ay</div>
+                    </div>
+                </div>
+                <div style="height: 280px; position: relative; display: flex; justify-content: center; align-items: center;">
+                    <canvas id="maintenanceStatusChart" style="max-width: 280px;"></canvas>
+                </div>
+            </div>
+
+            <!-- Zimmet Durumu -->
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div style="font-weight: 700; color: var(--gray-900);">Zimmet Durumu</div>
+                        <div style="font-size: 0.875rem; color: var(--gray-500);">Aktif zimmetler</div>
+                    </div>
+                </div>
+                <div style="height: 280px; position: relative; display: flex; justify-content: center; align-items: center;">
+                    <canvas id="zimmetStatusChart" style="max-width: 280px;"></canvas>
+                </div>
+            </div>
+
+            <!-- Hurda Durumu -->
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div style="font-weight: 700; color: var(--gray-900);">Hurda İşlemleri Durumu</div>
+                        <div style="font-size: 0.875rem; color: var(--gray-500);">Onay durumları</div>
+                    </div>
+                </div>
+                <div style="height: 280px; position: relative; display: flex; justify-content: center; align-items: center;">
+                    <canvas id="hurdaStatusChart" style="max-width: 280px;"></canvas>
+                </div>
+            </div>
+
+            <!-- Masraf Merkezi Durumu -->
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div style="font-weight: 700; color: var(--gray-900);">Masraf Merkezi Durumu</div>
+                        <div style="font-size: 0.875rem; color: var(--gray-500);">İşlem onayları</div>
+                    </div>
+                </div>
+                <div style="height: 280px; position: relative; display: flex; justify-content: center; align-items: center;">
+                    <canvas id="masrafStatusChart" style="max-width: 280px;"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- SON AKTİVİTELER -->
+        <div class="card">
+            <div class="card-header">
+                <span>Son Aktiviteler</span>
+                <a href="#" class="btn btn-ghost text-sm">Tümünü Gör</a>
+            </div>
+
+            <div class="table-wrapper">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Tarih</th>
+                            <th>İşlem</th>
+                            <th>Kullanıcı</th>
+                            <th>Durum</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="text-gray">03.11.2025 14:30</span></td>
+                            <td>Yeni iş talebi: <strong>Elektrik Panosu Kontrolü</strong></td>
+                            <td>Ahmet Yılmaz</td>
+                            <td><span class="badge badge-success">Tamamlandı</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="text-gray">03.11.2025 13:15</span></td>
+                            <td>Bakım işi güncellendi: <strong>HVAC Sistem Bakımı</strong></td>
+                            <td>Mehmet Demir</td>
+                            <td><span class="badge badge-info">İşlemde</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="text-gray">03.11.2025 11:45</span></td>
+                            <td>Varlık eklendi: <strong>Kompresör #234</strong></td>
+                            <td>Ayşe Kara</td>
+                            <td><span class="badge badge-success">Tamamlandı</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="text-gray">03.11.2025 10:20</span></td>
+                            <td>Zimmet talebi: <strong>Forklift FT-456</strong></td>
+                            <td>Can Öztürk</td>
+                            <td><span class="badge badge-warning">Beklemede</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="text-gray">03.11.2025 09:00</span></td>
+                            <td>Hurda kaydı oluşturuldu: <strong>Motor #892</strong></td>
+                            <td>Fatma Arslan</td>
+                            <td><span class="badge badge-danger">Onay Bekliyor</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Renk paleti - Profesyonel renkler
+        const colors = {
+            blue: '#3B82F6',
+            green: '#10B981',
+            yellow: '#F59E0B',
+            red: '#EF4444',
+            purple: '#8B5CF6',
+            cyan: '#06B6D4',
+            orange: '#F97316',
+            pink: '#EC4899',
+            indigo: '#6366F1',
+            teal: '#14B8A6'
+        };
+
+        // Ortak doughnut chart ayarları
+        const doughnutOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        padding: 15,
+                        font: {
+                            size: 12
+                        }
+                    }
+                }
+            }
+        };
+
+        // 1. İş Talepleri Durumu
+        const ctxRequests = document.getElementById('requestsStatusChart').getContext('2d');
+        new Chart(ctxRequests, {
+            type: 'doughnut',
+            data: {
+                labels: ['Açık', 'İşlemde', 'Beklemede', 'Tamamlandı'],
+                datasets: [{
+                    data: [68, 45, 23, 20],
+                    backgroundColor: [colors.red, colors.blue, colors.yellow, colors.green],
+                    borderWidth: 0
+                }]
+            },
+            options: doughnutOptions
+        });
+
+        // 2. Varlıklar Durumu
+        const ctxAssets = document.getElementById('assetsStatusChart').getContext('2d');
+        new Chart(ctxAssets, {
+            type: 'doughnut',
+            data: {
+                labels: ['Aktif', 'Bakımda', 'Pasif', 'Hurda'],
+                datasets: [{
+                    data: [1100, 89, 45, 13],
+                    backgroundColor: [colors.green, colors.blue, colors.yellow, colors.red],
+                    borderWidth: 0
+                }]
+            },
+            options: doughnutOptions
+        });
+
+        // 3. Bakım İşleri Durumu
+        const ctxMaintenance = document.getElementById('maintenanceStatusChart').getContext('2d');
+        new Chart(ctxMaintenance, {
+            type: 'doughnut',
+            data: {
+                labels: ['Tamamlandı', 'Devam Ediyor', 'Planlandı'],
+                datasets: [{
+                    data: [42, 24, 23],
+                    backgroundColor: [colors.green, colors.blue, colors.purple],
+                    borderWidth: 0
+                }]
+            },
+            options: doughnutOptions
+        });
+
+        // 4. Zimmet Durumu
+        const ctxZimmet = document.getElementById('zimmetStatusChart').getContext('2d');
+        new Chart(ctxZimmet, {
+            type: 'doughnut',
+            data: {
+                labels: ['Aktif', 'İade Edildi'],
+                datasets: [{
+                    data: [245, 89],
+                    backgroundColor: [colors.cyan, colors.indigo],
+                    borderWidth: 0
+                }]
+            },
+            options: doughnutOptions
+        });
+
+        // 5. Hurda Durumu
+        const ctxHurda = document.getElementById('hurdaStatusChart').getContext('2d');
+        new Chart(ctxHurda, {
+            type: 'doughnut',
+            data: {
+                labels: ['Onaylandı', 'Beklemede', 'Reddedildi'],
+                datasets: [{
+                    data: [28, 15, 8],
+                    backgroundColor: [colors.green, colors.yellow, colors.red],
+                    borderWidth: 0
+                }]
+            },
+            options: doughnutOptions
+        });
+
+        // 6. Masraf Merkezi Durumu
+        const ctxMasraf = document.getElementById('masrafStatusChart').getContext('2d');
+        new Chart(ctxMasraf, {
+            type: 'doughnut',
+            data: {
+                labels: ['Onaylandı', 'Beklemede', 'Reddedildi'],
+                datasets: [{
+                    data: [45, 12, 5],
+                    backgroundColor: [colors.green, colors.orange, colors.red],
+                    borderWidth: 0
+                }]
+            },
+            options: doughnutOptions
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1632 @@
+Requirement Analysis Document (Draft)
+Version 0
+August, 2025
+Maintenance Management Application
+
+# Change Tracking
+
+
+## Release Details
+
+This document is still in draft
+
+## Change History
+
+
+# Introduction
+
+
+## Management Summary
+
+Maintenance department manages its whole operation on the application of Maximo. IT department has multiple application technology to serve multiple goals. There is an ongoing effort to collect most of the running application to a common technology to decrease licensing cost and improve support capabilities. Due to this effort, increased licensing and maintenance cost of Maximo, a migration of this application to other platform is decided. There is an ongoing project to replace Maximo functions of Maintenance Management (its called DIVA) but due date is 2027 with a possibility of delay. There is a need to replate Maximo for two years (until Diva project goes live in Ankara).
+Some of the functions will be left out for the simplicity of the project and to reduce the cost. Some of the functions will be added to improve user experience and process success if their development costs are relatively low.
+The main functions to be implemented are listed below
+Request Management
+Fixed Asset Management
+Asset Entry
+Asset Assignment Process
+Maintenance
+Regular Maintenance
+Mass Maintenance
+Incident Management
+Cost Center Change Process
+Asset Retirement
+Reports
+Operational Requirements
+
+## Purpose and Objectives
+
+The purpose is to replace maintenance management functions on the Maximo application with another application that will last for 2 years and keeping development costs minimum as much as possible. Other goals are below.
+Track processes and responsible
+Keep record for sensitive decision and information (approvals and cost)
+
+## Scope
+
+All the function on Maximo application that used by maintenance department and related departments. Related departments are cost controlling, Accounting, logistics and warehouse.
+
+## Out of Scope Items
+
+Out of scope Information are mentioned under Process details
+
+# Functional Requirements
+
+
+## Requirements
+
+
+### Job request
+
+The requirement is to gather requests, manage approval process and track the whole process.
+Objectives
+Collect the requests
+Manage Approval Process
+Manage Solution Process
+Consuming of used indirect materials
+Reports
+Processes and activities
+Collect the Request
+Create Job Request
+Detail the Requests
+Adding details
+Adding attachments
+Cost calculation
+Manage Approval Process
+Approvals
+SL or Engineer technical approval
+Business manager Request approval
+Business manager Cost Approval
+Solution Approval
+Rejection
+Manage Solution Process
+Taking over of request responsibility by SL-Engineer user
+Solution responsible assignment
+Ticket Status
+Reports
+List of request
+How many tickets closed per month
+How many tickets open per month
+Statuses waited on
+Inputs, outputs and used data fields
+Collect the Request
+Create Job Request
+Request Id
+Request Title
+Request Description
+Asset Id
+Asset SAP Id
+Asset SAP Title
+Asset Maintenance Id
+Asset Maintenance Title
+Location
+Location sub unit 1
+Location sub unit 2
+Request owner user Id
+Creation date time
+Priority
+Request Reason
+Current assignee
+Created by user info
+Detail the Requests
+Same fields with a
+Adding details
+Description
+Last change user info
+Adding attachment
+Attachment group Id
+Attachment Id
+Attachment Type
+Attachment Title
+Attachment Link
+Attachment creation date time
+Attachment created by user info
+Cost Calculation
+Cost value
+Cost Currency
+Cost entered by info
+Cost entered date time
+Manage Approval Process
+Approvals
+SL or Engineer technical approval
+Same fields with 1
+SL or Engineer Technical Approval
+SL or Engineer Technical Approval user Id
+SL or Engineer Technical Approval date time
+Business Manager Request approval
+Same fields with i
+Business Manager Request Approval
+Business Manager Request user Id
+Business Manager user Id
+Business Manager Request Approval date time
+Business manager Cost Approval
+Same fields with ii
+Business Manager Cost Approval
+Business Manager Cost Approval User info
+Business Manager Cost Approval date time
+Solution Approval
+Same fields with iii
+Solution Approval
+Solution Approver User Id
+Solution Approval Date time
+Rejection
+Rejection
+Rejected by user Id
+Rejection reason
+Rejection date time
+Rejected Approval
+Manage Solution Process
+Taking over of request responsibility by SL-Engineer user
+Same fields with 1.a.
+Responsible SL or Engineer user Id
+Responsible SL or Engineer Takeover date time
+Solution responsible assignment
+Same fields with 1.a.
+Solution responsible User Id
+Solution responsible assigned by user Id
+Solution responsible assigned date time
+Current Status
+Current Status
+Predefined statuses
+Last update date time
+Last update user info
+Reports
+List of request
+All defined fields above
+Work Flow
+Business rules
+First manager of this requester checks and approve the ticket
+The solution responsible can be change at any time by maintenance engineer or SL
+Current responsible and approved users might be different due to position changes so approved user and current responsible user Ids should always be recorded.
+Request can be cancelled by admin at any time
+Request can be cancelled by creator If there is no update by his manager.
+Lowest cost approver is GL
+Current assignee field will be filled automatically to easily identify the person that action is waited from. When process finished it will be emptied.
+Authorization
+All users can access and create job Request
+Job Request Form must be filled by the requester or someone else can fill the form and they approve with PKI.
+Users can see the tickets that have been created by him/her. Managers can see their tickets and their personals tickets.
+Solution Responsible can see all the tickets
+There should be common users assigned to the department and can be used by multiple user and approve by user PKI cards when having action to a ticket.
+Decision logs must be kept and records should have a reports page
+Rejection can be revoked by admin and log should be recorded
+Selection lists;
+Priority Statuses
+Urgent – Halt of Production
+High – Slow down of production
+Normal – Possibility of Production slow down
+Low – Partial productivity loss or risk
+Default is empty and it had to be selected
+Request reasons
+OHS
+Energy Saving
+Environment
+Process Improvement
+Investment
+Renovation
+Default is empty and it had to be elected
+Asset Types;
+Hand tools
+Electric
+Construction
+Tool – Counter
+Mechanic
+Office
+Meeting room related
+Other
+Request Statuses;
+Cancelled
+Rejected
+Done
+Statuses;
+Business Approval
+SL or Engineer Takeover
+Technical Approval
+Cost Calculation
+Business Cost Approval
+Solution Responsible Assignment
+Implementation
+Solution approval
+Done
+Rejected
+Cancelled
+Out of Scope
+Expected and estimated finish date is out of scope
+There will be no progress updates just predetermined status changes
+
+### Asset Management
+
+This process is addresses all actions to manage assets maintenance and main data activities.
+
+#### Asset Entry
+
+Objective
+Enter the record of assets to the Maintenance Management Application
+Creating space and keeping relations to the documents that is needed for maintenance and scrapping process.
+Processes and activities
+Creating records for the assets that has been received or identified.
+Manual creation of record
+Assigning a maintenance asset number
+Asset creation triggered by SAP
+Asset change
+Mass upload of assets with an Excell file
+Matching SAP asses number with maintenance asset number
+Assigning and keeping Process documents
+Maintenance manuals
+Scrapping manual
+Reporting and analysis
+List of assets
+Inputs
+Creating records for the assets that has been received or identified.
+Manual creation of record
+Asset Id
+Asset Title
+Asset Description
+Asset type
+Asset status
+SRM shopping bucket number
+SRM number
+SRM item number
+SRM explanation
+SRM Created By info
+location
+Location sub unit 1
+Location sub unit 2
+Producer name
+Producer model name
+Producer serial number
+Asset attachments
+Asset acquirement method
+Created By user info
+Creation date time
+Cost center
+Assigning a maintenance asset number
+Same fields with 1
+Asset maintenance number (ID of table)
+Asset creation triggered By SAP
+Same fields with 1.
+SAP asset number
+SAP Asset Title
+Asset change
+Location
+Location sub unit 1
+Location sub unit 2
+Mass upload of assets with Excel file
+Same fields with 1
+Matching SAP asset number with maintenance asset number
+Assets SAP Number
+Asset SAP Title
+Assets maintenance number
+SRM Number
+SRM Item number
+Cost center number
+Assigning and keeping Process documents
+Maintenance manuals
+Documents
+Document paths
+Scrapping manual
+Document
+Document path
+Other Documents
+Document
+Document path
+Reporting and analysis
+Creation date time
+Created By
+Last update date time
+Last update by
+List of assets
+All fields with selection options
+Workflow
+Business Rules
+Asset received by maintenance department before it has an asset number on SAP, to sustain the maintenance operation, a maintenance inventory number assig to this asset by user. When the asset receive an SAP asset number these two numbers should match on the records. There could be an primary key to use for asset records even it mentioned on the document it should be visible to users not to make them confused with three different id numbers.
+Maintenance inventory number must be mandatory and unique. When a user entered a maintenance inventory number, it should be checked if its unique. If its not, user should be informed.
+If an asset couldn’t identified on records and if it has not initial entry on SAP or any application, A record created for it but it is not going to match with an SAP asset number. To state this case asset acquisition method will be filled as “unidentified asset found”.
+Asset types are not mandatory it will be filled by maintenance if there is a need
+Asset maintenance number have to be unique and it should be checked when saving
+Asset location, Sublocation 1 and sublocation 2 can be changed by Cost Center Asset Responsible or Cost Center Responsible
+Selection Options
+Asset Acquisition Method;
+Purchasing - default
+Unidentified Asset Found
+Other
+Asset Status;
+Active
+Inactive
+Scrapped
+Sold as Scrapped
+Donated as Scrapped
+Declared Missing
+Asset Types;
+Hand tools
+Electric
+Construction
+Tool – Counter
+Mechanic
+Office
+Meeting room related
+Other
+Authorization rules
+Maintenance Admins can create and change assets
+Maintenance personal only could add documents
+Maintenance personal can view all information
+Users can only view if the asset assigned to them
+Managers can only see if the asset is assigned to their personal and themselves.
+
+#### Asset Assignment
+
+Objective
+Document asset assignment process
+Keep records of asset assignment history
+Process and activities
+Document Asset Assignment Process
+Request assignment of an Asset
+Approval of Current Asset assigned user
+Approval of Requestee first manager
+Approval of Current Asset assigned user first manager
+Auto creation of asset assignment for the user who starts off-boarding
+Print out of Asset assignment with all ,info and current status
+Keep Records of asset assignment History
+See the history of asset assignment of multiple assets
+List asset assigned assets for selected departments
+Inputs
+Document Asset assignment Process
+Create a Request for Asset assignment of an Asset
+Asset Id
+Asset SAP number
+Asset SAP title
+Asset Maintenance number
+Asset Maintenance Title
+Producer
+Model
+Producer Serial number
+Current Asset assigned user info
+Current Asset assigned use first manager user info
+Change Reason
+Exchange date
+Assets location
+Assets Location Sub Unit 1
+Assets Location Sub Unit 2
+Assets cost center
+Assets new assignee user info
+Assets new assignee user first manager user info
+Asset Status
+Current assignee Info
+Created by info
+Approval of Current Asset holder user
+Request date
+Current asset holder approval
+Current asset holder approval date time
+Current asset holder approver user info
+Fields at 1.a.
+Approval of receiving users first manager
+Fields at 1.b.
+Approval of receiving users first manager
+Approval of receiving users first manager date time
+Approval of receiving users first manager user info
+Approval of Current Asset assigned user first manager
+Fields at 1.b.
+Approval of Current Asset assigned user first manager
+Approval of Current Asset assigned user first manager date time
+Approval of Current Asset assigned user first manager user info
+Rejection by any user
+Rejection
+Rejection reason
+Rejection date time
+Rejected user info
+Auto creation of asset assignment for the user who starts off-boarding
+Same fields with a.
+Print out of Asset assignment with all ,info and current status
+All fields
+Legal notes
+Keep Records of asset assignment History
+See the history of asset assignment of multiple asset
+Fields @1.d.
+Current holder approval date time
+Current holder first manager approval date time
+New holder manager approval date time
+New holder approval date time
+Rejected by user number
+Rejection date time
+Rejection reason
+List assigned assets for selected departments
+All fields
+Flow Chart
+Business rules
+Exchange date can be in future or in the past. if left empty it will be filled with current date when approval process finished.
+If one of the users rejects the process ends with rejection and asset assignment records won’t change but the request records will be kept
+If a manager approves a record on behalf of his/her employee a pki card approval should be taken by personnel or signed document image should be uploaded at the approval session.
+Auto asset assignment will be created for the each asset hold on the user that is being off-boarding. Receiving user will be its first manager but it can be change by the manager.
+Only approved maintenance personal could change asset status during this process
+Even though ticket is rejected users still can add documents and add comments
+First manager of current holder can act on be half of current holder, if it’s the case second high managers should approve the assignment so that one higher manager approve.
+If an assignment starts with of boarding it should be stated at description as “Users off boarding process has been started.”
+We should be able to download a PDF document that have the information of the process, legal information’s and approval information. It can be downloaded at any time but if an approval missing it should be clearly visible(highlighted with red color).
+The process can be started on behalf of current user but assets can not receive on be half of a user. Always user should approve the legal warnings before the ticket finalized.
+If a user hesitates from approving asset receiving record will be wait for 30 days and automatically passed to approver manager. Approver manager should be informed before about this process and possible asset receiving before approval.
+Current assignee field will be filled automatically to easily identify the person that action is waited from. When process finished it will be emptied.
+There is an parallel approval process on the flow but current assignee can be decided as the following order; current holders first manager than, new holder manager approval than, current holder.
+There is 2 different identification for user. The first one is company employee Id. Every person has this number. Second one is Windows domain user Id. Every person that has computer access has this number and login process will be handled with this user information. Maintenance management application might have new unique id for each user but it shouldn’t shown to the user unless there is a technical problem. Users can see the Company employee ID’s last three digit of other users.
+Authorization rules
+Any user could start asset assignment process by SAP asset number or Maintenance asset number.
+All approvers can see records that pending approval from them.
+All users can view all records that they have created or approved.
+Managers can view all records that have already hold by him and personnel, acquired or given away assets records.
+Request can be change until the first approval.
+Selection list options
+Asset types;
+Hand tools
+Electric
+Construction
+Tool – Counter
+Mechanic
+Office
+Meeting room related
+Other
+Asset Status
+Active
+Inactive
+Donated
+Declared as lost
+Declared as stolen
+Scraped
+Sold
+Out of scope
+Cost center change is going to be handled in other process
+
+#### Maintenance Management
+
+Objectives
+Plan Maintenances
+Automatic maintenance planning
+Periodic Maintenance Requirement Planning
+Mass maintenance planning
+Maintenance duty Planning
+Maintenance Process
+Assign duties
+Track progress
+Approval and rejection for duty finish
+Keep records
+Processes and Activities
+Plan Maintenances
+Automatic maintenance planning
+Periodic Maintenance Requirement Planning
+Period Planning
+Adding maintenance document
+Periodic measure planning for measured maintenance
+Set measuring requeirement
+Measure method, communication person could be added
+Duration of the duty default is one day but it can be increased by days.
+Task Planning
+Creation of task list
+Copy from a maintenance requirement
+Manual creation
+Mass maintenance planning
+Creating a list of assets
+Assign asset list to a maintenance requirement
+Maintenance Duty Planning
+Auto creation of maintenance duties for a year ahead at the end of every month
+Recreation of duties after a change on, maintenance requirement, tasks and asset list
+Manual Creation of maintenance duty
+Maintenance Process
+Assign duties
+Assign for a maintenance responsible
+Track progress
+Check assignments received by user
+Actions on visit
+Mark tasks as finished
+Enter comment to unfinished tasks that why they haven’t been handled
+Add file to tasks, it will be used as additional entry to explain the situation that why task couldn’t be finished in time.
+Start of the visit of the duty and end of the duty visit should be entered as date and time
+Tasks should be able to approved individually and there should be a function to mark them altogether
+Materials that have been used at the visit can be added to the record as material number, quantity and unit of measure
+Material numbers should supplied before hand to the system ad should be selected from a list
+Unit of measure should be suggested automatically
+Actions after visit
+Which tasks has been done and which tasks are left aside for each visit should be able to see.
+Auto update of status for the duties that has less than a month, weekly
+Approval and rejection for duty finish
+Rejection reason should be entered from SL or Engineers
+Records and Reports
+How much duty, visits and tasks have been done by users
+List maintenance took place for a selected assets
+List awaited maintenance duties for selected assets
+There must be log data for all changes, creations, deletion but not views.
+Data fields (Inputs, outputs and used fields within process)
+Plan Maintenances
+Automatic maintenance planning
+Periodic Maintenance Requirement Planning
+Period Planning
+Periodic Maintenance requirement number
+Asset Id
+Asset group number
+Period indicator
+Period value
+Starting date
+Maintenance requirement title
+Maintenance requirement description
+Duration of duty by day
+Created by user info
+Creation date time
+Last Change date time
+Last Changed by user info
+Adding maintenance document
+Same fields with 1
+Attachments
+Created by user info
+Creation date time
+Periodic measure planning for measured maintenance
+Set measuring requirement
+Same fields with 2
+Measured maintenance indicator
+Measure unit
+Milestone value
+Measure method, communication person could be added
+Measure method
+Communication person 1 user info
+Communication person 2 user info
+Communication information 1
+Communication information 2
+Task Planning
+Copy from a maintenance requirement
+Maintenance requirement number
+Manual creation
+Task item number
+Task title
+Mass maintenance planning
+Creating and maintaining a list of assets
+Asset group number
+Asset group title
+Assets Ids that have been assigned
+Assets titles that have been assigned
+Asset cost center
+Asset location
+Asset location sub unit 1
+Asset location sub unit 2
+Created by user number
+Created by user name
+Created by user surname
+Creation date time
+Change date time
+Changed by user number
+Changed by user name
+Changed by user surname
+Assign asset list to a maintenance requirement
+Assign, unassigned
+Asset Group Number
+Asset Group Title
+Asset number
+Asset title
+Maintenance requirement ID
+Maintenance Requirement title
+Maintenance Duty Planning
+Auto creation of maintenance duties for a year ahead at the end of every month
+Creation of duties
+Duty id
+Duty title
+Duty description
+Maintenance date
+SAP Asset number
+SAP Asset title
+Maintenance asset number
+Maintenance asset title
+Location
+Location sub unit 1
+Location sub unit 2
+Task list number
+Maintenance documents
+Current assignee
+Measured maintenance indicator
+Measure unit
+Milestone value
+Result of measure unit
+Last maintenance date
+Last maintenance measurement value
+Milestone reached status
+Measure done by user info
+Recreation of duties after a change on, maintenance requirement, tasks and asset list automatically
+Deletion of duties
+Duty id
+Task list number
+Creation of new duties
+Same with fields with a
+Changes of duties
+Same fields with a
+Manual Creation of maintenance duty
+Duty id
+Duty title
+Duty description
+Maintenance date
+SAP Asset number
+SAP Asset title
+Maintenance asset number
+Maintenance asset title
+Location
+Location sub unit 1
+Location sub unit 2
+Task list number
+Maintenance documents
+Current assignee
+Created by user info
+Maintenance Process
+Assign duties
+Assign for a maintenance responsible
+Same fields with 1.a.iii. Maintenance duty planning
+Duty id
+Duty Title
+Maintenance status
+Maintenance responsible user number
+Maintenance responsible name
+Maintenance responsible surname
+Track progress
+Check assignments received by user
+Duty id
+Duty Title
+Duty description
+Maintenance status
+Maintenance responsible user number
+Maintenance responsible name
+Maintenance responsible surname
+Last Assignment by user number
+Last assignment by user name
+Last assignment by user surname
+Attachment
+Measurement Record
+Same fields with 2.a.i. Assign for a maintenance responsible
+Measured maintenance indicator
+Measure unit
+Milestone value
+Result of measure unit
+Last maintenance date
+Last maintenance measurement value
+Milestone reached status
+Measure done by user info
+Actions on visit
+Mark tasks as finished individually
+All fields of duty (1.a.3.1.a. Creation of duty)
+All fields of visit
+Visit Id
+Starting date time
+Finish date time
+Duration time
+Duty number
+Task list number
+Task item number
+Task title
+Task Checked
+Task checked date time
+Tasks should be able to approved altogether
+Duty number
+Task list number
+Item list of each task that have been approved
+Enter comment to unfinished tasks that why they haven’t been handled
+Duty number
+Task list number
+Task item number
+Delay explanation
+Add file to tasks, it will be used as additional entry to explain the situation that why task couldn’t be finished in time.
+Duty number
+Task list number
+Task item number
+Attachment number
+Attachment
+Start of the visit of the duty and end of the duty visit should be entered as date and time
+Duty number
+Visit number
+Start date time
+Finish date time
+Duration
+Creation date
+Created by user number
+Created by user name
+Created by user surname
+Materials that have been used at the visit can be added to the record as material number, quantity and unit of measure
+Material numbers should supplied before hand to the system ad should be selected from a list
+Material number
+Material title
+Base unit of measure
+Unit of measure should be suggested automatically
+Material number
+Material title
+Base unit of measure
+Actions after visit
+Which tasks has been done and which tasks are left aside for each visit should be able to see.
+Report of unfinished duties
+Duty number
+Duty title
+Number of visits
+Tasks number
+Open task numbers
+Last date of maintenance
+SAP asset number
+SAP asset title
+Maintenance asset number
+Maintenance asset title
+Last visit finish date
+View of duty
+Duty number
+Duty title
+Duty description
+Tasks
+Task id
+Task item number
+Task title
+Task finish approval
+Approved by
+Visit number when approval
+Comments of unfinished tasks
+Attachment of unfinished tasks (duty document group Id)
+Visits
+Visit Id
+Start dates
+Finis dates
+Auto update of status for the duties that has less than a month, weekly
+Duty id
+Duty status
+Maintenance date
+Approval and rejection for duty finish
+Rejection reason should be entered from SL or Engineers
+Duty number
+Duty title
+Duty description
+Rejection reason
+Rejection date time
+Rejected by user info
+Approval Role
+Records and Reports
+How much duty, visits and tasks have been done by users
+Duty report
+User number
+User Personal number
+User name
+User surname
+Duty number
+Duty title
+Duty Start time
+Duty Finish time
+Earlier maintenance responsible
+Number of tasks
+Number of open tasks
+Visit Report
+User number
+User Personal number
+User name
+User surname
+Duty number
+Duty title
+Duty Start time
+Duty Finish time
+Visit start date time
+Visit finish date time
+Number of task closed
+Task report
+User number
+User Personal number
+User name
+User surname
+Duty number
+Duty title
+Duty Start time
+Duty Finish time
+Visit start date time
+Visit finish date time
+Task list id
+Task item no
+Task title
+Task attachment count
+List maintenance duty took place for a selected assets
+Asset SAP number
+Asset SAP title
+Asset Maintenance number
+Asset Maintenance title
+Duty id
+Duty title
+Start time
+Finish time
+Maintenance responsible
+User number
+Name
+Surname
+Number of tasks
+List awaited and ongoing maintenance duties for selected assets
+Asset SAP number
+Asset SAP title
+Asset Maintenance number
+Asset Maintenance title
+Duty id
+Duty title
+Start time
+Maintenance responsible
+User number
+Name
+Surname
+Number of tasks
+There must be log data for all changes, creations, deletion but not views.
+Maintenance Requirement
+All fields
+Duty
+All fields
+Tasks
+All fields
+Visits
+All fields
+Flow charts
+Business rules
+SL and engineers should be able to see the comments that have been entered as a result of unfinished tasks
+Comments can be done duties rather than tasks
+Attachments can be added to duties rather than tasks
+SL and Engineers should approve the duty rather than approve tasks individually
+Same Periodic Maintenance and Tasks should be applied with one entry and updates on task and other fields should be done for mass maintenance requirements duties automatically. This change should be done right after the change but if there is a technical limitation, it can be done at the end of the day.
+Duty titles should be created automatically with “Maintenance requirement name” & “Maintenance period” & “Asset Title” for mass maintenance duty creation
+Asset groups can be used for several maintenance requirements and if there is an asset added to list new duties should be created, is an asset subtracted from the list open duties should be cancelled. This change should be done right after the change but if there is a technical limitation, it can be done at the end of the day.
+Duties are created with the status of “Planned”. Weekly duties are checked and if there is less than 5 week to the required date status change to “Active”
+Mass maintenance planning should have one date rather than having individual dates of assets.
+Current assignee field will be filled automatically to easily identify the person that action is waited from. When process finished it will be emptied.
+Authorization rules
+Maintenance requirements, asset group and tasks can only be added by SL and Engineers
+All the rest can be access able for Maintenance responsible and sl and engineers
+Each user can access to the ticket if its responsible, approver or approved.
+Out of scope
+Mobile devices won’t be used in the process
+Ergün Kaya handles maintenance of assets that belong to Human resources and excluded from project
+FIPC department handles maintenance to IT devices and excluded from project
+Visit should not be planned beforehand, Schedule or duration is not going to planned. users will be free of planning and conducting the visits. Only actual duration records will be enough.
+There won’t be need for route planning for multiple maintenance duties. It will be only planned for same type of assets not a mixed type.
+Solution are not going to have duty list printout or check it on mobile devices.
+Business days or holidays doesn’t need to be handled. It can be handled by user on their work schedules.
+View functions are not going to be logged.
+Route / Mass maintenance requirements are purposed to create maintenance duties. Routing or ordering duties are out of scope. It will be handled by user itself.
+Selection Options;
+Statuses
+Planned
+Active
+Assigned
+In Progress
+Approval Requested
+Rejected
+Done
+
+#### Incident Management
+
+Objective
+Main objectives are to;
+Collect incident notification,
+Track solution process
+Collect data for future analysis.
+Processes and Activities
+Collect incident notification
+Create incident
+List incidents
+Change incident
+View incident
+delete
+Track solution process
+Handing over the asset to a maintenance responsible
+Assignment to a solution responsible by one of SL-TL group
+Sending asset to an outsource service
+Enter delay reason
+Solution explanation entered
+Consumed materials and quantities entered
+Material consumed automatically from stock (conditioned to indirect material function)
+Solution approval request
+Solution approval from SL-TL group
+Manual approval
+Ticket creator approval causes skip this ticket
+Solution approval from creator of incident
+Manual approval
+Automatic approval at the end of the day
+Rejection
+Solution approval from creator first manager or alternative approver
+Collect data for future reference
+Report for selected assets incident history, open and closed ones
+Report for selected solution responsible incident history
+Inputs
+Collect incident notification
+Create incident
+SAP Asset number
+SAP Asset title
+Maintenance asset number
+Maintenance asset title
+Incident Title
+Incident description
+Attachments
+Location
+Location sub unit
+Creation date time
+Creating user number
+Creating user name
+Creation user surname
+Creating user department
+Status
+Comments
+Alternative user to receive asset
+Current assignee user info
+List incidents
+Same fields with a
+Last change date time
+Last change
+User no
+User name
+User surname
+User department
+Assigned solution responsible
+User no
+User name
+User surname
+User department
+Responsible SL-TL
+User no
+User name
+User surname
+User department
+Track solution process
+Handing over the asset to a maintenance responsible
+The person takes the asset for maintenance
+User number
+User name
+User surname
+User department
+Assignment to a solution responsible by one of SL-TL group
+Incident number
+Incident title
+Incident Description
+Attachments
+Responsible SL-TL
+User no
+User name
+User surname
+User department
+Solution responsible
+User no
+User name
+User surname
+User department
+Sending asset to a outsource service
+Outsource service explanation
+Outsource Service explanation entered by user info
+Outsource service explanation date time
+Enter delay reason
+Delay explanation
+Delay explanation entered by user info
+Delay explanation date time
+Solution explanation entered
+Incident number
+Incident title
+Incident description
+Attachments
+Solution explanation
+Entering consumed materials and quantities entered
+Material consumed automatically from stock (conditioned to indirect material function development)
+Consumed materials listed
+Incident number
+Incident title
+Incident Description
+Consumed material numbers
+Consumed material quantities
+Consumed materials measuring unit
+Solution Provided
+Incident number
+Incident title
+Incident description
+Solution Provided date time
+Solution Provided check mark
+Solution provided by Id
+Solution approval from SL-TL group
+Manual approval
+Incident number
+Incident title
+Incident description
+Attachments
+Solution explanation
+Solution approval check mark
+Solution approval date time
+Solution approval from creator of incident
+Manual approval
+Incident number
+Incident Title
+Incident description
+Attachments
+Solution explanation
+Solution approval from Requestor check mark
+Solution approval from requestor date time
+Manual approval without solution approval from SL & TL
+Incident number
+Incident Title
+Incident description
+Attachments
+Solution explanation
+Solution approval from Requestor check mark
+Solution approval from requestor date time
+Automatic approval at the end of the day
+Incident number
+Solution notification check mark
+Rejection
+Incident number
+Incident Title
+Incident description
+Attachments
+Solution explanation
+Rejection reason
+Rejected by
+Rejection date time
+Solution approval from creator first manager or alternative approver
+Manual approval
+Incident number
+Incident Title
+Incident description
+Attachments
+Solution explanation
+Solution approval from Requestor check mark
+Solution approval from requestor date time
+Requestor first manager
+User id
+User name
+User surname
+User department
+Allowed approver
+User id
+User name
+User surname
+User department
+Manual approval without solution approval
+Incident number
+Incident Title
+Incident description
+Attachments
+Solution explanation
+Solution approval from Requestor check mark
+Solution approval from requestor date time
+Requestor first manager
+User id
+User name
+User surname
+User department
+Allowed approver
+User id
+User name
+User surname
+User department
+Rejection
+Incident number
+Incident Title
+Incident description
+Attachments
+Solution explanation
+Requestor first manager
+User id
+User name
+User surname
+User department
+Allowed approver
+User id
+User name
+User surname
+User department
+Collect data for future reference
+Report for selected assets incident history, open and closed ones
+Incident number
+Incident title
+SAP Asset number
+SAP Asset title
+Maintenance asset number
+Maintenance asset title
+Solution notification date time
+Solution notification check mark
+Responsible SL-TL
+User number
+User name
+User surname
+department
+Location
+Location sub unit
+Solution responsible
+User number
+User name
+User surname
+Department
+Solution approval from requestor
+Solution approval from requestor date time
+Solution approval from SL-TL
+Solution approval from SL-TL date time
+Report for selected persons incident history
+Incident number
+Incident title
+SAP Asset number
+SAP Asset title
+Maintenance asset number
+Maintenance asset title
+Solution notification date time
+Solution notification check mark
+Responsible SL-TL
+User number
+User name
+User surname
+department
+Location
+Location sub unit
+Solution responsible
+User number
+User name
+User surname
+Department
+Solution approval from requestor
+Solution approval from requestor date time
+Solution approval from SL-TL
+Solution approval from SL-TL date time
+Report for consumed materials on incidents
+Incident number
+Incident title
+SAP Asset number
+SAP Asset title
+Maintenance asset number
+Maintenance asset title
+Solution notification date time
+Solution notification check mark
+Material number
+Material Quantity
+Material unit of measure
+Flow charts
+Business rules
+When requestor approved the solution and if the asset given to maintenance department before it has accepted that requestor received the asset.
+Alternative user to receive asset can be changed by creator or maintenance personal and change should be logged in another table.
+Requestor approval and asset taken back should be done at the same time. It can be done by requestor, requestors first manager and alternative user to receive asset approver. PKI approval can be done with common user.
+Current assignee field will be filled automatically to easily identify the person that action is waited from. When process finished it will be emptied.
+Authorization rules
+SL-TL authorization group should be created
+Standard user authorization group should be created
+Out of scope
+
+#### Cost Center Change
+
+Objective
+This process is aimed to collect and document the approval of cost center change of an asset
+Processes and Activities
+Requesting a cost center change
+Approval of receiving cost center asset responsible
+Approval of current cost center responsible
+Approval of current cost center director
+Approval of changes done on SAP
+Report
+Data fields (Inputs, outputs and used in activity)
+Requesting a cost center change
+Asset id
+Asset SAP Id
+Asset SAP Title
+Asset Maintenance Id
+Asset Maintenance title
+Producer Company
+Producer Model
+Producer serial number
+Current cost center Id
+Current cost center Title
+New cost center
+New cost center Title
+Exchange date
+Current cost center asset responsible user info
+New cost center asset responsible info
+Created by info
+Creation date time
+New cost center responsible info
+New cost center director info
+Current cost center responsible info
+Current cost center director info
+Current assignee
+Status
+Approval of receiving cost center asset responsible
+Same fields with 1
+Approval of new cost center asset responsible
+Approval date time of new cost center asset responsible
+Approval of current cost center responsible
+Check business rule 2
+Approval of current cost center director
+Same fields with 1
+Approval of current cost center director
+Approval date time of current cost center director
+Approval of changes done on SAP
+All fields mentioned above
+Approval of changes done on SAP
+Approver of changes done on SAP info
+Approval date time of changes done on SAP
+Report
+List of all open and finalized records
+List of records that’s pending “changes done on SAP”
+Flow charts
+Selection list options
+Statuses;
+Pending Approvals
+Changes on SAP
+Done
+Rejected
+Business rules
+Exchange date is going to filled automatically with the creation date and can be changed before first approval.
+Current Cost center asset responsible is going to start process so it will be accounted as approved
+Cost Center asset responsible backup have view authorization and can take action on behalf of Cost center asset responsible.
+Change on SAP can be done by Accounting key users.
+Current assignee field will be filled automatically to easily identify the person that action is waited from. When process finished it will be emptied.
+Authorization rules
+Only Current Cost Center asset responsible can create ticket
+Only assets on the cost center that has been responsible of can be listed and selected to create a record.
+Only records that the user is created by, approver or already approved by ticket can be seen on the reports
+Maintenance Key users can see all records of Maintenance department responsible
+Asset key user can see all records
+Accounting responsible role should be created and authorized to approve “change on SAP” step.
+Out of scope
+No record.
+
+#### Asset retirement
+
+Objective
+All the approvals and processing of asset retirement would like to be handled, traced and reported with this solution
+Processes and Activities
+Creating an asset retirement request
+Asset retirement method selection
+Approvals
+Approval from requestor manager
+Approval from SL – Engineer group
+Approval of Maintenance manager
+Asset Retirement approvals of legal and accounting rules
+Approval
+Reevaluate date set and postpone with an explanation
+Physical Retirement
+Adding attachment as proof
+Asset retirement result printout
+Add scrapping manual to the asset
+Reports of Asset Retirement
+List of retired assets
+A4 printable document that contains all the information
+Inputs
+Creating a request
+Asset info
+SAP asset number
+SAP asset title
+Maintenance asset ID
+Maintenance asset title
+Producer model name
+Producer name
+Producer serial number
+Cost Center
+Asset Accounting Info
+Old asset number
+Asset explanation
+Class
+PSP – Element
+IFRS Depreciation key
+IFRS Useful life
+IFRS Capitalization date
+IFRS Currency
+IFRS Current APC
+IFRS Accumulated depreciation
+IFRS Current booking Value
+Local Depreciation key
+Local Useful life
+Local Currency
+Local Current APC
+Local Accumulated depreciation
+Local Current booking value
+SAP data received date time
+Request creation date time
+Request created by user info
+Created by on behalf to user info
+Request created by on behalf of user info
+Assigned to user info
+Requestor user info
+Reason
+Retirement Method
+Cost Center Asset Responsible info
+Status
+Assignee Id
+Attachment group Id
+Selling Prize
+“Invoice request form” has been filled check box
+Current assignee user info
+Asset Retirement Approvals
+Approval From Cost Center Responsible
+Same fields with 1
+Cost Center responsible info
+Approval from cost center responsible
+Approval from cost center responsible date time
+Asset Retirement Approvals for Maintenance Department responsibility
+Same fields with 1 and 2.a.
+Approval from SL – Engineer group
+Approval from SL-Engineer
+Approval from SL-Engineer date time
+Approval from SL-Engineer user info
+Approval of Maintenance Manager
+Approval of Maintenance manager
+Approval of Maintenance manager date time
+Approval of Maintenance manager user info
+Asset Retirement approvals of legal and accounting rules
+Same fields with 2.b.
+Asset Retirement Accounting Approval
+Asset Retirement Accounting Approval
+Asset Retirement Accounting Approval date time
+Asset Retirement Accounting Approval user info
+Reevaluate date set and postpone with an explanation
+Reevaluation date set by user info
+Reevaluation date set date time
+Reevaluation date
+Reevaluation explanation
+Physical Retirement
+Same fields with 2.c.
+Adding attachment as proof
+Asset Status
+Physical Retirement approval
+Physical Retirement approval date time
+Physical Retirement approval user info
+Retirement result printout
+All available fields
+Add scrapping manual to the asset
+SAP asset Id
+SAP Asset title
+Maintenance asset ID
+Maintenance Asset Title
+Attached scrapping document
+Document type
+Reports for scraps
+List of finished and ongoing requests
+All available fields
+Flow charts
+Selection list options
+Retirement method;
+Scrapping
+Donation
+Selling
+Declare Missing
+Declare Stolen
+Asset Status;
+Active
+Inactive
+Scrapped
+Sold
+Donated
+Declared Missing
+Declare Stolen
+Business rules
+Comments can be added at all times
+If asset is in the responsibility of maintenance than physical scrapping goes to maintenance SL & Engineer group otherwise it should goes to the asset cost center responsible.
+Assignment should be freed from current holder after process has done. Asset assigned user field should be emptied.
+Cost center asset responsible backup will have view authorization as and can take action on behalf of cost center asset responsible
+If an asset is going to be sold. The selling prize is mandatory on creation. The “Invoicing request form has been filled” check box should be checked manually on creation.
+A word document template of “Invoicing request form” should be able to be downloaded on the creation page.
+Asset Accounting Info will be received from SAP when asset selected
+Current assignee field will be filled automatically to easily identify the person that action is waited from. When process finished it will be emptied.
+Authorization rules
+Users can see all details but they can only reach the records that they have created, approved, approver or approved on behalf.
+Cost Center asset responsible and backups can only create tickets and view them If there is not any approval has been done values can be changed.
+There can be more than one asset responsible for a cost center
+Out of scope
+Actions on SAP will be handled manually
+The assets accounted as costs are out of scope
+There wont be a counting process for the assets
+Saved materials from scrapping wont be recorded here. It will be handled with kaizen processes
+There is no need to keep asset information of the outside of the maintenance asset. Just retirement process is enough.
+
+# Technical Requirements
+
+Architecture
+Object list
+Methods
+Classes
+Class objects
+Data Models
+Detailed on an attached excel file
+Configuration details
+Detailed across the document
+Screen Designs
+Detailed on an attached excel file
+Interfaces
+SAP for user
+SAP for assets
+SAP for Asset accounting details
+Indirect material info
+Indirect material consumption
+
+# System Requirements
+
+
+## Operational Requirements
+
+User management
+User Creations
+User data update
+User deactivation
+User authorization
+There is 2 different identification for user. The first one is company employee Id. Every person has this number. Second one is Windows domain user Id. Every person that has computer access has this number and login process will be handled with this user information. Maintenance management application might have new unique id for each user but it shouldn’t show to the user unless there is a technical problem. Users can see the Company employee ID’s last three digit of other users.
+Managing on behalf
+When users doesn’t have computer access
+Approve transaction by PKI card
+When users doesn’t have account or computer access their first level manager can create ticket for them or their colleagues may create ticket on behalf of them but they should approve the transaction with their PKI card. Log PKI readings and on behalf approvals
+When users on leave
+Their manager can create ticket on behalf of them or take actions on behalf of them
+When users have time limited assignment for another position
+When there is a request created by on behalf of someone. This on behalf record will be kept on onbehalf records. Person view the record will see the name of the creator but not the person replaced.
+There will be no additional action should be taken
+Managing open tickets when users position change
+Their first level manager will be take place for the person that has changed the department. This manager can assign another person within its department.
+Attachments specific for the screen
+Admins can attach a file to a screen. These can be user manuals, example image to fill the screen or empty templates If a screen has such an attachment. It will be stated at the bottom of the screen with the title “Page specific documents” and attachments will be listed with attachment no, title, document type with the tooltip creator user info and creation date time.
+Managing Common User
+Approve transaction with PKI card to identify user that make the transaction.
+All common user based on department and any person in the department can change their current session to common user session.
+Comments Management
+Comments functions
+Every user can create
+Assigns to record on a process
+Can be changed in to invisible by the commentor or admin
+Cant be changed into active again
+If a user can view a record this user can comment
+Comments are always can be added even the processes of the record is finished.
+Comments Fields
+Text
+User info
+Id
+Name
+Surname
+Department
+Creation Date time
+Inactive
+Inactivation time
+Process should have comment
+Job Request
+Assets
+Assignment Requests
+Maintenance duties
+Incident management
+Asset Cost center change
+Asser Retirement
+Export and import to document
+Excel,
+PDF
+Word
+Image
+Dwg
+Language support
+Turkish
+English
+Revoke of Rejection
+All rejections can be revoked by admins
+All transaction and changes should be logged.
+Customization
+Maintenance of user groups
+Request reasons
+Priority
+Locations
+Sub locations
+Scrapping methods
+Asset Types
+Common users
+Document Types
+List of cost center responsible
+Log-in
+All log-ins will be handled automatically with windows authorization
+When users entered user can transform current session to common account
+If windows authorization is not for real person then common account logs in for the department
+Browsing
+Interface will be web page
+Web page design will be responsive
+Archiving
+Archiving will be handled as another project after Diva Project
+Use Cases
+Use cases will be delivered as individual word files and a excel file as a whole list
+User characteristics and target users
+
+## Security Requirements
+
+IAM authorization should be included,
+Windows authorization should be supplied for logins
+Single roles and role groups should be supplied
+Role groups can be assign user individually or to a department so who ever assigned to this department receives the authorization automatically
+
+## Performance Requirements
+
+5000 users 1500 has computer access.
+20 new job request per day
+30 maintenance duty per day
+57.000 assets are being handled
+150 ~200 new assets are being added to system per month
+10 out of one asset has scrapping manual document
+Asset assignments doesn’t have attached documents
+Every 2 maintenance duty has 1 Image
+Each job request will have 1 document per request
+
+## Backup Requirements
+
+Daily back-up, for 2 days, weekly back-up for 4 weeks.
+
+## Integration Requirements
+
+SAP integration for assets information
+SAP integration for user data
+SAP integration for user off-boarding
+SAP integration for Asset retirement information
+Windows domain for authorizations
+IAM integration for authorization if possible
+
+## Hosting System Requirements
+
+Server
+Server Name
+Server Count
+Server Type
+HW
+Core
+RAM
+Disk
+Operation System
+
+## Internet Connection
+
+MAN Ankara Plant standard internet connection
+
+## Code Standard
+
+Web based interface
+Responsive design
+
+## Language Support
+
+Turkish
+English
+
+## Supportability
+
+
+## Database
+
+
+# Scheduling
+
+
+# Contact Person
+
+Table 4 Overview of Contact Persons
+
+# Further Details
+
+
+## Definitions
+
+
+## Abbreviations
+
+
+## Reference Documents
+
+
+## Open Points
+
+El aletleri bakım kodları200625 (version 1).xlsb exceli şifreyi veya sütün başlıklarını ve bir kaç satır veriyi oluşturan bir örnek ---- burak
+Raporun adı asset raporu.
+Eski bakım kodu
+Bakım asset kodu
+Asset tanımı
+Üreticinin markası
+Kalibrasyon tarihi
+Kalibrasyon ihtiyacı
+Bütün bakımcılar kalibrasyon tarihi ve ihtiyacını değiştirebilir.
+Istasyon değişikliğini hem bakımcılar hemde cost center asset sorumlusu yapacak
+Üretici Modeli no
+Üretici seri no
+İş İstasyonu
+Zimmetli olduğu kişinin
+Sicil numarası
+Adı
+Soyadı
+Departmanı
+Zimmetli olduğu ikişinin ilk amiri
+Sicil numarası
+Adı
+Soyadı
+Departmanı
+SAP asset numarası
+SRM numarası ayrı siparişe dönüşünce sipariş numarası oluyor. Bu sipariş numarası da bulunmalı
+PSP-Element numarası
+Aktifleştirme tarihi / Muhasebeye kayıt tarihi
+Masraf yeri
+Masraf yeri sorumlusu
+Masraf yeri asset sorumlusu
+KVKK İşten ayrılan kullanıcıların adı soyadı görünmez mi olmalı? Departmanı kalmalı mı? Zimmet belgelerinde de mi kaldırılmalı? İhtiyaç halinde görünebilir olmalı mı? yoksa tamamen systemden mi silinmeli? – Sinem onay al
+Ölçülü bakımda asset grup kullanılacak mı? kullanılacaksa her bir asset için ayrıca takip yapılacak mı? birden fazla ölçü birimi olan bir asset var mı? Burak
+Şerife hanımdan bütün assetlerin olduğu bir liste geliyor içinden bakımın sorumlu oldukları mı seçiliyor yoksa Şerife hanım öncesinde bir eleme yapıyor mu? Bu eleme nasıl yapılıyor? Aynısı uygulama içinde yapılabilir mi? – Burak Nazan
+Genel değerlendirme toplantısı düzenle
+Zimmet devir formunda iş istasyonu bilgisi var bu bilgi tutulmalı mı? Kaldırılmalı mı? Burak
+Mikail ile SRM alanlarına bakılacak. SRM ile asset nasıl bağlanıyor? – Mikail, Şerife, Gözde
+Cost center, responsible cost center ayrımı kullanılıyor mu? Gözde Şerife

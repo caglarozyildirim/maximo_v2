@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Varlık Zimmeti - Liste</title>
+    <link rel="stylesheet" href="../css/style.css?v=3">
+</head>
+<body>
+    <!-- MODERN NAVIGATION BAR -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">
+                <div class="logo">🚌</div>
+                <div>
+                    <div class="brand-name">Bakım Yönetimi</div>
+                    <div class="brand-subtitle">Üretim Tesisleri</div>
+                </div>
+            </div>
+
+            <div class="navbar-menu">
+                <a href="../index.html" class="nav-link">
+                    <span>🏠</span> Dashboard
+                </a>
+                <a href="is-talepleri-liste.html" class="nav-link ">
+                    <span>📋</span> İş Talepleri
+                </a>
+                <a href="varliklar-liste.html" class="nav-link ">
+                    <span>📦</span> Varlıklar
+                </a>
+                <a href="bakim-isleri-liste.html" class="nav-link ">
+                    <span>🔧</span> Bakım İşleri
+                </a>
+                <a href="zimmet-liste.html" class="nav-link active">
+                    <span>👤</span> Zimmet
+                </a>
+                <a href="hurda-liste.html" class="nav-link ">
+                    <span>♻️</span> Hurda
+                </a>
+                <a href="masraf-liste.html" class="nav-link ">
+                    <span>💰</span> Masraf Merkezi
+                </a>
+            </div>
+
+            <div class="navbar-user">
+                <span class="user-name">Admin</span>
+                <div class="user-avatar">A</div>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container">
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">Varlık Zimmeti</h1>
+                <p><a href="../index.html" style="color: #6b7280;">← Ana Sayfa</a></p>
+            </div>
+            <a href="zimmet-ekle.html" class="btn btn-primary">+ Yeni Ekle</a>
+        </div>
+
+        <div class="card">
+            <!-- FİLTRE VE ARAMA -->
+            <div style="margin-bottom: 1.5rem;">
+                <input type="text" class="form-control" id="searchBox" placeholder="Zimmet No, Varlık veya Kullanıcı ile ara..."
+                       onkeyup="filterTable()" style="margin-bottom: 1rem;">
+
+                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center;">
+                    <span style="font-weight: 600; color: var(--gray-700); font-size: 0.875rem; margin-right: 0.5rem;">Durum:</span>
+                    <button class="filter-btn active" data-status="all" onclick="filterByStatus('all', this)">Tümü</button>
+                    <button class="filter-btn" data-status="Aktif" onclick="filterByStatus('Aktif', this)">Aktif</button>
+                    <button class="filter-btn" data-status="İade Edildi" onclick="filterByStatus('İade Edildi', this)">İade Edildi</button>
+                </div>
+            </div>
+            
+            <table class="table" id="dataTable">
+                <thead>
+                    <tr>
+                        <th>Zimmet No</th>
+                        <th>Varlık</th>
+                        <th>Mevcut Kullanıcı</th>
+                        <th>Yeni Kullanıcı</th>
+                        <th>Departman</th>
+                        <th>Durum</th>
+                        <th>Tarih</th>
+                        <th>İşlem</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ZMT-2025-001</td>
+                        <td><strong>VLK-003 - Forklift FT-456</strong></td>
+                        <td>-</td>
+                        <td>Ahmet Kaya</td>
+                        <td>Depo Operasyonları</td>
+                        <td><span class="status-badge">Aktif</span></td>
+                        <td>15.01.2024</td>
+                        <td><a href="zimmet-detay.html" class="btn-link">Detay →</a></td>
+                    </tr>
+                    <tr>
+                        <td>ZMT-2025-002</td>
+                        <td><strong>NB-HP-EliteBook-2024-A123</strong></td>
+                        <td>-</td>
+                        <td>Mehmet Yılmaz</td>
+                        <td>Bakım Planlama</td>
+                        <td><span class="status-badge">Aktif</span></td>
+                        <td>10.03.2024</td>
+                        <td><a href="zimmet-detay.html" class="btn-link">Detay →</a></td>
+                    </tr>
+                    <tr>
+                        <td>ZMT-2025-003</td>
+                        <td><strong>TBL-Samsung-Tab-S9-B456</strong></td>
+                        <td>-</td>
+                        <td>Ayşe Demir</td>
+                        <td>Kalite Kontrol</td>
+                        <td><span class="status-badge">Aktif</span></td>
+                        <td>22.04.2024</td>
+                        <td><a href="zimmet-detay.html" class="btn-link">Detay →</a></td>
+                    </tr>
+                    <tr>
+                        <td>ZMT-2025-004</td>
+                        <td><strong>ARC-400-Miller-C789</strong></td>
+                        <td>Can Öztürk</td>
+                        <td>-</td>
+                        <td>Kaynak Atölyesi</td>
+                        <td><span class="status-badge">İade Edildi</span></td>
+                        <td>05.02.2024</td>
+                        <td><a href="zimmet-detay.html" class="btn-link">Detay →</a></td>
+                    </tr>
+                    <tr>
+                        <td>ZMT-2025-005</td>
+                        <td><strong>PKT-Dewalt-DCD996-D234</strong></td>
+                        <td>-</td>
+                        <td>Fatma Arslan</td>
+                        <td>Montaj Hattı</td>
+                        <td><span class="status-badge">Aktif</span></td>
+                        <td>18.06.2024</td>
+                        <td><a href="zimmet-detay.html" class="btn-link">Detay →</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+        <script src="../js/app.js"></script>
+    <script>
+        let currentStatus = 'all';
+
+        function filterByStatus(status, button) {
+            currentStatus = status;
+            
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            button.classList.add('active');
+            
+            filterTable();
+        }
+
+        function filterTable() {
+            const searchValue = document.getElementById('searchBox').value.toLowerCase();
+            const table = document.getElementById('dataTable');
+            const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+            for (let i = 0; i < rows.length; i++) {
+                const row = rows[i];
+                const cells = row.getElementsByTagName('td');
+                if (cells.length === 0) continue;
+
+                // Arama (Zimmet No, Varlık, Kullanıcılar)
+                const zimmetNo = cells[0].textContent.toLowerCase();
+                const varlik = cells[1].textContent.toLowerCase();
+                const mevcutKullanici = cells[2].textContent.toLowerCase();
+                const yeniKullanici = cells[3].textContent.toLowerCase();
+                const searchMatch = zimmetNo.includes(searchValue) ||
+                                   varlik.includes(searchValue) ||
+                                   mevcutKullanici.includes(searchValue) ||
+                                   yeniKullanici.includes(searchValue);
+
+                // Durum filtresi
+                const durum = cells[5].textContent.trim();
+                const statusMatch = currentStatus === 'all' || durum === currentStatus;
+
+                // Tüm kriterlere uygunsa göster
+                row.style.display = (searchMatch && statusMatch) ? '' : 'none';
+            }
+        }
+    </script>
+</body>
+</html>

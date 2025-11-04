@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İş Talebi #IT-2025-001 - Bakım Yönetimi</title>
+    <link rel="stylesheet" href="../css/style.css?v=3">
+    <style>
+        .detail-header {
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+        .detail-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #111827;
+            margin: 0 0 0.5rem 0;
+        }
+        .detail-meta {
+            display: flex;
+            gap: 2rem;
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+        .detail-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 2rem;
+        }
+        .info-section {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+        .info-section-header {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+            font-weight: 600;
+            color: #111827;
+            font-size: 0.9375rem;
+        }
+        .info-section-body {
+            padding: 1.5rem;
+        }
+        .info-row {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .info-row:last-child {
+            border-bottom: none;
+        }
+        .info-label {
+            color: #6b7280;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        .info-value {
+            color: #111827;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        .sidebar-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+        .sidebar-card-header {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid #e5e7eb;
+            font-weight: 600;
+            color: #111827;
+            font-size: 0.875rem;
+        }
+        .sidebar-card-body {
+            padding: 1.25rem;
+        }
+        .assignee-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 0;
+        }
+        .assignee-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+        .assignee-info {
+            flex: 1;
+        }
+        .assignee-name {
+            font-weight: 600;
+            color: #111827;
+            font-size: 0.875rem;
+        }
+        .assignee-role {
+            color: #6b7280;
+            font-size: 0.8125rem;
+        }
+        .approval-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .approval-item:last-child {
+            border-bottom: none;
+        }
+        .approval-label {
+            font-size: 0.875rem;
+            color: #374151;
+            font-weight: 500;
+        }
+        .approval-status {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.625rem;
+            border-radius: 4px;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+        .approval-status.approved {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        .approval-status.pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        .approval-status.waiting {
+            background: #f3f4f6;
+            color: #6b7280;
+        }
+        .attachment-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: #f9fafb;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .attachment-item:hover {
+            background: #f3f4f6;
+        }
+        .attachment-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 4px;
+            background: #3b82f6;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+        .attachment-info {
+            flex: 1;
+        }
+        .attachment-name {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #111827;
+        }
+        .attachment-size {
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+        .comment-item {
+            display: flex;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: #f9fafb;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+        }
+        .comment-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: #6b7280;
+            flex-shrink: 0;
+        }
+        .comment-content {
+            flex: 1;
+        }
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        .comment-author {
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: #111827;
+        }
+        .comment-date {
+            font-size: 0.8125rem;
+            color: #6b7280;
+        }
+        .comment-text {
+            font-size: 0.875rem;
+            color: #374151;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">
+                <div class="logo">🚌</div>
+                <div>
+                    <div class="brand-name">Bakım Yönetimi</div>
+                    <div class="brand-subtitle">Üretim Tesisleri</div>
+                </div>
+            </div>
+
+            <div class="navbar-menu">
+                <a href="../index.html" class="nav-link">
+                    <span>🏠</span> Dashboard
+                </a>
+                <a href="is-talepleri-liste.html" class="nav-link active">
+                    <span>📋</span> İş Talepleri
+                </a>
+                <a href="varliklar-liste.html" class="nav-link">
+                    <span>📦</span> Varlıklar
+                </a>
+                <a href="bakim-isleri-liste.html" class="nav-link">
+                    <span>🔧</span> Bakım İşleri
+                </a>
+                <a href="zimmet-liste.html" class="nav-link">
+                    <span>👤</span> Zimmet
+                </a>
+                <a href="hurda-liste.html" class="nav-link">
+                    <span>♻️</span> Hurda
+                </a>
+                <a href="masraf-liste.html" class="nav-link">
+                    <span>💰</span> Masraf Merkezi
+                </a>
+            </div>
+
+            <div class="navbar-user">
+                <span class="user-name">Admin</span>
+                <div class="user-avatar">A</div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- BREADCRUMB -->
+        <div class="breadcrumb" style="margin-bottom: 1.5rem;">
+            <a href="../index.html">Dashboard</a>
+            <span>›</span>
+            <a href="is-talepleri-liste.html">İş Talepleri</a>
+            <span>›</span>
+            <span>IT-2025-001</span>
+        </div>
+
+        <!-- HEADER -->
+        <div class="detail-header">
+            <div style="display: flex; justify-content: space-between; align-items: start;">
+                <div style="flex: 1;">
+                    <div style="color: #6b7280; font-size: 0.875rem; font-weight: 600; margin-bottom: 0.5rem;">
+                        İŞ TALEBİ #IT-2025-001
+                    </div>
+                    <h1 class="detail-title">Şase Montaj Hattı Konveyör Arızası</h1>
+                    <div style="display: grid; grid-template-columns: auto auto auto; gap: 2.5rem; margin-top: 1rem;">
+                        <div>
+                            <div style="color: #9ca3af; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; margin-bottom: 0.375rem;">Talep Eden</div>
+                            <div style="color: #111827; font-size: 0.9375rem; font-weight: 600;">Mehmet Yılmaz</div>
+                        </div>
+                        <div>
+                            <div style="color: #9ca3af; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; margin-bottom: 0.375rem;">Oluşturma Tarihi</div>
+                            <div style="color: #111827; font-size: 0.9375rem; font-weight: 600;">01.11.2025 09:30</div>
+                        </div>
+                        <div>
+                            <div style="color: #9ca3af; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; margin-bottom: 0.375rem;">Departman</div>
+                            <div style="color: #111827; font-size: 0.9375rem; font-weight: 600;">Üretim - Şase Montaj</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                    <a href="is-talepleri-liste.html" class="btn btn-secondary">Geri</a>
+                    <a href="#" class="btn btn-primary">Düzenle</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTENT GRID -->
+        <div class="detail-grid">
+            <!-- MAIN CONTENT -->
+            <div>
+                <!-- TEMEL BİLGİLER -->
+                <div class="info-section">
+                    <div class="info-section-header">Temel Bilgiler</div>
+                    <div class="info-section-body">
+                        <div class="info-row">
+                            <div class="info-label">Talep No</div>
+                            <div class="info-value">IT-2025-001</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Başlık</div>
+                            <div class="info-value">Şase Montaj Hattı Konveyör Arızası</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Açıklama</div>
+                            <div class="info-value">3 numaralı konveyör bandı durdu, üretim aksıyor. Acil müdahale gerekiyor.</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Durum</div>
+                            <div class="info-value"><span class="status-badge">Açık</span></div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Öncelik</div>
+                            <div class="info-value">Yüksek</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Departman</div>
+                            <div class="info-value">Üretim - Şase Montaj</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Talep Nedeni</div>
+                            <div class="info-value">Arıza</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VARLIK BİLGİLERİ -->
+                <div class="info-section">
+                    <div class="info-section-header">Varlık Bilgileri</div>
+                    <div class="info-section-body">
+                        <div class="info-row">
+                            <div class="info-label">Varlık Bakım No</div>
+                            <div class="info-value">VLK-CNV-003</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Varlık Bakım Başlığı</div>
+                            <div class="info-value">Konveyör Sistemi #3</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Varlık SAP No</div>
+                            <div class="info-value">SAP-10023456</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Varlık SAP Başlığı</div>
+                            <div class="info-value">Konveyör Band Sistemi</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LOKASYON BİLGİLERİ -->
+                <div class="info-section">
+                    <div class="info-section-header">Lokasyon Bilgileri</div>
+                    <div class="info-section-body">
+                        <div class="info-row">
+                            <div class="info-label">Lokasyon</div>
+                            <div class="info-value">Şase Montaj Atölyesi</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Alt Birim 1</div>
+                            <div class="info-value">Hat 3</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Alt Birim 2</div>
+                            <div class="info-value">Bölge A</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MALİYET BİLGİLERİ -->
+                <div class="info-section">
+                    <div class="info-section-header">Maliyet Bilgileri</div>
+                    <div class="info-section-body">
+                        <div class="info-row">
+                            <div class="info-label">Tahmini Maliyet</div>
+                            <div class="info-value" style="font-weight: 600;">₺15.000</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Gerçekleşen Maliyet</div>
+                            <div class="info-value">-</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Masraf Merkezi</div>
+                            <div class="info-value">MM-101 - Üretim</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Bütçe Kodu</div>
+                            <div class="info-value">BDG-2025-PROD</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ZAMAN BİLGİLERİ -->
+                <div class="info-section">
+                    <div class="info-section-header">Zaman Bilgileri</div>
+                    <div class="info-section-body">
+                        <div class="info-row">
+                            <div class="info-label">Oluşturma Tarihi</div>
+                            <div class="info-value">01.11.2025 09:30:15</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Beklenen Başlama</div>
+                            <div class="info-value">01.11.2025 14:00</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Beklenen Tamamlanma</div>
+                            <div class="info-value">02.11.2025 18:00</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Gerçekleşen Tamamlanma</div>
+                            <div class="info-value" style="color: #9ca3af;">-</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- YORUMLAR -->
+                <div class="info-section">
+                    <div class="info-section-header">Yorumlar & Aktivite</div>
+                    <div class="info-section-body">
+                        <div class="comment-item">
+                            <div class="comment-avatar">MY</div>
+                            <div class="comment-content">
+                                <div class="comment-header">
+                                    <span class="comment-author">Mehmet Yılmaz</span>
+                                    <span class="comment-date">01.11.2025 09:35</span>
+                                </div>
+                                <div class="comment-text">Motor sesi normalden farklı geliyor, titreşim var.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SIDEBAR -->
+            <div>
+                <!-- ATAMA VE SORUMLULAR -->
+                <div class="sidebar-card">
+                    <div class="sidebar-card-header">Atananlar</div>
+                    <div class="sidebar-card-body">
+                        <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #f3f4f6;">
+                            <div style="font-size: 0.75rem; color: #6b7280; margin-bottom: 0.5rem; text-transform: uppercase; font-weight: 600;">Mevcut Atanan</div>
+                            <div class="assignee-item" style="padding: 0;">
+                                <div class="assignee-avatar">AD</div>
+                                <div class="assignee-info">
+                                    <div class="assignee-name">Ayşe Demir</div>
+                                    <div class="assignee-role">Bakım Müdürü</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="font-size: 0.75rem; color: #6b7280; margin-bottom: 0.5rem; text-transform: uppercase; font-weight: 600;">Çözüm Sorumlusu</div>
+                            <div class="assignee-item" style="padding: 0;">
+                                <div class="assignee-avatar">CÖ</div>
+                                <div class="assignee-info">
+                                    <div class="assignee-name">Can Öztürk</div>
+                                    <div class="assignee-role">Tekniker</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ONAY DURUMLARI -->
+                <div class="sidebar-card">
+                    <div class="sidebar-card-header">Onay Durumları</div>
+                    <div class="sidebar-card-body">
+                        <div class="approval-item">
+                            <span class="approval-label">Teknik Onay</span>
+                            <span class="approval-status approved">Onaylandı</span>
+                        </div>
+                        <div class="approval-item">
+                            <span class="approval-label">Yönetici Onayı</span>
+                            <span class="approval-status pending">Beklemede</span>
+                        </div>
+                        <div class="approval-item">
+                            <span class="approval-label">Maliyet Onayı</span>
+                            <span class="approval-status waiting">Bekliyor</span>
+                        </div>
+                        <div class="approval-item">
+                            <span class="approval-label">Çözüm Onayı</span>
+                            <span class="approval-status waiting">Bekliyor</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EKLER -->
+                <div class="sidebar-card">
+                    <div class="sidebar-card-header">Ekler (2)</div>
+                    <div class="sidebar-card-body">
+                        <div class="attachment-item">
+                            <div class="attachment-icon" style="background: #3b82f6;">JPG</div>
+                            <div class="attachment-info">
+                                <div class="attachment-name">konveyor_fotograf_1.jpg</div>
+                                <div class="attachment-size">2.3 MB</div>
+                            </div>
+                        </div>
+                        <div class="attachment-item">
+                            <div class="attachment-icon" style="background: #ef4444;">PDF</div>
+                            <div class="attachment-info">
+                                <div class="attachment-name">teknik_rapor.pdf</div>
+                                <div class="attachment-size">456 KB</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/app.js"></script>
+</body>
+</html>

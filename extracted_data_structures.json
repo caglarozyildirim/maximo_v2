@@ -1,0 +1,2030 @@
+[
+  {
+    "index": 0,
+    "headers": [
+      "Alan Adı (EN)",
+      "Alan Adı (TR)",
+      "Veri Tipi",
+      "Zorunlu",
+      "Açıklama",
+      "SAP Mapping"
+    ],
+    "rows": [
+      [
+        "id",
+        "Talep No",
+        "String(20)",
+        "Evet",
+        "Otomatik: JR-YYYY-NNN",
+        ""
+      ],
+      [
+        "title",
+        "Başlık",
+        "String(200)",
+        "Evet",
+        "Talep başlığı",
+        ""
+      ],
+      [
+        "description",
+        "Açıklama",
+        "Text",
+        "Evet",
+        "Detaylı açıklama",
+        ""
+      ],
+      [
+        "category",
+        "Kategori",
+        "String(50)",
+        "Evet",
+        "HVAC, Elektrik, vb.",
+        ""
+      ],
+      [
+        "requestReason",
+        "Talep Nedeni",
+        "String(50)",
+        "Evet",
+        "İSG, Enerji, vb.",
+        ""
+      ],
+      [
+        "priority",
+        "Öncelik",
+        "Enum",
+        "Evet",
+        "urgent/high/normal/low",
+        ""
+      ],
+      [
+        "status",
+        "Durum",
+        "Enum",
+        "Evet",
+        "11 durum değeri",
+        ""
+      ],
+      [
+        "location",
+        "Lokasyon",
+        "String(100)",
+        "Evet",
+        "Ana lokasyon",
+        "WERKS"
+      ],
+      [
+        "sublocation1",
+        "Alt Lokasyon 1",
+        "String(100)",
+        "Hayır",
+        "Alt bölge",
+        ""
+      ],
+      [
+        "sublocation2",
+        "Alt Lokasyon 2",
+        "String(100)",
+        "Hayır",
+        "İstasyon/Alan",
+        ""
+      ],
+      [
+        "assetId",
+        "İlişkili Varlık ID",
+        "String(20)",
+        "Hayır",
+        "Varlık referansı",
+        ""
+      ],
+      [
+        "assetSapId",
+        "SAP Varlık No",
+        "String(20)",
+        "Hayır",
+        "SAP'den çekilen",
+        "ANLN1"
+      ],
+      [
+        "assetName",
+        "Varlık Adı",
+        "String(200)",
+        "Hayır",
+        "Varlık adı",
+        ""
+      ],
+      [
+        "requestedBy",
+        "Talep Eden",
+        "String(100)",
+        "Evet",
+        "Kullanıcı adı",
+        "PERNR"
+      ],
+      [
+        "requestedByManager",
+        "Talep Eden Yöneticisi",
+        "String(100)",
+        "Evet",
+        "İş onayı verecek",
+        "PERNR"
+      ],
+      [
+        "requestedDate",
+        "Talep Tarihi",
+        "DateTime",
+        "Evet",
+        "Otomatik oluşturulur",
+        ""
+      ],
+      [
+        "requestedByDate",
+        "İstenen Tamamlanma",
+        "Date",
+        "Hayır",
+        "Hedef tarihi",
+        ""
+      ],
+      [
+        "estimatedCost",
+        "Tahmini Maliyet",
+        "Decimal(12,2)",
+        "Hayır",
+        "SL tahmin eder",
+        ""
+      ],
+      [
+        "actualCost",
+        "Gerçek Maliyet",
+        "Decimal(12,2)",
+        "Hayır",
+        "Kapanışta girilir",
+        ""
+      ],
+      [
+        "currency",
+        "Para Birimi",
+        "String(3)",
+        "Hayır",
+        "TRY/EUR/USD",
+        "WAERS"
+      ],
+      [
+        "costCenter",
+        "Maliyet Merkezi",
+        "String(20)",
+        "Evet",
+        "SAP'den gelir",
+        "KOSTL"
+      ],
+      [
+        "slEngineer",
+        "SL/Mühendis",
+        "String(100)",
+        "Hayır",
+        "Teknik onay verecek",
+        "PERNR"
+      ],
+      [
+        "businessManager",
+        "İş Yöneticisi",
+        "String(100)",
+        "Hayır",
+        "Maliyet onayı",
+        "PERNR"
+      ],
+      [
+        "solutionResponsible",
+        "Çözüm Sorumlusu",
+        "String(100)",
+        "Hayır",
+        "Uygulayacak kişi",
+        "PERNR"
+      ],
+      [
+        "currentAssignee",
+        "Mevcut Atanan",
+        "String(100)",
+        "Evet",
+        "Şu an kim'de",
+        ""
+      ],
+      [
+        "slaDeadline",
+        "SLA Deadline",
+        "DateTime",
+        "Evet",
+        "Önceliğe göre hesap",
+        ""
+      ],
+      [
+        "slaStatus",
+        "SLA Durumu",
+        "Enum",
+        "Evet",
+        "ok/warning/exceeded",
+        ""
+      ],
+      [
+        "completedDate",
+        "Tamamlanma Tarihi",
+        "DateTime",
+        "Hayır",
+        "Kapanış tarihi",
+        ""
+      ],
+      [
+        "rejectionReason",
+        "Red Nedeni",
+        "Text",
+        "Hayır",
+        "Red durumunda",
+        ""
+      ]
+    ]
+  },
+  {
+    "index": 1,
+    "headers": [
+      "Alan Adı (EN)",
+      "Alan Adı (TR)",
+      "Veri Tipi",
+      "Zorunlu",
+      "Açıklama",
+      "SAP Mapping"
+    ],
+    "rows": [
+      [
+        "id",
+        "Talep No",
+        "String(20)",
+        "Evet",
+        "Otomatik: JR-YYYY-NNN",
+        ""
+      ],
+      [
+        "title",
+        "Başlık",
+        "String(200)",
+        "Evet",
+        "Talep başlığı",
+        ""
+      ],
+      [
+        "description",
+        "Açıklama",
+        "Text",
+        "Evet",
+        "Detaylı açıklama",
+        ""
+      ],
+      [
+        "category",
+        "Kategori",
+        "String(50)",
+        "Evet",
+        "HVAC, Elektrik, vb.",
+        ""
+      ],
+      [
+        "requestReason",
+        "Talep Nedeni",
+        "String(50)",
+        "Evet",
+        "İSG, Enerji, vb.",
+        ""
+      ],
+      [
+        "priority",
+        "Öncelik",
+        "Enum",
+        "Evet",
+        "urgent/high/normal/low",
+        ""
+      ],
+      [
+        "status",
+        "Durum",
+        "Enum",
+        "Evet",
+        "11 durum değeri",
+        ""
+      ],
+      [
+        "location",
+        "Lokasyon",
+        "String(100)",
+        "Evet",
+        "Ana lokasyon",
+        "WERKS"
+      ],
+      [
+        "sublocation1",
+        "Alt Lokasyon 1",
+        "String(100)",
+        "Hayır",
+        "Alt bölge",
+        ""
+      ],
+      [
+        "sublocation2",
+        "Alt Lokasyon 2",
+        "String(100)",
+        "Hayır",
+        "İstasyon/Alan",
+        ""
+      ],
+      [
+        "assetId",
+        "İlişkili Varlık ID",
+        "String(20)",
+        "Hayır",
+        "Varlık referansı",
+        ""
+      ],
+      [
+        "assetSapId",
+        "SAP Varlık No",
+        "String(20)",
+        "Hayır",
+        "SAP'den çekilen",
+        "ANLN1"
+      ],
+      [
+        "assetName",
+        "Varlık Adı",
+        "String(200)",
+        "Hayır",
+        "Varlık adı",
+        ""
+      ],
+      [
+        "requestedBy",
+        "Talep Eden",
+        "String(100)",
+        "Evet",
+        "Kullanıcı adı",
+        "PERNR"
+      ],
+      [
+        "requestedByManager",
+        "Talep Eden Yöneticisi",
+        "String(100)",
+        "Evet",
+        "İş onayı verecek",
+        "PERNR"
+      ],
+      [
+        "requestedDate",
+        "Talep Tarihi",
+        "DateTime",
+        "Evet",
+        "Otomatik oluşturulur",
+        ""
+      ],
+      [
+        "requestedByDate",
+        "İstenen Tamamlanma",
+        "Date",
+        "Hayır",
+        "Hedef tarihi",
+        ""
+      ],
+      [
+        "estimatedCost",
+        "Tahmini Maliyet",
+        "Decimal(12,2)",
+        "Hayır",
+        "SL tahmin eder",
+        ""
+      ],
+      [
+        "actualCost",
+        "Gerçek Maliyet",
+        "Decimal(12,2)",
+        "Hayır",
+        "Kapanışta girilir",
+        ""
+      ],
+      [
+        "currency",
+        "Para Birimi",
+        "String(3)",
+        "Hayır",
+        "TRY/EUR/USD",
+        "WAERS"
+      ],
+      [
+        "costCenter",
+        "Maliyet Merkezi",
+        "String(20)",
+        "Evet",
+        "SAP'den gelir",
+        "KOSTL"
+      ],
+      [
+        "slEngineer",
+        "SL/Mühendis",
+        "String(100)",
+        "Hayır",
+        "Teknik onay verecek",
+        "PERNR"
+      ],
+      [
+        "businessManager",
+        "İş Yöneticisi",
+        "String(100)",
+        "Hayır",
+        "Maliyet onayı",
+        "PERNR"
+      ],
+      [
+        "solutionResponsible",
+        "Çözüm Sorumlusu",
+        "String(100)",
+        "Hayır",
+        "Uygulayacak kişi",
+        "PERNR"
+      ],
+      [
+        "currentAssignee",
+        "Mevcut Atanan",
+        "String(100)",
+        "Evet",
+        "Şu an kim'de",
+        ""
+      ],
+      [
+        "slaDeadline",
+        "SLA Deadline",
+        "DateTime",
+        "Evet",
+        "Önceliğe göre hesap",
+        ""
+      ],
+      [
+        "slaStatus",
+        "SLA Durumu",
+        "Enum",
+        "Evet",
+        "ok/warning/exceeded",
+        ""
+      ],
+      [
+        "completedDate",
+        "Tamamlanma Tarihi",
+        "DateTime",
+        "Hayır",
+        "Kapanış tarihi",
+        ""
+      ],
+      [
+        "rejectionReason",
+        "Red Nedeni",
+        "Text",
+        "Hayır",
+        "Red durumunda",
+        ""
+      ]
+    ]
+  },
+  {
+    "index": 2,
+    "headers": [
+      "Alan Adı (EN)",
+      "Alan Adı (TR)",
+      "Veri Tipi",
+      "Zorunlu",
+      "Açıklama",
+      "SAP Mapping"
+    ],
+    "rows": [
+      [
+        "id",
+        "Talep No",
+        "String(20)",
+        "Evet",
+        "Otomatik: JR-YYYY-NNN",
+        ""
+      ],
+      [
+        "title",
+        "Başlık",
+        "String(200)",
+        "Evet",
+        "Talep başlığı",
+        ""
+      ],
+      [
+        "description",
+        "Açıklama",
+        "Text",
+        "Evet",
+        "Detaylı açıklama",
+        ""
+      ],
+      [
+        "category",
+        "Kategori",
+        "String(50)",
+        "Evet",
+        "HVAC, Elektrik, vb.",
+        ""
+      ],
+      [
+        "requestReason",
+        "Talep Nedeni",
+        "String(50)",
+        "Evet",
+        "İSG, Enerji, vb.",
+        ""
+      ],
+      [
+        "priority",
+        "Öncelik",
+        "Enum",
+        "Evet",
+        "urgent/high/normal/low",
+        ""
+      ],
+      [
+        "status",
+        "Durum",
+        "Enum",
+        "Evet",
+        "11 durum değeri",
+        ""
+      ],
+      [
+        "location",
+        "Lokasyon",
+        "String(100)",
+        "Evet",
+        "Ana lokasyon",
+        "WERKS"
+      ],
+      [
+        "sublocation1",
+        "Alt Lokasyon 1",
+        "String(100)",
+        "Hayır",
+        "Alt bölge",
+        ""
+      ],
+      [
+        "sublocation2",
+        "Alt Lokasyon 2",
+        "String(100)",
+        "Hayır",
+        "İstasyon/Alan",
+        ""
+      ],
+      [
+        "assetId",
+        "İlişkili Varlık ID",
+        "String(20)",
+        "Hayır",
+        "Varlık referansı",
+        ""
+      ],
+      [
+        "assetSapId",
+        "SAP Varlık No",
+        "String(20)",
+        "Hayır",
+        "SAP'den çekilen",
+        "ANLN1"
+      ],
+      [
+        "assetName",
+        "Varlık Adı",
+        "String(200)",
+        "Hayır",
+        "Varlık adı",
+        ""
+      ],
+      [
+        "requestedBy",
+        "Talep Eden",
+        "String(100)",
+        "Evet",
+        "Kullanıcı adı",
+        "PERNR"
+      ],
+      [
+        "requestedByManager",
+        "Talep Eden Yöneticisi",
+        "String(100)",
+        "Evet",
+        "İş onayı verecek",
+        "PERNR"
+      ],
+      [
+        "requestedDate",
+        "Talep Tarihi",
+        "DateTime",
+        "Evet",
+        "Otomatik oluşturulur",
+        ""
+      ],
+      [
+        "requestedByDate",
+        "İstenen Tamamlanma",
+        "Date",
+        "Hayır",
+        "Hedef tarihi",
+        ""
+      ],
+      [
+        "estimatedCost",
+        "Tahmini Maliyet",
+        "Decimal(12,2)",
+        "Hayır",
+        "SL tahmin eder",
+        ""
+      ],
+      [
+        "actualCost",
+        "Gerçek Maliyet",
+        "Decimal(12,2)",
+        "Hayır",
+        "Kapanışta girilir",
+        ""
+      ],
+      [
+        "currency",
+        "Para Birimi",
+        "String(3)",
+        "Hayır",
+        "TRY/EUR/USD",
+        "WAERS"
+      ],
+      [
+        "costCenter",
+        "Maliyet Merkezi",
+        "String(20)",
+        "Evet",
+        "SAP'den gelir",
+        "KOSTL"
+      ],
+      [
+        "slEngineer",
+        "SL/Mühendis",
+        "String(100)",
+        "Hayır",
+        "Teknik onay verecek",
+        "PERNR"
+      ],
+      [
+        "businessManager",
+        "İş Yöneticisi",
+        "String(100)",
+        "Hayır",
+        "Maliyet onayı",
+        "PERNR"
+      ],
+      [
+        "solutionResponsible",
+        "Çözüm Sorumlusu",
+        "String(100)",
+        "Hayır",
+        "Uygulayacak kişi",
+        "PERNR"
+      ],
+      [
+        "currentAssignee",
+        "Mevcut Atanan",
+        "String(100)",
+        "Evet",
+        "Şu an kim'de",
+        ""
+      ],
+      [
+        "slaDeadline",
+        "SLA Deadline",
+        "DateTime",
+        "Evet",
+        "Önceliğe göre hesap",
+        ""
+      ],
+      [
+        "slaStatus",
+        "SLA Durumu",
+        "Enum",
+        "Evet",
+        "ok/warning/exceeded",
+        ""
+      ],
+      [
+        "completedDate",
+        "Tamamlanma Tarihi",
+        "DateTime",
+        "Hayır",
+        "Kapanış tarihi",
+        ""
+      ],
+      [
+        "rejectionReason",
+        "Red Nedeni",
+        "Text",
+        "Hayır",
+        "Red durumunda",
+        ""
+      ]
+    ]
+  },
+  {
+    "index": 3,
+    "headers": [
+      "Alan Adı (EN)",
+      "Alan Adı (TR)",
+      "Veri Tipi",
+      "Zorunlu",
+      "Açıklama",
+      "SAP Mapping"
+    ],
+    "rows": [
+      [
+        "id",
+        "Varlık No",
+        "String(20)",
+        "Evet",
+        "Otomatik: AST-NNNN",
+        ""
+      ],
+      [
+        "title",
+        "Varlık Adı",
+        "String(200)",
+        "Evet",
+        "Varlık başlığı",
+        ""
+      ],
+      [
+        "description",
+        "Açıklama",
+        "Text",
+        "Hayır",
+        "Detaylı açıklama",
+        ""
+      ],
+      [
+        "assetType",
+        "Varlık Tipi",
+        "String(50)",
+        "Hayır",
+        "Hand tools, Electric, vb.",
+        ""
+      ],
+      [
+        "assetStatus",
+        "Durum",
+        "Enum",
+        "Evet",
+        "Active/Inactive/Scrapped",
+        ""
+      ],
+      [
+        "sapAssetNumber",
+        "SAP Varlık No",
+        "String(20)",
+        "Hayır",
+        "SAP'den çekilen",
+        "ANLN1"
+      ],
+      [
+        "sapAssetTitle",
+        "SAP Varlık Başlık",
+        "String(200)",
+        "Hayır",
+        "SAP'den çekilen",
+        ""
+      ],
+      [
+        "location",
+        "Lokasyon",
+        "String(100)",
+        "Evet",
+        "Ana lokasyon",
+        "WERKS"
+      ],
+      [
+        "sublocation1",
+        "Alt Lokasyon 1",
+        "String(100)",
+        "Hayır",
+        "Alt bölge",
+        ""
+      ],
+      [
+        "sublocation2",
+        "Alt Lokasyon 2",
+        "String(100)",
+        "Hayır",
+        "İstasyon",
+        ""
+      ],
+      [
+        "producerName",
+        "Üretici Firma",
+        "String(100)",
+        "Hayır",
+        "Üretici adı",
+        ""
+      ],
+      [
+        "producerModel",
+        "Model",
+        "String(100)",
+        "Hayır",
+        "Model numarası",
+        ""
+      ],
+      [
+        "serialNumber",
+        "Seri No",
+        "String(100)",
+        "Hayır",
+        "Üretici seri no",
+        ""
+      ],
+      [
+        "costCenter",
+        "Maliyet Merkezi",
+        "String(20)",
+        "Evet",
+        "SAP'den gelir",
+        "KOSTL"
+      ],
+      [
+        "acquisitionMethod",
+        "Edinme Yöntemi",
+        "Enum",
+        "Evet",
+        "Purchasing/Found/Other",
+        ""
+      ],
+      [
+        "assignedTo",
+        "Zimmetli",
+        "String(100)",
+        "Hayır",
+        "Kullanıcı adı",
+        "PERNR"
+      ],
+      [
+        "createdBy",
+        "Oluşturan",
+        "String(100)",
+        "Evet",
+        "Kaydı oluşturan",
+        ""
+      ],
+      [
+        "createdDate",
+        "Oluşturma Tarihi",
+        "DateTime",
+        "Evet",
+        "Otomatik",
+        ""
+      ]
+    ]
+  },
+  {
+    "index": 4,
+    "headers": [
+      "Alan Adı (EN)",
+      "Alan Adı (TR)",
+      "Veri Tipi",
+      "Zorunlu",
+      "Açıklama",
+      "SAP Mapping"
+    ],
+    "rows": [
+      [
+        "id",
+        "Varlık No",
+        "String(20)",
+        "Evet",
+        "Otomatik: AST-NNNN",
+        ""
+      ],
+      [
+        "title",
+        "Varlık Adı",
+        "String(200)",
+        "Evet",
+        "Varlık başlığı",
+        ""
+      ],
+      [
+        "description",
+        "Açıklama",
+        "Text",
+        "Hayır",
+        "Detaylı açıklama",
+        ""
+      ],
+      [
+        "assetType",
+        "Varlık Tipi",
+        "String(50)",
+        "Hayır",
+        "Hand tools, Electric, vb.",
+        ""
+      ],
+      [
+        "assetStatus",
+        "Durum",
+        "Enum",
+        "Evet",
+        "Active/Inactive/Scrapped",
+        ""
+      ],
+      [
+        "sapAssetNumber",
+        "SAP Varlık No",
+        "String(20)",
+        "Hayır",
+        "SAP'den çekilen",
+        "ANLN1"
+      ],
+      [
+        "sapAssetTitle",
+        "SAP Varlık Başlık",
+        "String(200)",
+        "Hayır",
+        "SAP'den çekilen",
+        ""
+      ],
+      [
+        "location",
+        "Lokasyon",
+        "String(100)",
+        "Evet",
+        "Ana lokasyon",
+        "WERKS"
+      ],
+      [
+        "sublocation1",
+        "Alt Lokasyon 1",
+        "String(100)",
+        "Hayır",
+        "Alt bölge",
+        ""
+      ],
+      [
+        "sublocation2",
+        "Alt Lokasyon 2",
+        "String(100)",
+        "Hayır",
+        "İstasyon",
+        ""
+      ],
+      [
+        "producerName",
+        "Üretici Firma",
+        "String(100)",
+        "Hayır",
+        "Üretici adı",
+        ""
+      ],
+      [
+        "producerModel",
+        "Model",
+        "String(100)",
+        "Hayır",
+        "Model numarası",
+        ""
+      ],
+      [
+        "serialNumber",
+        "Seri No",
+        "String(100)",
+        "Hayır",
+        "Üretici seri no",
+        ""
+      ],
+      [
+        "costCenter",
+        "Maliyet Merkezi",
+        "String(20)",
+        "Evet",
+        "SAP'den gelir",
+        "KOSTL"
+      ],
+      [
+        "acquisitionMethod",
+        "Edinme Yöntemi",
+        "Enum",
+        "Evet",
+        "Purchasing/Found/Other",
+        ""
+      ],
+      [
+        "assignedTo",
+        "Zimmetli",
+        "String(100)",
+        "Hayır",
+        "Kullanıcı adı",
+        "PERNR"
+      ],
+      [
+        "createdBy",
+        "Oluşturan",
+        "String(100)",
+        "Evet",
+        "Kaydı oluşturan",
+        ""
+      ],
+      [
+        "createdDate",
+        "Oluşturma Tarihi",
+        "DateTime",
+        "Evet",
+        "Otomatik",
+        ""
+      ]
+    ]
+  },
+  {
+    "index": 5,
+    "headers": [
+      "Alan Adı (EN)",
+      "Alan Adı (TR)",
+      "Veri Tipi",
+      "Zorunlu",
+      "Açıklama",
+      "SAP Mapping"
+    ],
+    "rows": [
+      [
+        "id",
+        "Varlık No",
+        "String(20)",
+        "Evet",
+        "Otomatik: AST-NNNN",
+        ""
+      ],
+      [
+        "title",
+        "Varlık Adı",
+        "String(200)",
+        "Evet",
+        "Varlık başlığı",
+        ""
+      ],
+      [
+        "description",
+        "Açıklama",
+        "Text",
+        "Hayır",
+        "Detaylı açıklama",
+        ""
+      ],
+      [
+        "assetType",
+        "Varlık Tipi",
+        "String(50)",
+        "Hayır",
+        "Hand tools, Electric, vb.",
+        ""
+      ],
+      [
+        "assetStatus",
+        "Durum",
+        "Enum",
+        "Evet",
+        "Active/Inactive/Scrapped",
+        ""
+      ],
+      [
+        "sapAssetNumber",
+        "SAP Varlık No",
+        "String(20)",
+        "Hayır",
+        "SAP'den çekilen",
+        "ANLN1"
+      ],
+      [
+        "sapAssetTitle",
+        "SAP Varlık Başlık",
+        "String(200)",
+        "Hayır",
+        "SAP'den çekilen",
+        ""
+      ],
+      [
+        "location",
+        "Lokasyon",
+        "String(100)",
+        "Evet",
+        "Ana lokasyon",
+        "WERKS"
+      ],
+      [
+        "sublocation1",
+        "Alt Lokasyon 1",
+        "String(100)",
+        "Hayır",
+        "Alt bölge",
+        ""
+      ],
+      [
+        "sublocation2",
+        "Alt Lokasyon 2",
+        "String(100)",
+        "Hayır",
+        "İstasyon",
+        ""
+      ],
+      [
+        "producerName",
+        "Üretici Firma",
+        "String(100)",
+        "Hayır",
+        "Üretici adı",
+        ""
+      ],
+      [
+        "producerModel",
+        "Model",
+        "String(100)",
+        "Hayır",
+        "Model numarası",
+        ""
+      ],
+      [
+        "serialNumber",
+        "Seri No",
+        "String(100)",
+        "Hayır",
+        "Üretici seri no",
+        ""
+      ],
+      [
+        "costCenter",
+        "Maliyet Merkezi",
+        "String(20)",
+        "Evet",
+        "SAP'den gelir",
+        "KOSTL"
+      ],
+      [
+        "acquisitionMethod",
+        "Edinme Yöntemi",
+        "Enum",
+        "Evet",
+        "Purchasing/Found/Other",
+        ""
+      ],
+      [
+        "assignedTo",
+        "Zimmetli",
+        "String(100)",
+        "Hayır",
+        "Kullanıcı adı",
+        "PERNR"
+      ],
+      [
+        "createdBy",
+        "Oluşturan",
+        "String(100)",
+        "Evet",
+        "Kaydı oluşturan",
+        ""
+      ],
+      [
+        "createdDate",
+        "Oluşturma Tarihi",
+        "DateTime",
+        "Evet",
+        "Otomatik",
+        ""
+      ]
+    ]
+  },
+  {
+    "index": 6,
+    "headers": [
+      "Alan Adı (EN)",
+      "Alan Adı (TR)",
+      "Veri Tipi",
+      "Zorunlu",
+      "Açıklama",
+      "SAP Mapping"
+    ],
+    "rows": [
+      [
+        "dutyId",
+        "Görev No",
+        "String(20)",
+        "Evet",
+        "Otomatik: DUTY-NNNN",
+        ""
+      ],
+      [
+        "dutyTitle",
+        "Görev Başlığı",
+        "String(200)",
+        "Evet",
+        "Bakım görev başlığı",
+        ""
+      ],
+      [
+        "dutyDescription",
+        "Açıklama",
+        "Text",
+        "Hayır",
+        "Detaylı açıklama",
+        ""
+      ],
+      [
+        "maintenanceDate",
+        "Bakım Tarihi",
+        "Date",
+        "Evet",
+        "Planlanan tarih",
+        ""
+      ],
+      [
+        "assetId",
+        "Varlık ID",
+        "String(20)",
+        "Evet",
+        "Bakım yapılacak varlık",
+        ""
+      ],
+      [
+        "assetSapId",
+        "SAP Varlık No",
+        "String(20)",
+        "Hayır",
+        "SAP numarası",
+        "ANLN1"
+      ],
+      [
+        "location",
+        "Lokasyon",
+        "String(100)",
+        "Evet",
+        "Bakım lokasyonu",
+        "WERKS"
+      ],
+      [
+        "taskListId",
+        "Görev Listesi ID",
+        "String(20)",
+        "Evet",
+        "Task list referansı",
+        ""
+      ],
+      [
+        "maintenanceResponsible",
+        "Bakım Sorumlusu",
+        "String(100)",
+        "Hayır",
+        "Atanan teknisyen",
+        "PERNR"
+      ],
+      [
+        "dutyStatus",
+        "Görev Durumu",
+        "Enum",
+        "Evet",
+        "Planned/Active/Assigned/InProgress/Done",
+        ""
+      ],
+      [
+        "visitStartDate",
+        "Ziyaret Başlangıç",
+        "DateTime",
+        "Hayır",
+        "Gerçek başlangıç",
+        ""
+      ],
+      [
+        "visitEndDate",
+        "Ziyaret Bitiş",
+        "DateTime",
+        "Hayır",
+        "Gerçek bitiş",
+        ""
+      ],
+      [
+        "taskCount",
+        "Görev Sayısı",
+        "Integer",
+        "Evet",
+        "Toplam task sayısı",
+        ""
+      ],
+      [
+        "completedTaskCount",
+        "Tamamlanan Görev",
+        "Integer",
+        "Evet",
+        "Tamamlanan task",
+        ""
+      ],
+      [
+        "approvedBy",
+        "Onaylayan",
+        "String(100)",
+        "Hayır",
+        "SL/Mühendis",
+        "PERNR"
+      ],
+      [
+        "approvedDate",
+        "Onay Tarihi",
+        "DateTime",
+        "Hayır",
+        "Onay zamanı",
+        ""
+      ]
+    ]
+  },
+  {
+    "index": 7,
+    "headers": [
+      "Alan Adı (EN)",
+      "Alan Adı (TR)",
+      "Veri Tipi",
+      "Zorunlu",
+      "Açıklama",
+      "SAP Mapping"
+    ],
+    "rows": [
+      [
+        "dutyId",
+        "Görev No",
+        "String(20)",
+        "Evet",
+        "Otomatik: DUTY-NNNN",
+        ""
+      ],
+      [
+        "dutyTitle",
+        "Görev Başlığı",
+        "String(200)",
+        "Evet",
+        "Bakım görev başlığı",
+        ""
+      ],
+      [
+        "dutyDescription",
+        "Açıklama",
+        "Text",
+        "Hayır",
+        "Detaylı açıklama",
+        ""
+      ],
+      [
+        "maintenanceDate",
+        "Bakım Tarihi",
+        "Date",
+        "Evet",
+        "Planlanan tarih",
+        ""
+      ],
+      [
+        "assetId",
+        "Varlık ID",
+        "String(20)",
+        "Evet",
+        "Bakım yapılacak varlık",
+        ""
+      ],
+      [
+        "assetSapId",
+        "SAP Varlık No",
+        "String(20)",
+        "Hayır",
+        "SAP numarası",
+        "ANLN1"
+      ],
+      [
+        "location",
+        "Lokasyon",
+        "String(100)",
+        "Evet",
+        "Bakım lokasyonu",
+        "WERKS"
+      ],
+      [
+        "taskListId",
+        "Görev Listesi ID",
+        "String(20)",
+        "Evet",
+        "Task list referansı",
+        ""
+      ],
+      [
+        "maintenanceResponsible",
+        "Bakım Sorumlusu",
+        "String(100)",
+        "Hayır",
+        "Atanan teknisyen",
+        "PERNR"
+      ],
+      [
+        "dutyStatus",
+        "Görev Durumu",
+        "Enum",
+        "Evet",
+        "Planned/Active/Assigned/InProgress/Done",
+        ""
+      ],
+      [
+        "visitStartDate",
+        "Ziyaret Başlangıç",
+        "DateTime",
+        "Hayır",
+        "Gerçek başlangıç",
+        ""
+      ],
+      [
+        "visitEndDate",
+        "Ziyaret Bitiş",
+        "DateTime",
+        "Hayır",
+        "Gerçek bitiş",
+        ""
+      ],
+      [
+        "taskCount",
+        "Görev Sayısı",
+        "Integer",
+        "Evet",
+        "Toplam task sayısı",
+        ""
+      ],
+      [
+        "completedTaskCount",
+        "Tamamlanan Görev",
+        "Integer",
+        "Evet",
+        "Tamamlanan task",
+        ""
+      ],
+      [
+        "approvedBy",
+        "Onaylayan",
+        "String(100)",
+        "Hayır",
+        "SL/Mühendis",
+        "PERNR"
+      ],
+      [
+        "approvedDate",
+        "Onay Tarihi",
+        "DateTime",
+        "Hayır",
+        "Onay zamanı",
+        ""
+      ]
+    ]
+  },
+  {
+    "index": 8,
+    "headers": [
+      "Alan Adı (EN)",
+      "Alan Adı (TR)",
+      "Veri Tipi",
+      "Zorunlu",
+      "Açıklama",
+      "SAP Mapping"
+    ],
+    "rows": [
+      [
+        "dutyId",
+        "Görev No",
+        "String(20)",
+        "Evet",
+        "Otomatik: DUTY-NNNN",
+        ""
+      ],
+      [
+        "dutyTitle",
+        "Görev Başlığı",
+        "String(200)",
+        "Evet",
+        "Bakım görev başlığı",
+        ""
+      ],
+      [
+        "dutyDescription",
+        "Açıklama",
+        "Text",
+        "Hayır",
+        "Detaylı açıklama",
+        ""
+      ],
+      [
+        "maintenanceDate",
+        "Bakım Tarihi",
+        "Date",
+        "Evet",
+        "Planlanan tarih",
+        ""
+      ],
+      [
+        "assetId",
+        "Varlık ID",
+        "String(20)",
+        "Evet",
+        "Bakım yapılacak varlık",
+        ""
+      ],
+      [
+        "assetSapId",
+        "SAP Varlık No",
+        "String(20)",
+        "Hayır",
+        "SAP numarası",
+        "ANLN1"
+      ],
+      [
+        "location",
+        "Lokasyon",
+        "String(100)",
+        "Evet",
+        "Bakım lokasyonu",
+        "WERKS"
+      ],
+      [
+        "taskListId",
+        "Görev Listesi ID",
+        "String(20)",
+        "Evet",
+        "Task list referansı",
+        ""
+      ],
+      [
+        "maintenanceResponsible",
+        "Bakım Sorumlusu",
+        "String(100)",
+        "Hayır",
+        "Atanan teknisyen",
+        "PERNR"
+      ],
+      [
+        "dutyStatus",
+        "Görev Durumu",
+        "Enum",
+        "Evet",
+        "Planned/Active/Assigned/InProgress/Done",
+        ""
+      ],
+      [
+        "visitStartDate",
+        "Ziyaret Başlangıç",
+        "DateTime",
+        "Hayır",
+        "Gerçek başlangıç",
+        ""
+      ],
+      [
+        "visitEndDate",
+        "Ziyaret Bitiş",
+        "DateTime",
+        "Hayır",
+        "Gerçek bitiş",
+        ""
+      ],
+      [
+        "taskCount",
+        "Görev Sayısı",
+        "Integer",
+        "Evet",
+        "Toplam task sayısı",
+        ""
+      ],
+      [
+        "completedTaskCount",
+        "Tamamlanan Görev",
+        "Integer",
+        "Evet",
+        "Tamamlanan task",
+        ""
+      ],
+      [
+        "approvedBy",
+        "Onaylayan",
+        "String(100)",
+        "Hayır",
+        "SL/Mühendis",
+        "PERNR"
+      ],
+      [
+        "approvedDate",
+        "Onay Tarihi",
+        "DateTime",
+        "Hayır",
+        "Onay zamanı",
+        ""
+      ]
+    ]
+  },
+  {
+    "index": 9,
+    "headers": [
+      "Alan Adı (EN)",
+      "Alan Adı (TR)",
+      "Veri Tipi",
+      "Zorunlu",
+      "Açıklama",
+      "SAP Mapping"
+    ],
+    "rows": [
+      [
+        "id",
+        "Olay No",
+        "String(20)",
+        "Evet",
+        "Otomatik: INC-YYYY-NNN",
+        ""
+      ],
+      [
+        "title",
+        "Olay Başlığı",
+        "String(200)",
+        "Evet",
+        "Olay başlığı",
+        ""
+      ],
+      [
+        "description",
+        "Açıklama",
+        "Text",
+        "Evet",
+        "Olay detayları",
+        ""
+      ],
+      [
+        "priority",
+        "Öncelik",
+        "Enum",
+        "Evet",
+        "Kritik/Yüksek/Orta/Düşük",
+        ""
+      ],
+      [
+        "status",
+        "Durum",
+        "Enum",
+        "Evet",
+        "Bildirilen/Müdahale/Çözüldü",
+        ""
+      ],
+      [
+        "assetId",
+        "Varlık ID",
+        "String(20)",
+        "Hayır",
+        "İlgili varlık",
+        ""
+      ],
+      [
+        "assetSapId",
+        "SAP Varlık No",
+        "String(20)",
+        "Hayır",
+        "SAP numarası",
+        "ANLN1"
+      ],
+      [
+        "location",
+        "Lokasyon",
+        "String(100)",
+        "Evet",
+        "Olay yeri",
+        "WERKS"
+      ],
+      [
+        "sublocation",
+        "Alt Lokasyon",
+        "String(100)",
+        "Hayır",
+        "Detay konum",
+        ""
+      ],
+      [
+        "reportedBy",
+        "Bildiren",
+        "String(100)",
+        "Evet",
+        "Olay bildiren",
+        "PERNR"
+      ],
+      [
+        "reportedDate",
+        "Bildirim Tarihi",
+        "DateTime",
+        "Evet",
+        "Otomatik",
+        ""
+      ],
+      [
+        "assignedTo",
+        "Atanan",
+        "String(100)",
+        "Hayır",
+        "Çözüm sorumlusu",
+        "PERNR"
+      ],
+      [
+        "solutionDescription",
+        "Çözüm Açıklaması",
+        "Text",
+        "Hayır",
+        "Yapılan işlem",
+        ""
+      ],
+      [
+        "resolvedDate",
+        "Çözüm Tarihi",
+        "DateTime",
+        "Hayır",
+        "Kapanış zamanı",
+        ""
+      ],
+      [
+        "alternativeReceiver",
+        "Alternatif Teslim Alan",
+        "String(100)",
+        "Hayır",
+        "Varlık teslim alan",
+        "PERNR"
+      ]
+    ]
+  },
+  {
+    "index": 10,
+    "headers": [
+      "Alan Adı (EN)",
+      "Alan Adı (TR)",
+      "Veri Tipi",
+      "Zorunlu",
+      "Açıklama",
+      "SAP Mapping"
+    ],
+    "rows": [
+      [
+        "id",
+        "Olay No",
+        "String(20)",
+        "Evet",
+        "Otomatik: INC-YYYY-NNN",
+        ""
+      ],
+      [
+        "title",
+        "Olay Başlığı",
+        "String(200)",
+        "Evet",
+        "Olay başlığı",
+        ""
+      ],
+      [
+        "description",
+        "Açıklama",
+        "Text",
+        "Evet",
+        "Olay detayları",
+        ""
+      ],
+      [
+        "priority",
+        "Öncelik",
+        "Enum",
+        "Evet",
+        "Kritik/Yüksek/Orta/Düşük",
+        ""
+      ],
+      [
+        "status",
+        "Durum",
+        "Enum",
+        "Evet",
+        "Bildirilen/Müdahale/Çözüldü",
+        ""
+      ],
+      [
+        "assetId",
+        "Varlık ID",
+        "String(20)",
+        "Hayır",
+        "İlgili varlık",
+        ""
+      ],
+      [
+        "assetSapId",
+        "SAP Varlık No",
+        "String(20)",
+        "Hayır",
+        "SAP numarası",
+        "ANLN1"
+      ],
+      [
+        "location",
+        "Lokasyon",
+        "String(100)",
+        "Evet",
+        "Olay yeri",
+        "WERKS"
+      ],
+      [
+        "sublocation",
+        "Alt Lokasyon",
+        "String(100)",
+        "Hayır",
+        "Detay konum",
+        ""
+      ],
+      [
+        "reportedBy",
+        "Bildiren",
+        "String(100)",
+        "Evet",
+        "Olay bildiren",
+        "PERNR"
+      ],
+      [
+        "reportedDate",
+        "Bildirim Tarihi",
+        "DateTime",
+        "Evet",
+        "Otomatik",
+        ""
+      ],
+      [
+        "assignedTo",
+        "Atanan",
+        "String(100)",
+        "Hayır",
+        "Çözüm sorumlusu",
+        "PERNR"
+      ],
+      [
+        "solutionDescription",
+        "Çözüm Açıklaması",
+        "Text",
+        "Hayır",
+        "Yapılan işlem",
+        ""
+      ],
+      [
+        "resolvedDate",
+        "Çözüm Tarihi",
+        "DateTime",
+        "Hayır",
+        "Kapanış zamanı",
+        ""
+      ],
+      [
+        "alternativeReceiver",
+        "Alternatif Teslim Alan",
+        "String(100)",
+        "Hayır",
+        "Varlık teslim alan",
+        "PERNR"
+      ]
+    ]
+  },
+  {
+    "index": 11,
+    "headers": [
+      "Alan Adı (EN)",
+      "Alan Adı (TR)",
+      "Veri Tipi",
+      "Zorunlu",
+      "Açıklama",
+      "SAP Mapping"
+    ],
+    "rows": [
+      [
+        "id",
+        "Olay No",
+        "String(20)",
+        "Evet",
+        "Otomatik: INC-YYYY-NNN",
+        ""
+      ],
+      [
+        "title",
+        "Olay Başlığı",
+        "String(200)",
+        "Evet",
+        "Olay başlığı",
+        ""
+      ],
+      [
+        "description",
+        "Açıklama",
+        "Text",
+        "Evet",
+        "Olay detayları",
+        ""
+      ],
+      [
+        "priority",
+        "Öncelik",
+        "Enum",
+        "Evet",
+        "Kritik/Yüksek/Orta/Düşük",
+        ""
+      ],
+      [
+        "status",
+        "Durum",
+        "Enum",
+        "Evet",
+        "Bildirilen/Müdahale/Çözüldü",
+        ""
+      ],
+      [
+        "assetId",
+        "Varlık ID",
+        "String(20)",
+        "Hayır",
+        "İlgili varlık",
+        ""
+      ],
+      [
+        "assetSapId",
+        "SAP Varlık No",
+        "String(20)",
+        "Hayır",
+        "SAP numarası",
+        "ANLN1"
+      ],
+      [
+        "location",
+        "Lokasyon",
+        "String(100)",
+        "Evet",
+        "Olay yeri",
+        "WERKS"
+      ],
+      [
+        "sublocation",
+        "Alt Lokasyon",
+        "String(100)",
+        "Hayır",
+        "Detay konum",
+        ""
+      ],
+      [
+        "reportedBy",
+        "Bildiren",
+        "String(100)",
+        "Evet",
+        "Olay bildiren",
+        "PERNR"
+      ],
+      [
+        "reportedDate",
+        "Bildirim Tarihi",
+        "DateTime",
+        "Evet",
+        "Otomatik",
+        ""
+      ],
+      [
+        "assignedTo",
+        "Atanan",
+        "String(100)",
+        "Hayır",
+        "Çözüm sorumlusu",
+        "PERNR"
+      ],
+      [
+        "solutionDescription",
+        "Çözüm Açıklaması",
+        "Text",
+        "Hayır",
+        "Yapılan işlem",
+        ""
+      ],
+      [
+        "resolvedDate",
+        "Çözüm Tarihi",
+        "DateTime",
+        "Hayır",
+        "Kapanış zamanı",
+        ""
+      ],
+      [
+        "alternativeReceiver",
+        "Alternatif Teslim Alan",
+        "String(100)",
+        "Hayır",
+        "Varlık teslim alan",
+        "PERNR"
+      ]
+    ]
+  }
+]

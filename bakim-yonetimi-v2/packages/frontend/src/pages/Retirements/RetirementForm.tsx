@@ -202,7 +202,7 @@ const RetirementForm = () => {
         costCenterId: '1', // Default cost center
         salePrice: current.scrapValue?.toString() || '',
         saleCurrency: 'TRY',
-        invoiceForm: '',
+        invoiceForm: `INV-${current.id}-${new Date().getFullYear()}`,
         notes: current.description || '',
       });
 

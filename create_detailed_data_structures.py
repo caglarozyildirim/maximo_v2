@@ -1,0 +1,164 @@
+#!/usr/bin/env python3
+"""
+Tüm HTML sayfaları için detaylı veri yapısı tabloları oluştur
+Format: Alan Adı (EN) | Alan Adı (TR) | Veri Tipi | Zorunlu | Açıklama | SAP Mapping
+"""
+
+import os
+import json
+from bs4 import BeautifulSoup
+
+BASE_DIR = "/Users/caglarozyildirim/WebstormProjects/Deneme"
+APP_DIR = f"{BASE_DIR}/bakim-yonetim-app"
+OUTPUT_FILE = f"{BASE_DIR}/detailed_data_structures.json"
+
+# HTML sayfaları
+PAGES = [
+    {"key": "job-requests", "file": "pages/job-requests.html", "module": "İş Talepleri"},
+    {"key": "job-request-detail", "file": "pages/job-request-detail.html", "module": "İş Talepleri"},
+    {"key": "job-request-create", "file": "pages/job-request-create.html", "module": "İş Talepleri"},
+    {"key": "assets", "file": "pages/assets.html", "module": "Varlık Yönetimi"},
+    {"key": "asset-detail", "file": "pages/asset-detail.html", "module": "Varlık Yönetimi"},
+    {"key": "maintenance", "file": "pages/maintenance.html", "module": "Bakım Yönetimi"},
+    {"key": "maintenance-detail", "file": "pages/maintenance-detail.html", "module": "Bakım Yönetimi"},
+    {"key": "maintenance-create", "file": "pages/maintenance-create.html", "module": "Bakım Yönetimi"},
+    {"key": "incidents", "file": "pages/incidents.html", "module": "Olay Yönetimi"},
+    {"key": "incident-detail", "file": "pages/incident-detail.html", "module": "Olay Yönetimi"},
+    {"key": "incident-create", "file": "pages/incident-create.html", "module": "Olay Yönetimi"},
+]
+
+# İş Talepleri veri yapısı (original_requirements.txt'den)
+JOB_REQUEST_FIELDS = [
+    {"en": "id", "tr": "Talep No", "type": "String(20)", "required": "Evet", "desc": "Otomatik: JR-YYYY-NNN", "sap": ""},
+    {"en": "title", "tr": "Başlık", "type": "String(200)", "required": "Evet", "desc": "Talep başlığı", "sap": ""},
+    {"en": "description", "tr": "Açıklama", "type": "Text", "required": "Evet", "desc": "Detaylı açıklama", "sap": ""},
+    {"en": "category", "tr": "Kategori", "type": "String(50)", "required": "Evet", "desc": "HVAC, Elektrik, vb.", "sap": ""},
+    {"en": "requestReason", "tr": "Talep Nedeni", "type": "String(50)", "required": "Evet", "desc": "İSG, Enerji, vb.", "sap": ""},
+    {"en": "priority", "tr": "Öncelik", "type": "Enum", "required": "Evet", "desc": "urgent/high/normal/low", "sap": ""},
+    {"en": "status", "tr": "Durum", "type": "Enum", "required": "Evet", "desc": "11 durum değeri", "sap": ""},
+    {"en": "location", "tr": "Lokasyon", "type": "String(100)", "required": "Evet", "desc": "Ana lokasyon", "sap": "WERKS"},
+    {"en": "sublocation1", "tr": "Alt Lokasyon 1", "type": "String(100)", "required": "Hayır", "desc": "Alt bölge", "sap": ""},
+    {"en": "sublocation2", "tr": "Alt Lokasyon 2", "type": "String(100)", "required": "Hayır", "desc": "İstasyon/Alan", "sap": ""},
+    {"en": "assetId", "tr": "İlişkili Varlık ID", "type": "String(20)", "required": "Hayır", "desc": "Varlık referansı", "sap": ""},
+    {"en": "assetSapId", "tr": "SAP Varlık No", "type": "String(20)", "required": "Hayır", "desc": "SAP'den çekilen", "sap": "ANLN1"},
+    {"en": "assetName", "tr": "Varlık Adı", "type": "String(200)", "required": "Hayır", "desc": "Varlık adı", "sap": ""},
+    {"en": "requestedBy", "tr": "Talep Eden", "type": "String(100)", "required": "Evet", "desc": "Kullanıcı adı", "sap": "PERNR"},
+    {"en": "requestedByManager", "tr": "Talep Eden Yöneticisi", "type": "String(100)", "required": "Evet", "desc": "İş onayı verecek", "sap": "PERNR"},
+    {"en": "requestedDate", "tr": "Talep Tarihi", "type": "DateTime", "required": "Evet", "desc": "Otomatik oluşturulur", "sap": ""},
+    {"en": "requestedByDate", "tr": "İstenen Tamamlanma", "type": "Date", "required": "Hayır", "desc": "Hedef tarihi", "sap": ""},
+    {"en": "estimatedCost", "tr": "Tahmini Maliyet", "type": "Decimal(12,2)", "required": "Hayır", "desc": "SL tahmin eder", "sap": ""},
+    {"en": "actualCost", "tr": "Gerçek Maliyet", "type": "Decimal(12,2)", "required": "Hayır", "desc": "Kapanışta girilir", "sap": ""},
+    {"en": "currency", "tr": "Para Birimi", "type": "String(3)", "required": "Hayır", "desc": "TRY/EUR/USD", "sap": "WAERS"},
+    {"en": "costCenter", "tr": "Maliyet Merkezi", "type": "String(20)", "required": "Evet", "desc": "SAP'den gelir", "sap": "KOSTL"},
+    {"en": "slEngineer", "tr": "SL/Mühendis", "type": "String(100)", "required": "Hayır", "desc": "Teknik onay verecek", "sap": "PERNR"},
+    {"en": "businessManager", "tr": "İş Yöneticisi", "type": "String(100)", "required": "Hayır", "desc": "Maliyet onayı", "sap": "PERNR"},
+    {"en": "solutionResponsible", "tr": "Çözüm Sorumlusu", "type": "String(100)", "required": "Hayır", "desc": "Uygulayacak kişi", "sap": "PERNR"},
+    {"en": "currentAssignee", "tr": "Mevcut Atanan", "type": "String(100)", "required": "Evet", "desc": "Şu an kim'de", "sap": ""},
+    {"en": "slaDeadline", "tr": "SLA Deadline", "type": "DateTime", "required": "Evet", "desc": "Önceliğe göre hesap", "sap": ""},
+    {"en": "slaStatus", "tr": "SLA Durumu", "type": "Enum", "required": "Evet", "desc": "ok/warning/exceeded", "sap": ""},
+    {"en": "completedDate", "tr": "Tamamlanma Tarihi", "type": "DateTime", "required": "Hayır", "desc": "Kapanış tarihi", "sap": ""},
+    {"en": "rejectionReason", "tr": "Red Nedeni", "type": "Text", "required": "Hayır", "desc": "Red durumunda", "sap": ""},
+]
+
+# Varlık Yönetimi veri yapısı
+ASSET_FIELDS = [
+    {"en": "id", "tr": "Varlık No", "type": "String(20)", "required": "Evet", "desc": "Otomatik: AST-NNNN", "sap": ""},
+    {"en": "title", "tr": "Varlık Adı", "type": "String(200)", "required": "Evet", "desc": "Varlık başlığı", "sap": ""},
+    {"en": "description", "tr": "Açıklama", "type": "Text", "required": "Hayır", "desc": "Detaylı açıklama", "sap": ""},
+    {"en": "assetType", "tr": "Varlık Tipi", "type": "String(50)", "required": "Hayır", "desc": "Hand tools, Electric, vb.", "sap": ""},
+    {"en": "assetStatus", "tr": "Durum", "type": "Enum", "required": "Evet", "desc": "Active/Inactive/Scrapped", "sap": ""},
+    {"en": "sapAssetNumber", "tr": "SAP Varlık No", "type": "String(20)", "required": "Hayır", "desc": "SAP'den çekilen", "sap": "ANLN1"},
+    {"en": "sapAssetTitle", "tr": "SAP Varlık Başlık", "type": "String(200)", "required": "Hayır", "desc": "SAP'den çekilen", "sap": ""},
+    {"en": "location", "tr": "Lokasyon", "type": "String(100)", "required": "Evet", "desc": "Ana lokasyon", "sap": "WERKS"},
+    {"en": "sublocation1", "tr": "Alt Lokasyon 1", "type": "String(100)", "required": "Hayır", "desc": "Alt bölge", "sap": ""},
+    {"en": "sublocation2", "tr": "Alt Lokasyon 2", "type": "String(100)", "required": "Hayır", "desc": "İstasyon", "sap": ""},
+    {"en": "producerName", "tr": "Üretici Firma", "type": "String(100)", "required": "Hayır", "desc": "Üretici adı", "sap": ""},
+    {"en": "producerModel", "tr": "Model", "type": "String(100)", "required": "Hayır", "desc": "Model numarası", "sap": ""},
+    {"en": "serialNumber", "tr": "Seri No", "type": "String(100)", "required": "Hayır", "desc": "Üretici seri no", "sap": ""},
+    {"en": "costCenter", "tr": "Maliyet Merkezi", "type": "String(20)", "required": "Evet", "desc": "SAP'den gelir", "sap": "KOSTL"},
+    {"en": "acquisitionMethod", "tr": "Edinme Yöntemi", "type": "Enum", "required": "Evet", "desc": "Purchasing/Found/Other", "sap": ""},
+    {"en": "assignedTo", "tr": "Zimmetli", "type": "String(100)", "required": "Hayır", "desc": "Kullanıcı adı", "sap": "PERNR"},
+    {"en": "createdBy", "tr": "Oluşturan", "type": "String(100)", "required": "Evet", "desc": "Kaydı oluşturan", "sap": ""},
+    {"en": "createdDate", "tr": "Oluşturma Tarihi", "type": "DateTime", "required": "Evet", "desc": "Otomatik", "sap": ""},
+]
+
+# Bakım Yönetimi veri yapısı
+MAINTENANCE_FIELDS = [
+    {"en": "dutyId", "tr": "Görev No", "type": "String(20)", "required": "Evet", "desc": "Otomatik: DUTY-NNNN", "sap": ""},
+    {"en": "dutyTitle", "tr": "Görev Başlığı", "type": "String(200)", "required": "Evet", "desc": "Bakım görev başlığı", "sap": ""},
+    {"en": "dutyDescription", "tr": "Açıklama", "type": "Text", "required": "Hayır", "desc": "Detaylı açıklama", "sap": ""},
+    {"en": "maintenanceDate", "tr": "Bakım Tarihi", "type": "Date", "required": "Evet", "desc": "Planlanan tarih", "sap": ""},
+    {"en": "assetId", "tr": "Varlık ID", "type": "String(20)", "required": "Evet", "desc": "Bakım yapılacak varlık", "sap": ""},
+    {"en": "assetSapId", "tr": "SAP Varlık No", "type": "String(20)", "required": "Hayır", "desc": "SAP numarası", "sap": "ANLN1"},
+    {"en": "location", "tr": "Lokasyon", "type": "String(100)", "required": "Evet", "desc": "Bakım lokasyonu", "sap": "WERKS"},
+    {"en": "taskListId", "tr": "Görev Listesi ID", "type": "String(20)", "required": "Evet", "desc": "Task list referansı", "sap": ""},
+    {"en": "maintenanceResponsible", "tr": "Bakım Sorumlusu", "type": "String(100)", "required": "Hayır", "desc": "Atanan teknisyen", "sap": "PERNR"},
+    {"en": "dutyStatus", "tr": "Görev Durumu", "type": "Enum", "required": "Evet", "desc": "Planned/Active/Assigned/InProgress/Done", "sap": ""},
+    {"en": "visitStartDate", "tr": "Ziyaret Başlangıç", "type": "DateTime", "required": "Hayır", "desc": "Gerçek başlangıç", "sap": ""},
+    {"en": "visitEndDate", "tr": "Ziyaret Bitiş", "type": "DateTime", "required": "Hayır", "desc": "Gerçek bitiş", "sap": ""},
+    {"en": "taskCount", "tr": "Görev Sayısı", "type": "Integer", "required": "Evet", "desc": "Toplam task sayısı", "sap": ""},
+    {"en": "completedTaskCount", "tr": "Tamamlanan Görev", "type": "Integer", "required": "Evet", "desc": "Tamamlanan task", "sap": ""},
+    {"en": "approvedBy", "tr": "Onaylayan", "type": "String(100)", "required": "Hayır", "desc": "SL/Mühendis", "sap": "PERNR"},
+    {"en": "approvedDate", "tr": "Onay Tarihi", "type": "DateTime", "required": "Hayır", "desc": "Onay zamanı", "sap": ""},
+]
+
+# Olay Yönetimi veri yapısı
+INCIDENT_FIELDS = [
+    {"en": "id", "tr": "Olay No", "type": "String(20)", "required": "Evet", "desc": "Otomatik: INC-YYYY-NNN", "sap": ""},
+    {"en": "title", "tr": "Olay Başlığı", "type": "String(200)", "required": "Evet", "desc": "Olay başlığı", "sap": ""},
+    {"en": "description", "tr": "Açıklama", "type": "Text", "required": "Evet", "desc": "Olay detayları", "sap": ""},
+    {"en": "priority", "tr": "Öncelik", "type": "Enum", "required": "Evet", "desc": "Kritik/Yüksek/Orta/Düşük", "sap": ""},
+    {"en": "status", "tr": "Durum", "type": "Enum", "required": "Evet", "desc": "Bildirilen/Müdahale/Çözüldü", "sap": ""},
+    {"en": "assetId", "tr": "Varlık ID", "type": "String(20)", "required": "Hayır", "desc": "İlgili varlık", "sap": ""},
+    {"en": "assetSapId", "tr": "SAP Varlık No", "type": "String(20)", "required": "Hayır", "desc": "SAP numarası", "sap": "ANLN1"},
+    {"en": "location", "tr": "Lokasyon", "type": "String(100)", "required": "Evet", "desc": "Olay yeri", "sap": "WERKS"},
+    {"en": "sublocation", "tr": "Alt Lokasyon", "type": "String(100)", "required": "Hayır", "desc": "Detay konum", "sap": ""},
+    {"en": "reportedBy", "tr": "Bildiren", "type": "String(100)", "required": "Evet", "desc": "Olay bildiren", "sap": "PERNR"},
+    {"en": "reportedDate", "tr": "Bildirim Tarihi", "type": "DateTime", "required": "Evet", "desc": "Otomatik", "sap": ""},
+    {"en": "assignedTo", "tr": "Atanan", "type": "String(100)", "required": "Hayır", "desc": "Çözüm sorumlusu", "sap": "PERNR"},
+    {"en": "solutionDescription", "tr": "Çözüm Açıklaması", "type": "Text", "required": "Hayır", "desc": "Yapılan işlem", "sap": ""},
+    {"en": "resolvedDate", "tr": "Çözüm Tarihi", "type": "DateTime", "required": "Hayır", "desc": "Kapanış zamanı", "sap": ""},
+    {"en": "alternativeReceiver", "tr": "Alternatif Teslim Alan", "type": "String(100)", "required": "Hayır", "desc": "Varlık teslim alan", "sap": "PERNR"},
+]
+
+def create_data_structures():
+    """Veri yapılarını oluştur"""
+    
+    data_structures = {
+        "job_requests": {
+            "module": "İş Talepleri Yönetimi",
+            "description": "İş taleplerinin oluşturulması, onaylanması ve çözümlenmesi",
+            "fields": JOB_REQUEST_FIELDS,
+            "requirement": "Talepleri toplamak, onay sürecini yönetmek, çözüm sürecini takip etmek ve kullanılan dolaylı malzemelerin tüketimini kaydetmek."
+        },
+        "assets": {
+            "module": "Varlık Yönetimi",
+            "description": "Sabit varlıkların kaydı, takibi ve yaşam döngüsü yönetimi",
+            "fields": ASSET_FIELDS,
+            "requirement": "Varlıkların sisteme kaydedilmesi, SAP entegrasyonu, varlık etiketleme, lokasyon atama, atama ve transfer işlemlerinin yönetilmesi."
+        },
+        "maintenance": {
+            "module": "Bakım Yönetimi",
+            "description": "Periyodik ve planlı bakım işlemlerinin yönetimi",
+            "fields": MAINTENANCE_FIELDS,
+            "requirement": "Preventif bakım planlaması, bakım takvimi oluşturma, bakım ekibi atama, bakım görevlerinin takibi ve malzeme tüketimi kaydı."
+        },
+        "incidents": {
+            "module": "Olay Yönetimi",
+            "description": "Acil arıza ve olayların yönetimi",
+            "fields": INCIDENT_FIELDS,
+            "requirement": "Acil olay bildirimi, önceliklendirme, müdahale ekibi atama, çözüm süreci takibi ve gelecek analizler için veri kaydı."
+        }
+    }
+    
+    # JSON dosyasına kaydet
+    with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
+        json.dump(data_structures, f, ensure_ascii=False, indent=2)
+    
+    print(f"Detaylı veri yapıları oluşturuldu: {OUTPUT_FILE}")
+    print(f"Toplam modül: {len(data_structures)}")
+    for key, data in data_structures.items():
+        print(f"  - {data['module']}: {len(data['fields'])} alan")
+
+if __name__ == "__main__":
+    create_data_structures()

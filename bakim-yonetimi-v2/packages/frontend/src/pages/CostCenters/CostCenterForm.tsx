@@ -173,8 +173,8 @@ const CostCenterForm = () => {
         newCostCenterId: '2',
         changeDate: current.changeDate || '2024-11-01',
         effectiveDate: '2024-11-15',
-        reason: 'Cost center change required due to organizational restructuring. This change aligns with the new departmental structure and ensures proper cost allocation.',
-        notes: 'Additional notes regarding this cost center change. Coordination with finance department has been completed.',
+        reason: 'Organizasyonel yeniden yapılanma nedeniyle masraf merkezi değişikliği gerekiyor. Bu değişiklik yeni departman yapısına uygun olup doğru maliyet dağılımını sağlar.',
+        notes: 'Bu masraf merkezi değişikliği ile ilgili ek notlar. Finans departmanı ile koordinasyon tamamlanmıştır.',
       });
 
       setSelectedAsset(asset);

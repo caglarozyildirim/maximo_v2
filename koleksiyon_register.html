@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koleksiyon Bayi Portalı - Kayıt Ol</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .register-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+        }
+
+        .logo-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-section h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .logo-section p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .form-header h2 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .form-header p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .form-group label .required {
+            color: #e74c3c;
+            margin-left: 3px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            background: #fff;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-control::placeholder {
+            color: #999;
+        }
+
+        select.form-control {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            padding-right: 40px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .password-hint {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: start;
+            margin: 25px 0;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+            cursor: pointer;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .checkbox-group label {
+            font-size: 13px;
+            color: #666;
+            cursor: pointer;
+            line-height: 1.5;
+        }
+
+        .checkbox-group label a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .checkbox-group label a:hover {
+            text-decoration: underline;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 100%;
+            height: 1px;
+            background: #e0e0e0;
+        }
+
+        .divider span {
+            background: white;
+            padding: 0 15px;
+            position: relative;
+            color: #999;
+            font-size: 13px;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .login-link p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .login-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .form-control.error {
+            border-color: #e74c3c;
+        }
+
+        .success-message {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin-bottom: 25px;
+            border-radius: 4px;
+        }
+
+        .info-box p {
+            font-size: 13px;
+            color: #1565c0;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .flag-icon {
+            width: 24px;
+            height: 16px;
+            display: inline-block;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        @media (max-width: 640px) {
+            .register-container {
+                padding: 30px 20px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .logo-section h1 {
+                font-size: 24px;
+            }
+
+            .form-header h2 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <div class="logo-section">
+            <h1>KOLEKSIYON</h1>
+            <p data-tr="Bayi Portalı" data-en="Dealer Portal">Bayi Portalı</p>
+        </div>
+
+        <div class="form-header">
+            <h2 data-tr="Kayıt Ol" data-en="Register">Kayıt Ol</h2>
+            <p data-tr="Bayi portalına erişim için kayıt olun" data-en="Register for access to dealer portal">Bayi portalına erişim için kayıt olun</p>
+        </div>
+
+        <div class="success-message" id="successMessage" data-tr="Kayıt başvurunuz alındı! Başvurunuz incelendikten sonra e-posta adresinize bilgilendirme yapılacaktır." data-en="Your registration has been received! You will be notified via email after your application is reviewed.">
+            Kayıt başvurunuz alındı! Başvurunuz incelendikten sonra e-posta adresinize bilgilendirme yapılacaktır.
+        </div>
+
+        <div class="info-box">
+            <p data-tr="<strong>Önemli:</strong> Kayıt sonrası hesabınız sistem yöneticisi tarafından onaylanacaktır. Onay sürecinde e-posta adresinize bilgilendirme yapılacaktır." data-en="<strong>Important:</strong> Your account will be approved by the system administrator after registration. You will be notified via email during the approval process.">
+                <strong>Önemli:</strong> Kayıt sonrası hesabınız sistem yöneticisi tarafından onaylanacaktır.
+                Onay sürecinde e-posta adresinize bilgilendirme yapılacaktır.
+            </p>
+        </div>
+
+        <form id="registerForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName" data-tr="Ad" data-en="First Name">
+                        Ad <span class="required">*</span>
+                    </label>
+                    <input
+                        type="text"
+                        id="firstName"
+                        name="firstName"
+                        class="form-control"
+                        data-placeholder-tr="Adınız"
+                        data-placeholder-en="Your first name"
+                        placeholder="Adınız"
+                        required
+                    >
+                    <span class="error-message" id="firstNameError" data-tr="Bu alan zorunludur" data-en="This field is required">Bu alan zorunludur</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName" data-tr="Soyad" data-en="Last Name">
+                        Soyad <span class="required">*</span>
+                    </label>
+                    <input
+                        type="text"
+                        id="lastName"
+                        name="lastName"
+                        class="form-control"
+                        data-placeholder-tr="Soyadınız"
+                        data-placeholder-en="Your last name"
+                        placeholder="Soyadınız"
+                        required
+                    >
+                    <span class="error-message" id="lastNameError" data-tr="Bu alan zorunludur" data-en="This field is required">Bu alan zorunludur</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email" data-tr="E-posta Adresi" data-en="Email Address">
+                    E-posta Adresi <span class="required">*</span>
+                </label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="form-control"
+                    data-placeholder-tr="ornek@email.com"
+                    data-placeholder-en="example@email.com"
+                    placeholder="ornek@email.com"
+                    required
+                >
+                <span class="error-message" id="emailError" data-tr="Geçerli bir e-posta adresi giriniz" data-en="Please enter a valid email address">Geçerli bir e-posta adresi giriniz</span>
+            </div>
+
+            <div class="form-group">
+                <label for="phone" data-tr="Telefon Numarası" data-en="Phone Number">
+                    Telefon Numarası <span class="required">*</span>
+                </label>
+                <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    class="form-control"
+                    data-placeholder-tr="+90 (5XX) XXX XX XX"
+                    data-placeholder-en="+90 (5XX) XXX XX XX"
+                    placeholder="+90 (5XX) XXX XX XX"
+                    required
+                >
+                <span class="error-message" id="phoneError" data-tr="Geçerli bir telefon numarası giriniz" data-en="Please enter a valid phone number">Geçerli bir telefon numarası giriniz</span>
+            </div>
+
+            <div class="form-group">
+                <label for="company" data-tr="Firma Adı" data-en="Company Name">
+                    Firma Adı <span class="required">*</span>
+                </label>
+                <input
+                    type="text"
+                    id="company"
+                    name="company"
+                    class="form-control"
+                    data-placeholder-tr="Firma adınız"
+                    data-placeholder-en="Your company name"
+                    placeholder="Firma adınız"
+                    required
+                >
+                <span class="error-message" id="companyError" data-tr="Bu alan zorunludur" data-en="This field is required">Bu alan zorunludur</span>
+            </div>
+
+            <div class="form-group">
+                <label for="userType" data-tr="Kullanıcı Tipi" data-en="User Type">
+                    Kullanıcı Tipi <span class="required">*</span>
+                </label>
+                <select
+                    id="userType"
+                    name="userType"
+                    class="form-control"
+                    required
+                >
+                    <option value="" data-tr="Seçiniz" data-en="Select">Seçiniz</option>
+                    <option value="dealer" data-tr="Bayi" data-en="Dealer">Bayi</option>
+                    <option value="architect" data-tr="Mimar" data-en="Architect">Mimar</option>
+                </select>
+                <span class="error-message" id="userTypeError" data-tr="Lütfen kullanıcı tipi seçiniz" data-en="Please select user type">Lütfen kullanıcı tipi seçiniz</span>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="language" data-tr="Dil" data-en="Language">
+                        Dil <span class="required">*</span>
+                    </label>
+                    <select
+                        id="language"
+                        name="language"
+                        class="form-control"
+                        onchange="changeLanguage(this.value)"
+                        required
+                    >
+                        <option value="tr">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Crect width='900' height='600' fill='%23E30A17'/%3E%3C/svg%3E" class="flag-icon" alt="TR">
+                            🇹🇷 Türkçe
+                        </option>
+                        <option value="en">🇬🇧 English</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="currency" data-tr="Para Birimi" data-en="Currency">
+                        Para Birimi <span class="required">*</span>
+                    </label>
+                    <select
+                        id="currency"
+                        name="currency"
+                        class="form-control"
+                        required
+                    >
+                        <option value="" data-tr="Seçiniz" data-en="Select">Seçiniz</option>
+                        <option value="TRY">🇹🇷 TRY - Türk Lirası</option>
+                        <option value="USD">🇺🇸 USD - US Dollar</option>
+                        <option value="EUR">🇪🇺 EUR - Euro</option>
+                    </select>
+                    <span class="error-message" id="currencyError" data-tr="Lütfen para birimi seçiniz" data-en="Please select currency">Lütfen para birimi seçiniz</span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="password" data-tr="Şifre" data-en="Password">
+                        Şifre <span class="required">*</span>
+                    </label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        class="form-control"
+                        placeholder="••••••••"
+                        required
+                    >
+                    <p class="password-hint" data-tr="En az 8 karakter, 1 büyük harf, 1 küçük harf ve 1 rakam" data-en="At least 8 characters, 1 uppercase, 1 lowercase and 1 number">En az 8 karakter, 1 büyük harf, 1 küçük harf ve 1 rakam</p>
+                    <span class="error-message" id="passwordError" data-tr="Şifre gereksinimleri karşılanmalıdır" data-en="Password requirements must be met">Şifre gereksinimleri karşılanmalıdır</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword" data-tr="Şifre Tekrar" data-en="Confirm Password">
+                        Şifre Tekrar <span class="required">*</span>
+                    </label>
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        class="form-control"
+                        placeholder="••••••••"
+                        required
+                    >
+                    <span class="error-message" id="confirmPasswordError" data-tr="Şifreler eşleşmiyor" data-en="Passwords do not match">Şifreler eşleşmiyor</span>
+                </div>
+            </div>
+
+            <div class="checkbox-group">
+                <input
+                    type="checkbox"
+                    id="terms"
+                    name="terms"
+                    required
+                >
+                <label for="terms" id="termsLabel" data-tr='<a href="#" target="_blank">Kullanım Koşulları</a> ve <a href="#" target="_blank">Gizlilik Politikası</a>'"'"'nı okudum, kabul ediyorum. <span class="required">*</span>' data-en='I have read and accept the <a href="#" target="_blank">Terms of Use</a> and <a href="#" target="_blank">Privacy Policy</a>. <span class="required">*</span>'>
+                    <a href="#" target="_blank">Kullanım Koşulları</a> ve
+                    <a href="#" target="_blank">Gizlilik Politikası</a>'nı okudum, kabul ediyorum. <span class="required">*</span>
+                </label>
+            </div>
+
+            <div class="checkbox-group">
+                <input
+                    type="checkbox"
+                    id="marketing"
+                    name="marketing"
+                >
+                <label for="marketing" data-tr="Koleksiyon'dan ürün, kampanya ve duyurular hakkında e-posta almak istiyorum." data-en="I would like to receive emails about products, campaigns and announcements from Koleksiyon.">
+                    Koleksiyon'dan ürün, kampanya ve duyurular hakkında e-posta almak istiyorum.
+                </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary" data-tr="Kayıt Ol" data-en="Register">
+                Kayıt Ol
+            </button>
+        </form>
+
+        <div class="divider">
+            <span data-tr="veya" data-en="or">veya</span>
+        </div>
+
+        <div class="login-link">
+            <p id="loginLinkText" data-tr='Zaten hesabınız var mı? <a href="koleksiyon_login.html">Giriş Yapın</a>' data-en='Already have an account? <a href="koleksiyon_login.html">Sign In</a>'>
+                Zaten hesabınız var mı? <a href="koleksiyon_login.html">Giriş Yapın</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Language switching functionality
+        let currentLanguage = 'tr';
+
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+
+            // Update all text elements with data attributes
+            const elements = document.querySelectorAll('[data-tr][data-en]');
+            elements.forEach(element => {
+                const text = element.getAttribute('data-' + lang);
+                if (text) {
+                    if (element.tagName === 'INPUT') {
+                        element.placeholder = text;
+                    } else if (element.tagName === 'LABEL' || element.id === 'termsLabel' || element.id === 'loginLinkText') {
+                        element.innerHTML = text;
+                    } else if (element.tagName === 'OPTION' || element.tagName === 'BUTTON' || element.tagName === 'SPAN') {
+                        element.textContent = text;
+                    } else {
+                        element.innerHTML = text;
+                    }
+                }
+            });
+
+            // Update placeholders separately
+            const inputsWithPlaceholder = document.querySelectorAll('[data-placeholder-tr][data-placeholder-en]');
+            inputsWithPlaceholder.forEach(input => {
+                const placeholder = input.getAttribute('data-placeholder-' + lang);
+                if (placeholder) {
+                    input.placeholder = placeholder;
+                }
+            });
+
+            // Update alert messages in validation
+            const termsCheckbox = document.getElementById('terms');
+            if (lang === 'en') {
+                termsCheckbox.setAttribute('data-alert', 'Please accept the terms and conditions.');
+            } else {
+                termsCheckbox.setAttribute('data-alert', 'Lütfen kullanım koşullarını kabul edin.');
+            }
+
+            // Update document language
+            document.documentElement.lang = lang;
+        }
+
+        // Form validation
+        const form = document.getElementById('registerForm');
+        const successMessage = document.getElementById('successMessage');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            let isValid = true;
+
+            // Clear previous errors
+            document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.form-control').forEach(el => el.classList.remove('error'));
+
+            // Validate first name
+            const firstName = document.getElementById('firstName');
+            if (firstName.value.trim() === '') {
+                showError('firstName', 'firstNameError');
+                isValid = false;
+            }
+
+            // Validate last name
+            const lastName = document.getElementById('lastName');
+            if (lastName.value.trim() === '') {
+                showError('lastName', 'lastNameError');
+                isValid = false;
+            }
+
+            // Validate email
+            const email = document.getElementById('email');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email.value)) {
+                showError('email', 'emailError');
+                isValid = false;
+            }
+
+            // Validate phone
+            const phone = document.getElementById('phone');
+            if (phone.value.trim() === '') {
+                showError('phone', 'phoneError');
+                isValid = false;
+            }
+
+            // Validate company
+            const company = document.getElementById('company');
+            if (company.value.trim() === '') {
+                showError('company', 'companyError');
+                isValid = false;
+            }
+
+            // Validate user type
+            const userType = document.getElementById('userType');
+            if (userType.value === '') {
+                showError('userType', 'userTypeError');
+                isValid = false;
+            }
+
+            // Validate currency
+            const currency = document.getElementById('currency');
+            if (currency.value === '') {
+                showError('currency', 'currencyError');
+                isValid = false;
+            }
+
+            // Validate password
+            const password = document.getElementById('password');
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+            if (!passwordRegex.test(password.value)) {
+                showError('password', 'passwordError');
+                isValid = false;
+            }
+
+            // Validate confirm password
+            const confirmPassword = document.getElementById('confirmPassword');
+            if (password.value !== confirmPassword.value) {
+                showError('confirmPassword', 'confirmPasswordError');
+                isValid = false;
+            }
+
+            // Validate terms
+            const terms = document.getElementById('terms');
+            if (!terms.checked) {
+                const alertMsg = currentLanguage === 'en'
+                    ? 'Please accept the terms and conditions.'
+                    : 'Lütfen kullanım koşullarını kabul edin.';
+                alert(alertMsg);
+                isValid = false;
+            }
+
+            if (isValid) {
+                // Show success message
+                successMessage.style.display = 'block';
+                form.reset();
+                window.scrollTo(0, 0);
+
+                // In production, submit form data to server
+                console.log('Form submitted successfully');
+            }
+        });
+
+        function showError(fieldId, errorId) {
+            document.getElementById(fieldId).classList.add('error');
+            document.getElementById(errorId).style.display = 'block';
+        }
+
+        // Real-time validation
+        document.getElementById('confirmPassword').addEventListener('input', function() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = this.value;
+
+            if (password === confirmPassword && confirmPassword !== '') {
+                this.classList.remove('error');
+                document.getElementById('confirmPasswordError').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koleksiyon Bayi Portalı - Giriş Yap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            max-width: 450px;
+            width: 100%;
+            padding: 40px;
+        }
+
+        .logo-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-section h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .logo-section p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .form-header h2 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .form-header p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .alert-error {
+            background: #fee;
+            border: 1px solid #fcc;
+            color: #c33;
+            display: none;
+        }
+
+        .alert-warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            display: none;
+        }
+
+        .alert-info {
+            background: #e3f2fd;
+            border: 1px solid #90caf9;
+            color: #1565c0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .form-group label .required {
+            color: #e74c3c;
+            margin-left: 3px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            background: #fff;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-control::placeholder {
+            color: #999;
+        }
+
+        .form-control.error {
+            border-color: #e74c3c;
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #999;
+            user-select: none;
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+        }
+
+        .remember-me input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-right: 8px;
+            cursor: pointer;
+        }
+
+        .remember-me label {
+            font-size: 13px;
+            color: #666;
+            cursor: pointer;
+        }
+
+        .forgot-password {
+            font-size: 13px;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 100%;
+            height: 1px;
+            background: #e0e0e0;
+        }
+
+        .divider span {
+            background: white;
+            padding: 0 15px;
+            position: relative;
+            color: #999;
+            font-size: 13px;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .register-link p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .register-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+        .info-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin-bottom: 25px;
+            border-radius: 4px;
+        }
+
+        .info-box p {
+            font-size: 13px;
+            color: #2e7d32;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        @media (max-width: 640px) {
+            .login-container {
+                padding: 30px 20px;
+            }
+
+            .logo-section h1 {
+                font-size: 24px;
+            }
+
+            .form-header h2 {
+                font-size: 20px;
+            }
+
+            .form-options {
+                flex-direction: column;
+                gap: 10px;
+                align-items: start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo-section">
+            <h1>KOLEKSIYON</h1>
+            <p>Bayi Portalı</p>
+        </div>
+
+        <div class="form-header">
+            <h2>Giriş Yap</h2>
+            <p>Hesabınıza giriş yapın</p>
+        </div>
+
+        <div class="alert alert-error" id="errorAlert">
+            E-posta veya şifre hatalı. Lütfen tekrar deneyiniz.
+        </div>
+
+        <div class="alert alert-warning" id="pendingAlert">
+            Hesabınız henüz onaylanmamıştır. Onay sürecinde e-posta adresinize bilgilendirme yapılacaktır.
+        </div>
+
+        <div class="alert alert-info" id="infoAlert">
+            <strong>Bayi ve Mimar Kullanıcıları:</strong><br>
+            Portal erişimi için önce kayıt olmanız ve hesabınızın onaylanması gerekmektedir.
+        </div>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">
+                    E-posta Adresi <span class="required">*</span>
+                </label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="form-control"
+                    placeholder="ornek@email.com"
+                    required
+                    autocomplete="email"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="password">
+                    Şifre <span class="required">*</span>
+                </label>
+                <div class="password-wrapper">
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        class="form-control"
+                        placeholder="••••••••"
+                        required
+                        autocomplete="current-password"
+                    >
+                    <span class="toggle-password" onclick="togglePassword()">👁️</span>
+                </div>
+            </div>
+
+            <div class="form-options">
+                <div class="remember-me">
+                    <input type="checkbox" id="remember" name="remember">
+                    <label for="remember">Beni hatırla</label>
+                </div>
+                <a href="#" class="forgot-password" onclick="showForgotPassword(event)">Şifremi unuttum</a>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="loginButton">
+                Giriş Yap
+            </button>
+        </form>
+
+        <div class="divider">
+            <span>veya</span>
+        </div>
+
+        <div class="register-link">
+            <p>Hesabınız yok mu? <a href="koleksiyon_register.html">Kayıt Olun</a></p>
+        </div>
+
+        <div style="margin-top: 30px;">
+            <div class="info-box">
+                <p>
+                    <strong>Not:</strong> Giriş yapabilmek için hesabınızın sistem yöneticisi tarafından
+                    onaylanmış olması gerekmektedir.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Form submission
+        const form = document.getElementById('loginForm');
+        const errorAlert = document.getElementById('errorAlert');
+        const pendingAlert = document.getElementById('pendingAlert');
+        const loginButton = document.getElementById('loginButton');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Hide alerts
+            errorAlert.style.display = 'none';
+            pendingAlert.style.display = 'none';
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Disable button
+            loginButton.disabled = true;
+            loginButton.textContent = 'Giriş yapılıyor...';
+
+            // Simulate login request
+            setTimeout(() => {
+                // Demo: Check credentials
+                if (email === 'test@koleksiyon.com' && password === 'Test123!') {
+                    // Success - redirect to dashboard
+                    alert('Giriş başarılı! Yönlendiriliyorsunuz...');
+                    window.location.href = 'sap_urun_listesi.html';
+                } else if (email === 'pending@koleksiyon.com') {
+                    // Pending approval
+                    pendingAlert.style.display = 'block';
+                    loginButton.disabled = false;
+                    loginButton.textContent = 'Giriş Yap';
+                } else {
+                    // Error
+                    errorAlert.style.display = 'block';
+                    document.getElementById('email').classList.add('error');
+                    document.getElementById('password').classList.add('error');
+                    loginButton.disabled = false;
+                    loginButton.textContent = 'Giriş Yap';
+                }
+            }, 1500);
+        });
+
+        // Clear errors on input
+        document.getElementById('email').addEventListener('input', function() {
+            this.classList.remove('error');
+            errorAlert.style.display = 'none';
+        });
+
+        document.getElementById('password').addEventListener('input', function() {
+            this.classList.remove('error');
+            errorAlert.style.display = 'none';
+        });
+
+        // Toggle password visibility
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleBtn = document.querySelector('.toggle-password');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleBtn.textContent = '👁️‍🗨️';
+            } else {
+                passwordInput.type = 'password';
+                toggleBtn.textContent = '👁️';
+            }
+        }
+
+        // Forgot password
+        function showForgotPassword(e) {
+            e.preventDefault();
+            const email = prompt('Şifre sıfırlama bağlantısı göndermek için e-posta adresinizi giriniz:');
+
+            if (email) {
+                alert(`Şifre sıfırlama bağlantısı ${email} adresine gönderildi.`);
+            }
+        }
+
+        // Demo credentials info
+        console.log('Demo Giriş Bilgileri:');
+        console.log('E-posta: test@koleksiyon.com');
+        console.log('Şifre: Test123!');
+        console.log('');
+        console.log('Onay Bekleyen Hesap:');
+        console.log('E-posta: pending@koleksiyon.com');
+    </script>
+</body>
+</html>

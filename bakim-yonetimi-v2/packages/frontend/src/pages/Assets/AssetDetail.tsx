@@ -23,6 +23,17 @@ const AssetDetail = () => {
     );
   }
 
+  const statusMap: Record<string, string> = {
+    'ACTIVE': 'Aktif',
+    'INACTIVE': 'Pasif',
+    'IN_MAINTENANCE': 'Bakımda',
+    'RETIRED': 'Hurdaya Ayrılmış',
+    'IN_OPERATION': 'Operasyonda',
+    'STANDBY': 'Beklemede',
+    'UNDER_REPAIR': 'Onarımda',
+  };
+
+  const getStatusText = (status: string) => statusMap[status] || status;
   const getStatusColor = (color?: string) => color || '#3b82f6';
 
   return (
@@ -60,7 +71,7 @@ const AssetDetail = () => {
             <div className="card-header">
               <span>{current.title}</span>
               <Chip
-                label={current.status}
+                label={getStatusText(current.status)}
                 sx={{
                   bgcolor: `${getStatusColor()}20`,
                   color: getStatusColor(),
@@ -163,16 +174,24 @@ const AssetDetail = () => {
             <div className="card-header">Tarihler</div>
             <div className="info-grid">
               <div className="info-item">
-                <span className="info-label">Oluşturma</span>
+                <span className="info-label">Alış Tarihi</span>
                 <span className="info-value" style={{ fontSize: '0.875rem' }}>
-                  {new Date(current.createdAt).toLocaleString('tr-TR')}
+                  {current.acquisitionDate ? new Date(current.acquisitionDate).toLocaleDateString('tr-TR') : '-'}
                 </span>
               </div>
-              {current.updatedAt && (
+              {current.lastMaintenanceDate && (
                 <div className="info-item">
-                  <span className="info-label">Güncelleme</span>
+                  <span className="info-label">Son Bakım</span>
                   <span className="info-value" style={{ fontSize: '0.875rem' }}>
-                    {new Date(current.updatedAt).toLocaleString('tr-TR')}
+                    {new Date(current.lastMaintenanceDate).toLocaleDateString('tr-TR')}
+                  </span>
+                </div>
+              )}
+              {current.nextMaintenanceDate && (
+                <div className="info-item">
+                  <span className="info-label">Sonraki Bakım</span>
+                  <span className="info-value" style={{ fontSize: '0.875rem' }}>
+                    {new Date(current.nextMaintenanceDate).toLocaleDateString('tr-TR')}
                   </span>
                 </div>
               )}

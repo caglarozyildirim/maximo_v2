@@ -1,0 +1,95 @@
+MAN TÜRKİYE BAKIM YÖNETİMİ - EKSİKSİZ EKRAN GÖRÜNTÜLERİ
+======================================================================
+
+Toplam Ekran Görüntüsü: 29
+Tarih: 10.10.2025 08:58
+
+----------------------------------------------------------------------
+
+1. 01_Dashboard_Ana_Sayfa.png
+   Ana dashboard görünümü - istatistikler ve grafikler
+
+2. 02_Is_Talepleri_Liste.png
+   İş talepleri liste görünümü - filtreleme ve arama
+
+3. 03_Is_Talebi_Modal_Acik.png
+   Yeni İş Talebi oluşturma modal'ı
+
+4. 04_Is_Talebi_Detay.png
+   İş Talebi detay sayfası - timeline ve yorumlar
+
+5. 05_Is_Talebi_Onay_Dialog.png
+   İş talebi onaylama confirmation dialog'u
+
+6. 06_Is_Talebi_Red_Dialog.png
+   İş talebi reddetme nedeni girişi
+
+7. 07_Varlik_Yonetimi_Liste.png
+   Varlık yönetimi liste görünümü
+
+8. 08_Varlik_Ekle_Modal.png
+   Yeni Varlık ekleme formu
+
+9. 09_Varlik_Detay_Onay_Bekliyor.png
+   Varlık detay - Onay Bekliyor durumu (butonlar aktif)
+
+10. 10_Varlik_Onay_Dialog.png
+   Varlık onaylama dialog'u
+
+11. 11_Bakim_Yonetimi_Liste.png
+   Bakım planları liste görünümü
+
+12. 12_Bakim_Plani_Modal.png
+   Yeni Bakım Planı oluşturma formu
+
+13. 13_Bakim_Detay.png
+   Bakım planı detay sayfası - süreç adımları
+
+14. 14_Olay_Yonetimi_Liste.png
+   Olay yönetimi liste görünümü - SLA takibi
+
+15. 15_Olay_Bildir_Modal.png
+   Yeni Olay bildirme formu
+
+16. 16_Olay_Detay.png
+   Olay detay sayfası - müdahale süreci
+
+17. 17_Olay_Cozum_Onay.png
+   Olay çözümü onaylama dialog'u
+
+18. 18_Raporlar_Sayfa.png
+   Raporlar sayfası - rapor kategorileri
+
+19. 19_Basari_Bildirimi.png
+   Başarı bildirimi - yeşil notification
+
+20. 20_Red_Bildirimi.png
+   Red bildirimi - kırmızı notification
+
+21. 21_Uyari_Bildirimi.png
+   Uyarı bildirimi - turuncu notification
+
+22. 22_Is_Talebi_Olustur_Form.png
+   İş Talebi oluşturma formu - tam sayfa
+
+23. 23_Varlik_Olustur_Form.png
+   Varlık oluşturma formu - tam sayfa
+
+24. 24_Bakim_Plani_Olustur_Form.png
+   Bakım Planı oluşturma formu - tam sayfa
+
+25. 25_Olay_Bildir_Form.png
+   Olay bildirme formu - tam sayfa
+
+26. 26_Mobil_Dashboard.png
+   Mobil görünüm - Dashboard (375px)
+
+27. 27_Mobil_Is_Talepleri.png
+   Mobil görünüm - İş Talepleri listesi
+
+28. 28_Mobil_Varliklar.png
+   Mobil görünüm - Varlık listesi
+
+29. 29_Tablet_Dashboard.png
+   Tablet görünüm - Dashboard (768px)
+

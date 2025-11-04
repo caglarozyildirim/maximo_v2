@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masraf Merkezi Detay</title>
+    <link rel="stylesheet" href="../css/style.css?v=3">
+</head>
+<body>
+    <!-- MODERN NAVIGATION BAR -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">
+                <div class="logo">🚌</div>
+                <div>
+                    <div class="brand-name">Bakım Yönetimi</div>
+                    <div class="brand-subtitle">Üretim Tesisleri</div>
+                </div>
+            </div>
+
+            <div class="navbar-menu">
+                <a href="../index.html" class="nav-link">
+                    <span>🏠</span> Dashboard
+                </a>
+                <a href="is-talepleri-liste.html" class="nav-link">
+                    <span>📋</span> İş Talepleri
+                </a>
+                <a href="varliklar-liste.html" class="nav-link">
+                    <span>📦</span> Varlıklar
+                </a>
+                <a href="bakim-isleri-liste.html" class="nav-link">
+                    <span>🔧</span> Bakım İşleri
+                </a>
+                <a href="zimmet-liste.html" class="nav-link">
+                    <span>👤</span> Zimmet
+                </a>
+                <a href="hurda-liste.html" class="nav-link">
+                    <span>♻️</span> Hurda
+                </a>
+                <a href="masraf-liste.html" class="nav-link">
+                    <span>💰</span> Masraf Merkezi
+                </a>
+            </div>
+
+            <div class="navbar-user">
+                <span class="user-name">Admin</span>
+                <div class="user-avatar">A</div>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container">
+        <div class="page-header">
+            <div>
+                <div class="breadcrumb">
+                    <a href="../index.html">Dashboard</a>
+                    <span>›</span>
+                    <a href="masraf-liste.html">Masraf Merkezi</a>
+                    <span>›</span>
+                    <span>Detay</span>
+                </div>
+                <h1 class="page-title">Masraf Merkezi Detay</h1>
+                <p class="page-subtitle">MM-2025-001 - CNC Tezgahı - MM Değişimi</p>
+            </div>
+            <div style="display: flex; gap: 0.75rem;">
+                <a href="masraf-liste.html" class="btn btn-secondary">← Geri</a>
+                <a href="#" class="btn btn-primary">Düzenle</a>
+            </div>
+        </div>
+
+        <!-- TEMEL BİLGİLER -->
+        <div class="card">
+            <div class="card-header">
+                <span>Temel Bilgiler</span>
+                <span class="badge badge-success">Aktif</span>
+            </div>
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label class="form-label">ID</label>
+                    <div class="form-control-static">MM-2025-001</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Durum</label>
+                    <div><span class="badge badge-success">Aktif</span></div>
+                </div>
+
+                <div class="form-group" style="grid-column: 1 / -1;">
+                    <label class="form-label">Başlık</label>
+                    <div class="form-control-static">CNC Tezgahı - MM Değişimi</div>
+                </div>
+
+                <div class="form-group" style="grid-column: 1 / -1;">
+                    <label class="form-label">Açıklama</label>
+                    <div class="form-control-static">Detaylı açıklama bilgisi burada yer alacaktır.</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Oluşturma Tarihi</label>
+                    <div class="form-control-static">01.11.2025 10:00</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Oluşturan</label>
+                    <div class="form-control-static">Admin User</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Son Güncelleme</label>
+                    <div class="form-control-static">03.11.2025 14:30</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Güncelleyen</label>
+                    <div class="form-control-static">Mehmet Yılmaz</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EK BİLGİLER -->
+        <div class="card">
+            <div class="card-header">Ek Bilgiler</div>
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label class="form-label">Lokasyon</label>
+                    <div class="form-control-static">Metal İşleme Atölyesi</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Departman</label>
+                    <div class="form-control-static">Üretim</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Sorumlu</label>
+                    <div class="form-control-static">Ayşe Demir</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Öncelik</label>
+                    <div><span class="badge badge-warning">Orta</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NOTLAR VE EKLER -->
+        <div class="card">
+            <div class="card-header">Notlar ve Ekler</div>
+
+            <div style="margin-bottom: 1.5rem;">
+                <h3 style="font-size: 1rem; font-weight: 600; margin-bottom: 0.75rem;">Notlar</h3>
+                <div style="background: var(--gray-50); padding: 1rem; border-radius: 8px;">
+                    <div style="color: var(--gray-600);">Henüz not eklenmemiş.</div>
+                </div>
+            </div>
+
+            <div>
+                <h3 style="font-size: 1rem; font-weight: 600; margin-bottom: 0.75rem;">Ekli Dosyalar</h3>
+                <div style="color: var(--gray-600);">Henüz dosya eklenmemiş.</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/app.js"></script>
+</body>
+</html>

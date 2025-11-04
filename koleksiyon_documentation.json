@@ -1,0 +1,113 @@
+{
+  "dealer_app": {
+    "paragraphs": [
+      {
+        "text": "PIM sisteminde çalışacak fiyat listesi oluşturulmalı. Ürün kırılımı ve görüntü tasarımı aşağıdaki gibi olmalıdır. Ek olarak ürün tip koduna ait olan PDF spec file da eklenmeli. Login diline bağlı olarak görüntüleme uyumlu olmalıdır.",
+        "style": "Normal (Web)"
+      },
+      {
+        "text": "Mümkünse aşağıdaki gibi 35 veya 36 fiyatlandırma kodlarının son kırılımı olan 3000 lu kodlarında görüldüğü liste tercihtir. aşağıda ekran görüntüsü paylaşılmıştır.",
+        "style": "Normal"
+      },
+      {
+        "text": "Bu sisteme erişim için Bayiler ya da Koleksiyon müşterileri web sitesindeki Biz Kimiz alanında bulunan İletişim altındaki Bayilik Başavurusu sayfasında “En: dealer zone Tr: Bayi Portalı” başlığı üzerine tıkladığında aşağıdaki steelcase örneğindeki gibi karşılama gelecek, login ya da register olacak ve Koleksiyon tarafından belirlenen mail adreslerine request talebi gitmelidir. Talep ve göreceği para birimi onayı alınması durumunda request sahibi fiyatlara erişim sağlayabilecektir.",
+        "style": "Normal"
+      }
+    ],
+    "tables": []
+  },
+  "meeting_notes": {
+    "paragraphs": [
+      {
+        "text": "Koleksiyon Mobilya Toplantısı",
+        "style": "Normal"
+      },
+      {
+        "text": "Web sitesinde bayi alanı oluşturulacak, bayiler vb. web tarafında ön yüzde hemen bulunamayacak şekilde bir yönlendirme ile siteden panele yönlendirme yapılacaktır.",
+        "style": "Normal"
+      },
+      {
+        "text": "Koleksiyon için register ve onay süreci olacak bayilerde.",
+        "style": "Normal"
+      },
+      {
+        "text": "SAP'de ki fiyat listesini butterfly da görmeleri sağlanacak.",
+        "style": "Normal"
+      },
+      {
+        "text": "Dinamik",
+        "style": "Normal"
+      },
+      {
+        "text": "Ürün teknik dokümanları var, bizde de var.",
+        "style": "Normal"
+      },
+      {
+        "text": "SAP görünümü ve kırılımı ile istiyorlar fakat şuanda PIM ile SAP gösterimi farklı. (PIM yapısına bağlı kalmakta fayda var.)",
+        "style": "Normal"
+      },
+      {
+        "text": "Uzun metine tıklayınca yukarıdaki pop up açılıyor, teknik veriler vs yer alıyor ama zaten siteden ulaşılabiliyor.",
+        "style": "Normal"
+      },
+      {
+        "text": "B,T,U alanları yer alacak gibi tasarım yapılacak fakat alanlar şuan beslenmeyecek. Teknik resim, büyük metin, teknik pdf dokümanları istenir ise ileride olacaktır.",
+        "style": "Normal"
+      },
+      {
+        "text": "Para birimi üyeliklerden yönetilebilir olacaktır.",
+        "style": "Normal"
+      },
+      {
+        "text": "Mevcut bayilik başvurusu süreci ile ayrı bir süreç.",
+        "style": "Normal"
+      }
+    ],
+    "tables": []
+  },
+  "suggestions": {
+    "paragraphs": [
+      {
+        "text": "Malzeme özelliklerinden bakım talimatları otomatik üretme",
+        "style": "List Paragraph"
+      },
+      {
+        "text": "Eksik ürün bilgisi tespiti ve bunların bildirimlerinin ilgili personellere yapılması",
+        "style": "List Paragraph"
+      },
+      {
+        "text": "360° ürün görsellerinin her açıdan görüntülenebilmesi, farklı formatlarının da seçilebilmesi. (ör: ahşap ayak, 60cm, mavi renk ..vs.)",
+        "style": "Normal"
+      },
+      {
+        "text": "Tüm sistem aktivitelerinin (çalışan, sap api ..v.b)detaylı loglanması",
+        "style": "List Paragraph"
+      },
+      {
+        "text": "Eski ürünlerin arşivlenmesi",
+        "style": "List Paragraph"
+      },
+      {
+        "text": "Excel'den toplu ürün bilgisi yükleme sistemi",
+        "style": "List Paragraph"
+      },
+      {
+        "text": "Lojistik Entegrasyonu: Ambalaj bilgileri, nakliye ölçüleri otomatik hesaplama",
+        "style": "List Paragraph"
+      },
+      {
+        "text": "ERP Geri Besleme: PIM'deki değişikliklerin SAP'e otomatik aktarımı",
+        "style": "Normal"
+      },
+      {
+        "text": "Multi-Currency: Ürün fiyatlarının farklı pazarlar için otomatik döviz çevrimi",
+        "style": "Normal"
+      },
+      {
+        "text": "Kullanım Senaryoları: Ürün özelliklerinden hangi mekân türlerine uygun olduğunu otomatik yazma",
+        "style": "Normal"
+      }
+    ],
+    "tables": []
+  }
+}

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hurda İşlemleri - Liste</title>
+    <link rel="stylesheet" href="../css/style.css?v=3">
+</head>
+<body>
+    <!-- MODERN NAVIGATION BAR -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">
+                <div class="logo">🚌</div>
+                <div>
+                    <div class="brand-name">Bakım Yönetimi</div>
+                    <div class="brand-subtitle">Üretim Tesisleri</div>
+                </div>
+            </div>
+
+            <div class="navbar-menu">
+                <a href="../index.html" class="nav-link">
+                    <span>🏠</span> Dashboard
+                </a>
+                <a href="is-talepleri-liste.html" class="nav-link ">
+                    <span>📋</span> İş Talepleri
+                </a>
+                <a href="varliklar-liste.html" class="nav-link ">
+                    <span>📦</span> Varlıklar
+                </a>
+                <a href="bakim-isleri-liste.html" class="nav-link ">
+                    <span>🔧</span> Bakım İşleri
+                </a>
+                <a href="zimmet-liste.html" class="nav-link ">
+                    <span>👤</span> Zimmet
+                </a>
+                <a href="hurda-liste.html" class="nav-link active">
+                    <span>♻️</span> Hurda
+                </a>
+                <a href="masraf-liste.html" class="nav-link ">
+                    <span>💰</span> Masraf Merkezi
+                </a>
+            </div>
+
+            <div class="navbar-user">
+                <span class="user-name">Admin</span>
+                <div class="user-avatar">A</div>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container">
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">Hurda İşlemleri</h1>
+                <p><a href="../index.html" style="color: #6b7280;">← Ana Sayfa</a></p>
+            </div>
+            <a href="hurda-ekle.html" class="btn btn-primary">+ Yeni Ekle</a>
+        </div>
+
+        <div class="card">
+            <!-- FİLTRE VE ARAMA -->
+            <div style="margin-bottom: 1.5rem;">
+                <input type="text" class="form-control" id="searchBox" placeholder="Hurda No, Varlık veya Sebep ile ara..."
+                       onkeyup="filterTable()" style="margin-bottom: 1rem;">
+
+                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center;">
+                    <span style="font-weight: 600; color: var(--gray-700); font-size: 0.875rem; margin-right: 0.5rem;">Durum:</span>
+                    <button class="filter-btn active" data-status="all" onclick="filterByStatus('all', this)">Tümü</button>
+                    <button class="filter-btn" data-status="Onaylandı" onclick="filterByStatus('Onaylandı', this)">Onaylandı</button>
+                    <button class="filter-btn" data-status="Beklemede" onclick="filterByStatus('Beklemede', this)">Beklemede</button>
+                    <button class="filter-btn" data-status="Reddedildi" onclick="filterByStatus('Reddedildi', this)">Reddedildi</button>
+                </div>
+            </div>
+            
+            <table class="table" id="dataTable">
+                <thead>
+                    <tr>
+                        <th>Hurda No</th>
+                        <th>Varlık</th>
+                        <th>Sebep</th>
+                        <th>Talep Eden</th>
+                        <th>Onay Durumu</th>
+                        <th>Tarih</th>
+                        <th>İşlem</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>HRD-2025-001</td>
+                        <td><strong>VLK-OLD-089 - Eski Kompresör</strong></td>
+                        <td>Teknik Ömür - 10 yıllık kullanım sonrası ekonomik ömrünü tamamladı</td>
+                        <td><span class="status-badge">Onaylandı</span></td>
+                        <td>Mehmet Yılmaz</td>
+                        <td>15.10.2025</td>
+                        <td><a href="hurda-detay.html" class="btn-link">Detay →</a></td>
+                    </tr>
+                    <tr>
+                        <td>HRD-2025-002</td>
+                        <td><strong>VLK-OLD-156 - Eski Kaynak Makinesi</strong></td>
+                        <td>Arıza - Ana trafo arızalı, tamir maliyeti yenisinin %80'i</td>
+                        <td><span class="status-badge">Onaylandı</span></td>
+                        <td>Can Öztürk</td>
+                        <td>22.09.2025</td>
+                        <td><a href="hurda-detay.html" class="btn-link">Detay →</a></td>
+                    </tr>
+                    <tr>
+                        <td>HRD-2025-003</td>
+                        <td><strong>VLK-OLD-234 - Eski Forklift</strong></td>
+                        <td>Kaza/Hasar - Çarpışma sonucu şase hasarı, onarım ekonomik değil</td>
+                        <td><span class="status-badge">Beklemede</span></td>
+                        <td>Ahmet Kaya</td>
+                        <td>08.10.2025</td>
+                        <td><a href="hurda-detay.html" class="btn-link">Detay →</a></td>
+                    </tr>
+                    <tr>
+                        <td>HRD-2025-004</td>
+                        <td><strong>VLK-OLD-412 - Eski Pres</strong></td>
+                        <td>Teknolojik Eskime - Yeni teknoloji ile değiştirildi, eski model verimsiz</td>
+                        <td><span class="status-badge">Onaylandı</span></td>
+                        <td>Ayşe Demir</td>
+                        <td>30.09.2025</td>
+                        <td><a href="hurda-detay.html" class="btn-link">Detay →</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+        <script src="../js/app.js"></script>
+    <script>
+        let currentStatus = 'all';
+
+        function filterByStatus(status, button) {
+            currentStatus = status;
+            
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            button.classList.add('active');
+            
+            filterTable();
+        }
+
+        function filterTable() {
+            const searchValue = document.getElementById('searchBox').value.toLowerCase();
+            const table = document.getElementById('dataTable');
+            const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+            for (let i = 0; i < rows.length; i++) {
+                const row = rows[i];
+                const cells = row.getElementsByTagName('td');
+                if (cells.length === 0) continue;
+
+                // Arama (Hurda No, Varlık, Sebep)
+                const hurdaNo = cells[0].textContent.toLowerCase();
+                const varlik = cells[1].textContent.toLowerCase();
+                const sebep = cells[2].textContent.toLowerCase();
+                const searchMatch = hurdaNo.includes(searchValue) ||
+                                   varlik.includes(searchValue) ||
+                                   sebep.includes(searchValue);
+
+                // Durum filtresi
+                const durum = cells[3].textContent.trim();
+                const statusMatch = currentStatus === 'all' || durum === currentStatus;
+
+                // Tüm kriterlere uygunsa göster
+                row.style.display = (searchMatch && statusMatch) ? '' : 'none';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1366 @@
+{
+  "index": {
+    "page_name": "Ana Sayfa (Dashboard)",
+    "page_key": "index",
+    "file_path": "index.html",
+    "tables": [],
+    "form_fields": [],
+    "badges": [],
+    "stat_cards": [
+      {
+        "title": "Toplam İş Talepleri",
+        "value": ""
+      },
+      {
+        "title": "Tamamlanan İşler",
+        "value": ""
+      },
+      {
+        "title": "Bekleyen Onaylar",
+        "value": ""
+      },
+      {
+        "title": "Aktif Olaylar",
+        "value": ""
+      },
+      {
+        "title": "İş Talepleri - Durum Dağılımı",
+        "value": ""
+      },
+      {
+        "title": "Varlık Durumu",
+        "value": ""
+      },
+      {
+        "title": "Bakım Planları - Durum Dağılımı",
+        "value": ""
+      },
+      {
+        "title": "Olaylar - Öncelik Dağılımı",
+        "value": ""
+      }
+    ],
+    "action_buttons": [],
+    "summary": {
+      "table_count": 0,
+      "total_columns": 0,
+      "form_field_count": 0,
+      "badge_count": 0,
+      "card_count": 8,
+      "button_count": 0
+    }
+  },
+  "job-requests": {
+    "page_name": "İş Talepleri - Liste",
+    "page_key": "job-requests",
+    "file_path": "pages/job-requests.html",
+    "tables": [
+      {
+        "columns": [
+          "Talep No",
+          "Başlık",
+          "Kategori",
+          "Lokasyon",
+          "Öncelik",
+          "Durum",
+          "Oluşturan",
+          "Tarih",
+          "İşlemler"
+        ],
+        "count": 9
+      }
+    ],
+    "form_fields": [
+      {
+        "type": "text",
+        "name": "searchInput",
+        "label": "Talep No, Başlık veya Açıklama ile ara..."
+      },
+      {
+        "type": "select",
+        "name": "filterStatus",
+        "options": [
+          "Tümü",
+          "Beklemede",
+          "Onayda",
+          "İşlemde",
+          "Tamamlandı",
+          "Reddedildi"
+        ],
+        "option_count": 6
+      },
+      {
+        "type": "select",
+        "name": "filterPriority",
+        "options": [
+          "Tümü",
+          "Kritik",
+          "Yüksek",
+          "Orta",
+          "Düşük"
+        ],
+        "option_count": 5
+      },
+      {
+        "type": "select",
+        "name": "filterCategory",
+        "options": [
+          "Tümü",
+          "Elektrik",
+          "Mekanik",
+          "Bina",
+          "IT",
+          "HVAC"
+        ],
+        "option_count": 6
+      },
+      {
+        "type": "select",
+        "name": "filterLocation",
+        "options": [
+          "Tümü",
+          "Ana Tesis",
+          "Üretim",
+          "Ofis",
+          "Depo"
+        ],
+        "option_count": 5
+      }
+    ],
+    "badges": [
+      {
+        "text": "Beklemede",
+        "type": "warning"
+      },
+      {
+        "text": "Onayda",
+        "type": "info"
+      },
+      {
+        "text": "Beklemede",
+        "type": "warning"
+      },
+      {
+        "text": "Onayda",
+        "type": "info"
+      },
+      {
+        "text": "İşlemde",
+        "type": "default"
+      },
+      {
+        "text": "İşlemde",
+        "type": "default"
+      },
+      {
+        "text": "Tamamlandı",
+        "type": "success"
+      },
+      {
+        "text": "Tamamlandı",
+        "type": "success"
+      },
+      {
+        "text": "Tamamlandı",
+        "type": "success"
+      },
+      {
+        "text": "Reddedildi",
+        "type": "danger"
+      }
+    ],
+    "stat_cards": [
+      {
+        "title": "Toplam Talepler",
+        "value": "156"
+      },
+      {
+        "title": "Bekleyen",
+        "value": "34"
+      },
+      {
+        "title": "Onay Bekleyen",
+        "value": "23"
+      },
+      {
+        "title": "İşlemde",
+        "value": "42"
+      },
+      {
+        "title": "Tamamlanan",
+        "value": "52"
+      },
+      {
+        "title": "Reddedilen",
+        "value": "5"
+      }
+    ],
+    "action_buttons": [
+      "+ Yeni İş Talebi",
+      "Detay",
+      "Filtreleri Temizle",
+      "Ara"
+    ],
+    "summary": {
+      "table_count": 1,
+      "total_columns": 9,
+      "form_field_count": 5,
+      "badge_count": 10,
+      "card_count": 6,
+      "button_count": 4
+    }
+  },
+  "job-request-detail": {
+    "page_name": "İş Talebi - Detay",
+    "page_key": "job-request-detail",
+    "file_path": "pages/job-request-detail.html",
+    "tables": [],
+    "form_fields": [
+      {
+        "type": "textarea",
+        "name": "unnamed"
+      }
+    ],
+    "badges": [],
+    "stat_cards": [
+      {
+        "title": "Talep Bilgileri",
+        "value": ""
+      },
+      {
+        "title": "Talep Bilgileri",
+        "value": ""
+      },
+      {
+        "title": "Detaylı Açıklama",
+        "value": ""
+      },
+      {
+        "title": "Detaylı Açıklama",
+        "value": ""
+      },
+      {
+        "title": "Lokasyon ve Varlık Bilgileri",
+        "value": ""
+      },
+      {
+        "title": "Lokasyon ve Varlık Bilgileri",
+        "value": ""
+      },
+      {
+        "title": "Maliyet Bilgileri",
+        "value": ""
+      },
+      {
+        "title": "Maliyet Bilgileri",
+        "value": ""
+      },
+      {
+        "title": "Yorumlar ve Notlar",
+        "value": ""
+      },
+      {
+        "title": "Yorumlar ve Notlar",
+        "value": ""
+      },
+      {
+        "title": "İş Akışı Süreci",
+        "value": ""
+      },
+      {
+        "title": "İş Akışı Süreci",
+        "value": ""
+      },
+      {
+        "title": "Ekler(0)",
+        "value": ""
+      },
+      {
+        "title": "Ekler(0)",
+        "value": ""
+      }
+    ],
+    "action_buttons": [
+      "👤 Sorumlu Ata",
+      "✗ Reddet",
+      "Yorum Ekle",
+      "💬 Yorum Ekle",
+      "✓ Onayla",
+      "← Geri Dön",
+      "📎 Dosya Ekle"
+    ],
+    "summary": {
+      "table_count": 0,
+      "total_columns": 0,
+      "form_field_count": 1,
+      "badge_count": 0,
+      "card_count": 14,
+      "button_count": 7
+    }
+  },
+  "job-request-create": {
+    "page_name": "İş Talebi - Oluştur",
+    "page_key": "job-request-create",
+    "file_path": "pages/job-request-create.html",
+    "tables": [],
+    "form_fields": [
+      {
+        "type": "text",
+        "name": "unnamed",
+        "label": "Kısa ve açıklayıcı bir başlık girin"
+      },
+      {
+        "type": "text",
+        "name": "unnamed",
+        "label": "SAP varlık numarası (varsa)"
+      },
+      {
+        "type": "text",
+        "name": "unnamed",
+        "label": "Varlık adı veya tanımı"
+      },
+      {
+        "type": "number",
+        "name": "unnamed",
+        "label": "0.00"
+      },
+      {
+        "type": "file",
+        "name": "unnamed",
+        "label": ""
+      },
+      {
+        "type": "text",
+        "name": "unnamed",
+        "label": "E-posta adreslerini virgül ile ayırın"
+      },
+      {
+        "type": "checkbox",
+        "name": "unnamed",
+        "label": ""
+      },
+      {
+        "type": "checkbox",
+        "name": "unnamed",
+        "label": ""
+      },
+      {
+        "type": "select",
+        "name": "unnamed",
+        "options": [
+          "Seçiniz...",
+          "Kritik - Acil müdahale gerekli",
+          "Yüksek - En kısa sürede",
+          "Orta - Normal süreçte",
+          "Düşük - Zamanı gelince"
+        ],
+        "option_count": 5
+      },
+      {
+        "type": "select",
+        "name": "unnamed",
+        "options": [
+          "Seçiniz...",
+          "Elektrik",
+          "Mekanik",
+          "Bina",
+          "HVAC (Isıtma/Soğutma)",
+          "IT / Bilgi Sistemleri",
+          "Güvenlik",
+          "Diğer"
+        ],
+        "option_count": 8
+      },
+      {
+        "type": "select",
+        "name": "unnamed",
+        "options": [
+          "Seçiniz...",
+          "Arıza",
+          "Planlı Bakım",
+          "İyileştirme",
+          "Değişiklik",
+          "Yeni Kurulum"
+        ],
+        "option_count": 6
+      },
+      {
+        "type": "select",
+        "name": "unnamed",
+        "options": [
+          "Seçiniz...",
+          "Ana Tesis",
+          "Üretim Hattı 1",
+          "Üretim Hattı 2",
+          "Üretim Hattı 3",
+          "Ofis Blok A",
+          "Ofis Blok B",
+          "Depo",
+          "Otopark"
+        ],
+        "option_count": 9
+      },
+      {
+        "type": "select",
+        "name": "unnamed",
+        "options": [
+          "Seçiniz...",
+          "1. Kat",
+          "2. Kat",
+          "3. Kat",
+          "Bodrum"
+        ],
+        "option_count": 5
+      },
+      {
+        "type": "select",
+        "name": "unnamed",
+        "options": [
+          "TRY (₺)",
+          "USD ($)",
+          "EUR (€)"
+        ],
+        "option_count": 3
+      },
+      {
+        "type": "textarea",
+        "name": "unnamed"
+      },
+      {
+        "type": "textarea",
+        "name": "unnamed"
+      }
+    ],
+    "badges": [],
+    "stat_cards": [
+      {
+        "title": "Talep Bilgileri",
+        "value": ""
+      },
+      {
+        "title": "Talep Bilgileri",
+        "value": ""
+      },
+      {
+        "title": "Lokasyon ve Varlık Bilgileri",
+        "value": ""
+      },
+      {
+        "title": "Lokasyon ve Varlık Bilgileri",
+        "value": ""
+      },
+      {
+        "title": "Maliyet Tahmini (Opsiyonel)",
+        "value": ""
+      },
+      {
+        "title": "Ekler",
+        "value": ""
+      },
+      {
+        "title": "Bilgilendirme",
+        "value": ""
+      },
+      {
+        "title": "💡 İpuçları",
+        "value": ""
+      },
+      {
+        "title": "💡 İpuçları",
+        "value": ""
+      }
+    ],
+    "action_buttons": [
+      "İptal",
+      "Talebi Gönder",
+      "Taslak Olarak Kaydet",
+      "← Geri Dön"
+    ],
+    "summary": {
+      "table_count": 0,
+      "total_columns": 0,
+      "form_field_count": 16,
+      "badge_count": 0,
+      "card_count": 9,
+      "button_count": 4
+    }
+  },
+  "assets": {
+    "page_name": "Varlıklar - Liste",
+    "page_key": "assets",
+    "file_path": "pages/assets.html",
+    "tables": [
+      {
+        "columns": [
+          "SAP ID",
+          "Varlık Adı",
+          "Kategori",
+          "Lokasyon",
+          "Durum",
+          "Zimmetli",
+          "İşlemler"
+        ],
+        "count": 7
+      }
+    ],
+    "form_fields": [
+      {
+        "type": "text",
+        "name": "unnamed",
+        "label": "Varlık SAP ID, Adı veya Seri No ile ara..."
+      },
+      {
+        "type": "text",
+        "name": "sapId",
+        "label": ""
+      },
+      {
+        "type": "text",
+        "name": "name",
+        "label": ""
+      },
+      {
+        "type": "text",
+        "name": "manufacturer",
+        "label": ""
+      },
+      {
+        "type": "text",
+        "name": "model",
+        "label": ""
+      },
+      {
+        "type": "text",
+        "name": "serialNo",
+        "label": ""
+      },
+      {
+        "type": "select",
+        "name": "category",
+        "options": [
+          "Seçiniz",
+          "Üretim Makinesi",
+          "Robotik Sistem",
+          "Boya Sistemi",
+          "Taşıma Ekipmanı",
+          "Altyapı"
+        ],
+        "option_count": 6
+      },
+      {
+        "type": "select",
+        "name": "location",
+        "options": [
+          "Seçiniz",
+          "Şasi Üretim Hattı",
+          "Gövde Montaj Hattı",
+          "Boya Tesisi",
+          "Final Montaj Hattı",
+          "Malzeme Deposu"
+        ],
+        "option_count": 6
+      }
+    ],
+    "badges": [
+      {
+        "text": "Onay Bekliyor",
+        "type": "warning"
+      },
+      {
+        "text": "Onay Bekliyor",
+        "type": "warning"
+      },
+      {
+        "text": "Onay Bekliyor",
+        "type": "warning"
+      },
+      {
+        "text": "Aktif",
+        "type": "success"
+      },
+      {
+        "text": "Bakımda",
+        "type": "warning"
+      },
+      {
+        "text": "Aktif",
+        "type": "success"
+      },
+      {
+        "text": "Aktif",
+        "type": "success"
+      },
+      {
+        "text": "Aktif",
+        "type": "success"
+      },
+      {
+        "text": "Arızalı",
+        "type": "danger"
+      }
+    ],
+    "stat_cards": [
+      {
+        "title": "Toplam Ekipman",
+        "value": "327"
+      },
+      {
+        "title": "Aktif",
+        "value": "318"
+      },
+      {
+        "title": "Onay Bekliyor",
+        "value": "3"
+      },
+      {
+        "title": "Bakımda",
+        "value": "4"
+      },
+      {
+        "title": "Arızalı",
+        "value": "2"
+      }
+    ],
+    "action_buttons": [
+      "Detay",
+      "Ara",
+      "+ Yeni Varlık Ekle"
+    ],
+    "summary": {
+      "table_count": 1,
+      "total_columns": 7,
+      "form_field_count": 8,
+      "badge_count": 9,
+      "card_count": 5,
+      "button_count": 3
+    }
+  },
+  "asset-detail": {
+    "page_name": "Varlık - Detay",
+    "page_key": "asset-detail",
+    "file_path": "pages/asset-detail.html",
+    "tables": [],
+    "form_fields": [
+      {
+        "type": "textarea",
+        "name": "unnamed"
+      }
+    ],
+    "badges": [
+      {
+        "text": "",
+        "type": "default"
+      },
+      {
+        "text": "",
+        "type": "success"
+      }
+    ],
+    "stat_cards": [
+      {
+        "title": "Varlık Bilgileri",
+        "value": ""
+      },
+      {
+        "title": "Varlık Bilgileri",
+        "value": ""
+      },
+      {
+        "title": "Lokasyon ve Zimmet Bilgileri",
+        "value": ""
+      },
+      {
+        "title": "Lokasyon ve Zimmet Bilgileri",
+        "value": ""
+      },
+      {
+        "title": "Teknik Özellikler",
+        "value": ""
+      },
+      {
+        "title": "Teknik Özellikler",
+        "value": ""
+      },
+      {
+        "title": "Yorumlar ve Notlar",
+        "value": ""
+      },
+      {
+        "title": "Yorumlar ve Notlar",
+        "value": ""
+      },
+      {
+        "title": "Bakım Geçmişi",
+        "value": ""
+      },
+      {
+        "title": "Bakım Geçmişi",
+        "value": ""
+      },
+      {
+        "title": "İlgili İş Talepleri",
+        "value": ""
+      },
+      {
+        "title": "İlgili İş Talepleri",
+        "value": ""
+      },
+      {
+        "title": "Ek Belgeler",
+        "value": ""
+      },
+      {
+        "title": "Ek Belgeler",
+        "value": ""
+      }
+    ],
+    "action_buttons": [
+      "👤 Sorumlu Ata",
+      "✗ Reddet",
+      "İndir",
+      "💬 Yorum Ekle",
+      "✓ Onayla",
+      "← Varlık Listesine Dön",
+      "📎 Dosya Ekle"
+    ],
+    "summary": {
+      "table_count": 0,
+      "total_columns": 0,
+      "form_field_count": 1,
+      "badge_count": 2,
+      "card_count": 14,
+      "button_count": 7
+    }
+  },
+  "maintenance": {
+    "page_name": "Bakım - Liste",
+    "page_key": "maintenance",
+    "file_path": "pages/maintenance.html",
+    "tables": [
+      {
+        "columns": [
+          "Bakım No",
+          "Varlık",
+          "Bakım Tipi",
+          "Planlanan Tarih",
+          "Öncelik",
+          "Sorumlu Ekip",
+          "Durum",
+          "İşlemler"
+        ],
+        "count": 8
+      }
+    ],
+    "form_fields": [
+      {
+        "type": "date",
+        "name": "unnamed",
+        "label": ""
+      },
+      {
+        "type": "select",
+        "name": "unnamed",
+        "options": [
+          "Tümü",
+          "Onay Bekleyen",
+          "Onaylandı",
+          "İşlemde",
+          "Tamamlandı",
+          "Reddedildi"
+        ],
+        "option_count": 6
+      },
+      {
+        "type": "select",
+        "name": "unnamed",
+        "options": [
+          "Tümü",
+          "Periyodik Bakım",
+          "Önleyici Bakım",
+          "Düzeltici Bakım",
+          "Toplu Bakım"
+        ],
+        "option_count": 5
+      },
+      {
+        "type": "select",
+        "name": "unnamed",
+        "options": [
+          "Tümü",
+          "Acil",
+          "Yüksek",
+          "Normal",
+          "Düşük"
+        ],
+        "option_count": 5
+      }
+    ],
+    "badges": [
+      {
+        "text": "Onay Bekliyor",
+        "type": "warning"
+      },
+      {
+        "text": "Onay Bekliyor",
+        "type": "warning"
+      },
+      {
+        "text": "İşlemde",
+        "type": "info"
+      },
+      {
+        "text": "Tamamlandı",
+        "type": "success"
+      },
+      {
+        "text": "Tamamlandı",
+        "type": "success"
+      }
+    ],
+    "stat_cards": [
+      {
+        "title": "Toplam Bakım Planı",
+        "value": "12"
+      },
+      {
+        "title": "Onay Bekleyen",
+        "value": "3"
+      },
+      {
+        "title": "Tamamlanan",
+        "value": "68"
+      },
+      {
+        "title": "Geciken",
+        "value": "1"
+      },
+      {
+        "title": "Bakım Planları",
+        "value": ""
+      },
+      {
+        "title": "Bakım Planları",
+        "value": ""
+      }
+    ],
+    "action_buttons": [
+      "Detay",
+      "+ Yeni Bakım Planı"
+    ],
+    "summary": {
+      "table_count": 1,
+      "total_columns": 8,
+      "form_field_count": 4,
+      "badge_count": 5,
+      "card_count": 6,
+      "button_count": 2
+    }
+  },
+  "maintenance-detail": {
+    "page_name": "Bakım - Detay",
+    "page_key": "maintenance-detail",
+    "file_path": "pages/maintenance-detail.html",
+    "tables": [],
+    "form_fields": [
+      {
+        "type": "textarea",
+        "name": "unnamed"
+      }
+    ],
+    "badges": [
+      {
+        "text": "",
+        "type": "default"
+      },
+      {
+        "text": "",
+        "type": "warning"
+      }
+    ],
+    "stat_cards": [
+      {
+        "title": "Bakım Bilgileri",
+        "value": ""
+      },
+      {
+        "title": "Bakım Bilgileri",
+        "value": ""
+      },
+      {
+        "title": "Bakım Açıklaması",
+        "value": ""
+      },
+      {
+        "title": "Bakım Açıklaması",
+        "value": ""
+      },
+      {
+        "title": "Gerekli Malzemeler ve Yedek Parçalar",
+        "value": ""
+      },
+      {
+        "title": "Gerekli Malzemeler ve Yedek Parçalar",
+        "value": ""
+      },
+      {
+        "title": "Yorumlar ve Notlar",
+        "value": ""
+      },
+      {
+        "title": "Yorumlar ve Notlar",
+        "value": ""
+      },
+      {
+        "title": "Bakım Süreci",
+        "value": ""
+      },
+      {
+        "title": "Bakım Süreci",
+        "value": ""
+      },
+      {
+        "title": "Bu Varlığın Bakım Geçmişi",
+        "value": ""
+      },
+      {
+        "title": "Bu Varlığın Bakım Geçmişi",
+        "value": ""
+      },
+      {
+        "title": "Ek Belgeler",
+        "value": ""
+      },
+      {
+        "title": "Ek Belgeler",
+        "value": ""
+      }
+    ],
+    "action_buttons": [
+      "📎 Belge Ekle",
+      "← Bakım Listesine Dön",
+      "👤 Sorumlu Ata",
+      "✗ Reddet",
+      "İndir",
+      "💬 Yorum Ekle",
+      "✓ Onayla",
+      "📎 Dosya Ekle"
+    ],
+    "summary": {
+      "table_count": 0,
+      "total_columns": 0,
+      "form_field_count": 1,
+      "badge_count": 2,
+      "card_count": 14,
+      "button_count": 8
+    }
+  },
+  "maintenance-create": {
+    "page_name": "Bakım Planı - Oluştur",
+    "page_key": "maintenance-create",
+    "file_path": "pages/maintenance-create.html",
+    "tables": [],
+    "form_fields": [
+      {
+        "type": "text",
+        "name": "title",
+        "label": "Örn: CNC Torna Yıllık Bakım"
+      },
+      {
+        "type": "date",
+        "name": "scheduledDate",
+        "label": ""
+      },
+      {
+        "type": "time",
+        "name": "scheduledTime",
+        "label": ""
+      },
+      {
+        "type": "number",
+        "name": "estimatedDuration",
+        "label": "Örn: 4"
+      },
+      {
+        "type": "select",
+        "name": "assetId",
+        "options": [
+          "Seçiniz",
+          "CNC Torna Makinesi - Şasi İşleme",
+          "Boya Kabini - Ana Hat",
+          "Kaynak Robotu - Gövde Montaj",
+          "Forklift - Linde H50",
+          "Kompresör Sistemi - Merkezi",
+          "Montaj Platformu - Elektrikli"
+        ],
+        "option_count": 7
+      },
+      {
+        "type": "select",
+        "name": "maintenanceType",
+        "options": [
+          "Seçiniz",
+          "Periyodik Bakım",
+          "Önleyici Bakım",
+          "Düzeltici Bakım",
+          "Toplu Bakım"
+        ],
+        "option_count": 5
+      },
+      {
+        "type": "select",
+        "name": "priority",
+        "options": [
+          "Seçiniz",
+          "Acil",
+          "Yüksek",
+          "Normal",
+          "Düşük"
+        ],
+        "option_count": 5
+      },
+      {
+        "type": "select",
+        "name": "assignedTeam",
+        "options": [
+          "Seçiniz",
+          "Mekanik Bakım Ekibi",
+          "Elektrik Bakım Ekibi",
+          "Robotik Ekip",
+          "Boya Ekibi",
+          "Teknik Ekip"
+        ],
+        "option_count": 6
+      },
+      {
+        "type": "textarea",
+        "name": "description"
+      },
+      {
+        "type": "textarea",
+        "name": "materials"
+      }
+    ],
+    "badges": [],
+    "stat_cards": [],
+    "action_buttons": [
+      "İptal",
+      "Bakım Planı Oluştur",
+      "← Geri Dön"
+    ],
+    "summary": {
+      "table_count": 0,
+      "total_columns": 0,
+      "form_field_count": 10,
+      "badge_count": 0,
+      "card_count": 0,
+      "button_count": 3
+    }
+  },
+  "incidents": {
+    "page_name": "Olaylar - Liste",
+    "page_key": "incidents",
+    "file_path": "pages/incidents.html",
+    "tables": [
+      {
+        "columns": [
+          "Olay No",
+          "Başlık",
+          "Öncelik",
+          "Başlangıç",
+          "Geçen Süre",
+          "Durum",
+          "İşlemler"
+        ],
+        "count": 7
+      }
+    ],
+    "form_fields": [],
+    "badges": [
+      {
+        "text": "Müdahale Ediliyor",
+        "type": "danger"
+      },
+      {
+        "text": "İnceleme",
+        "type": "warning"
+      }
+    ],
+    "stat_cards": [
+      {
+        "title": "Aktif Olaylar",
+        "value": "2"
+      },
+      {
+        "title": "Kritik",
+        "value": "1"
+      },
+      {
+        "title": "Yüksek",
+        "value": "1"
+      },
+      {
+        "title": "Bu Ay Kapatılan",
+        "value": "12"
+      },
+      {
+        "title": "Aktif Acil Olaylar",
+        "value": ""
+      },
+      {
+        "title": "Aktif Acil Olaylar",
+        "value": ""
+      }
+    ],
+    "action_buttons": [
+      "+ Yeni Olay Bildir",
+      "Detay"
+    ],
+    "summary": {
+      "table_count": 1,
+      "total_columns": 7,
+      "form_field_count": 0,
+      "badge_count": 2,
+      "card_count": 6,
+      "button_count": 2
+    }
+  },
+  "incident-detail": {
+    "page_name": "Olay - Detay",
+    "page_key": "incident-detail",
+    "file_path": "pages/incident-detail.html",
+    "tables": [],
+    "form_fields": [],
+    "badges": [
+      {
+        "text": "",
+        "type": "danger"
+      },
+      {
+        "text": "",
+        "type": "warning"
+      }
+    ],
+    "stat_cards": [
+      {
+        "title": "Olay Bilgileri",
+        "value": ""
+      },
+      {
+        "title": "Olay Bilgileri",
+        "value": ""
+      },
+      {
+        "title": "Olay Açıklaması",
+        "value": ""
+      },
+      {
+        "title": "Olay Açıklaması",
+        "value": ""
+      },
+      {
+        "title": "Ekip Notları ve Yorumlar",
+        "value": ""
+      },
+      {
+        "title": "Ekip Notları ve Yorumlar",
+        "value": ""
+      },
+      {
+        "title": "Müdahale Süreci",
+        "value": ""
+      },
+      {
+        "title": "Müdahale Süreci",
+        "value": ""
+      }
+    ],
+    "action_buttons": [
+      "👤 Sorumlu Ata",
+      "✗ Olayı Reddet",
+      "💬 Yorum Ekle",
+      "✓ Çözümü Onayla",
+      "← Olay Listesine Dön",
+      "📎 Dosya Ekle"
+    ],
+    "summary": {
+      "table_count": 0,
+      "total_columns": 0,
+      "form_field_count": 0,
+      "badge_count": 2,
+      "card_count": 8,
+      "button_count": 6
+    }
+  },
+  "incident-create": {
+    "page_name": "Olay - Oluştur (YENİ SAYFA)",
+    "page_key": "incident-create",
+    "file_path": "pages/incident-create.html",
+    "tables": [],
+    "form_fields": [
+      {
+        "type": "text",
+        "name": "title",
+        "label": "Örn: Montaj Platformu Elektrik Kesintisi"
+      },
+      {
+        "type": "text",
+        "name": "reporter",
+        "label": ""
+      },
+      {
+        "type": "text",
+        "name": "reportDate",
+        "label": ""
+      },
+      {
+        "type": "file",
+        "name": "attachments",
+        "label": ""
+      },
+      {
+        "type": "checkbox",
+        "name": "sendNotification",
+        "label": ""
+      },
+      {
+        "type": "select",
+        "name": "priority",
+        "options": [
+          "Seçiniz",
+          "Düşük",
+          "Orta",
+          "Yüksek",
+          "Kritik"
+        ],
+        "option_count": 5
+      },
+      {
+        "type": "select",
+        "name": "location",
+        "options": [
+          "Seçiniz",
+          "Şasi Üretim Hattı",
+          "Gövde Montaj Hattı",
+          "Boya Tesisi",
+          "Final Montaj Hattı",
+          "Malzeme Deposu",
+          "Kalite Kontrol",
+          "Teknik Bina"
+        ],
+        "option_count": 8
+      },
+      {
+        "type": "select",
+        "name": "assetId",
+        "options": [
+          "Seçiniz",
+          "CNC Torna Makinesi - Şasi İşleme",
+          "Boya Kabini - Ana Hat",
+          "Kaynak Robotu - Gövde Montaj",
+          "Forklift - Linde H50",
+          "Kompresör Sistemi - Merkezi",
+          "Montaj Platformu - Elektrikli"
+        ],
+        "option_count": 7
+      },
+      {
+        "type": "textarea",
+        "name": "description"
+      }
+    ],
+    "badges": [],
+    "stat_cards": [
+      {
+        "title": "Olay Bilgileri",
+        "value": ""
+      },
+      {
+        "title": "Olay Bilgileri",
+        "value": ""
+      }
+    ],
+    "action_buttons": [
+      "İptal",
+      "Olay Bildir",
+      "← Geri Dön"
+    ],
+    "summary": {
+      "table_count": 0,
+      "total_columns": 0,
+      "form_field_count": 9,
+      "badge_count": 0,
+      "card_count": 2,
+      "button_count": 3
+    }
+  },
+  "reports": {
+    "page_name": "Raporlama",
+    "page_key": "reports",
+    "file_path": "pages/reports.html",
+    "tables": [],
+    "form_fields": [],
+    "badges": [],
+    "stat_cards": [
+      {
+        "title": "📊 İş Talepleri Raporu",
+        "value": ""
+      },
+      {
+        "title": "📊 İş Talepleri Raporu",
+        "value": ""
+      },
+      {
+        "title": "📈 Bakım Performansı",
+        "value": ""
+      },
+      {
+        "title": "📈 Bakım Performansı",
+        "value": ""
+      },
+      {
+        "title": "💰 Maliyet Analizi",
+        "value": ""
+      },
+      {
+        "title": "💰 Maliyet Analizi",
+        "value": ""
+      },
+      {
+        "title": "📦 Varlık Durumu",
+        "value": ""
+      },
+      {
+        "title": "📦 Varlık Durumu",
+        "value": ""
+      },
+      {
+        "title": "⚠️ Olay Analizi",
+        "value": ""
+      },
+      {
+        "title": "⚠️ Olay Analizi",
+        "value": ""
+      },
+      {
+        "title": "📋 Özel Rapor",
+        "value": ""
+      },
+      {
+        "title": "📋 Özel Rapor",
+        "value": ""
+      }
+    ],
+    "action_buttons": [
+      "Rapor Oluştur",
+      "Rapor Tasarla"
+    ],
+    "summary": {
+      "table_count": 0,
+      "total_columns": 0,
+      "form_field_count": 0,
+      "badge_count": 0,
+      "card_count": 12,
+      "button_count": 2
+    }
+  }
+}

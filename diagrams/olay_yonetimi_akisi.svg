@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900">
+  <defs>
+    <style>
+      .swimlane-header { fill: #E20714; font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; fill: white; }
+      .swimlane-bg { fill: #F5F5F5; stroke: #666; stroke-width: 2; }
+      .process-box { fill: #FFFFFF; stroke: #333; stroke-width: 2; }
+      .decision-box { fill: #FFF8DC; stroke: #333; stroke-width: 2; }
+      .start-end { fill: #00A859; stroke: #333; stroke-width: 2; }
+      .critical { fill: #FFE6E6; stroke: #E20714; stroke-width: 3; }
+      .text { font-family: Arial, sans-serif; font-size: 14px; fill: #000; text-anchor: middle; }
+      .label { font-family: Arial, sans-serif; font-size: 12px; fill: #666; }
+      .arrow { stroke: #333; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .critical-arrow { stroke: #E20714; stroke-width: 3; fill: none; marker-end: url(#critical-arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#333" />
+    </marker>
+    <marker id="critical-arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#E20714" />
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="600" y="30" style="font-size: 20px; font-weight: bold; text-anchor: middle; fill: #1A1A1A;">Olay Yönetimi Süreci - MAN Türkiye</text>
+
+  <!-- Swimlane 1: Bildirimci -->
+  <rect x="50" y="60" width="1100" height="180" class="swimlane-bg"/>
+  <rect x="50" y="60" width="150" height="180" fill="#E20714"/>
+  <text x="125" y="155" class="swimlane-header" transform="rotate(-90 125 155)">Bildirimci</text>
+
+  <!-- Swimlane 2: Olay Yöneticisi -->
+  <rect x="50" y="240" width="1100" height="240" class="swimlane-bg"/>
+  <rect x="50" y="240" width="150" height="240" fill="#E20714"/>
+  <text x="125" y="365" class="swimlane-header" transform="rotate(-90 125 365)">Olay Yöneticisi</text>
+
+  <!-- Swimlane 3: Müdahale Ekibi -->
+  <rect x="50" y="480" width="1100" height="200" class="swimlane-bg"/>
+  <rect x="50" y="480" width="150" height="200" fill="#E20714"/>
+  <text x="125" y="585" class="swimlane-header" transform="rotate(-90 125 585)">Müdahale Ekibi</text>
+
+  <!-- Swimlane 4: Sistem -->
+  <rect x="50" y="680" width="1100" height="180" class="swimlane-bg"/>
+  <rect x="50" y="680" width="150" height="180" fill="#E20714"/>
+  <text x="125" y="775" class="swimlane-header" transform="rotate(-90 125 775)">Sistem</text>
+
+  <!-- Process Steps - Bildirimci -->
+  <ellipse cx="280" cy="150" rx="60" ry="30" class="start-end"/>
+  <text x="280" y="155" class="text">Olay</text>
+
+  <rect x="380" y="120" width="120" height="60" class="critical"/>
+  <text x="440" y="145" class="text">Olay</text>
+  <text x="440" y="165" class="text">Bildir</text>
+
+  <rect x="550" y="120" width="120" height="60" class="process-box"/>
+  <text x="610" y="145" class="text">Detay</text>
+  <text x="610" y="165" class="text">Gir</text>
+
+  <!-- Process Steps - Olay Yöneticisi -->
+  <rect x="380" y="310" width="120" height="60" class="process-box"/>
+  <text x="440" y="335" class="text">Olayı</text>
+  <text x="440" y="355" class="text">Değerlendir</text>
+
+  <path d="M 550 340 L 610 310 L 670 340 L 610 370 Z" class="decision-box"/>
+  <text x="610" y="335" class="text" style="font-size: 11px;">Öncelik</text>
+  <text x="610" y="350" class="text" style="font-size: 11px;">Seviyesi?</text>
+
+  <rect x="720" y="270" width="120" height="60" class="critical"/>
+  <text x="780" y="295" class="text">Acil</text>
+  <text x="780" y="315" class="text">Ekip Çağır</text>
+
+  <rect x="720" y="350" width="120" height="60" class="process-box"/>
+  <text x="780" y="375" class="text">Normal</text>
+  <text x="780" y="395" class="text">Atama</text>
+
+  <rect x="890" y="310" width="120" height="60" class="process-box"/>
+  <text x="950" y="335" class="text">İzleme</text>
+  <text x="950" y="355" class="text">Başlat</text>
+
+  <!-- Process Steps - Müdahale Ekibi -->
+  <rect x="380" y="540" width="120" height="60" class="process-box"/>
+  <text x="440" y="565" class="text">Müdahale</text>
+  <text x="440" y="585" class="text">Et</text>
+
+  <rect x="550" y="540" width="120" height="60" class="process-box"/>
+  <text x="610" y="565" class="text">Sorunu</text>
+  <text x="610" y="585" class="text">Çöz</text>
+
+  <path d="M 720 570 L 780 540 L 840 570 L 780 600 Z" class="decision-box"/>
+  <text x="780" y="565" class="text" style="font-size: 12px;">Çözüldü?</text>
+
+  <rect x="890" y="540" width="120" height="60" class="process-box"/>
+  <text x="950" y="565" class="text">Rapor</text>
+  <text x="950" y="585" class="text">Hazırla</text>
+
+  <rect x="720" y="630" width="120" height="60" class="process-box"/>
+  <text x="780" y="655" class="text">Ek</text>
+  <text x="780" y="675" class="text">Kaynak</text>
+
+  <!-- Process Steps - Sistem -->
+  <rect x="380" y="730" width="120" height="60" class="process-box"/>
+  <text x="440" y="755" class="text">Bildirim</text>
+  <text x="440" y="775" class="text">Gönder</text>
+
+  <rect x="550" y="730" width="120" height="60" class="process-box"/>
+  <text x="610" y="755" class="text">Durum</text>
+  <text x="610" y="775" class="text">Güncelle</text>
+
+  <rect x="720" y="730" width="120" height="60" class="process-box"/>
+  <text x="780" y="755" class="text">Olay</text>
+  <text x="780" y="775" class="text">Kapat</text>
+
+  <ellipse cx="900" cy="760" rx="60" ry="30" class="start-end"/>
+  <text x="900" y="765" class="text">Bitir</text>
+
+  <!-- Arrows -->
+  <path d="M 340 150 L 380 150" class="critical-arrow"/>
+  <path d="M 500 150 L 550 150" class="arrow"/>
+  <path d="M 610 180 L 610 260 L 440 260 L 440 310" class="arrow"/>
+  <path d="M 500 340 L 550 340" class="arrow"/>
+  <path d="M 670 340 L 720 340" class="arrow"/>
+  <path d="M 610 310 L 610 280 L 720 280 L 720 300" class="critical-arrow"/>
+  <text x="635" y="295" class="label" style="fill: #E20714; font-weight: bold;">Kritik</text>
+  <path d="M 610 370 L 610 380 L 720 380" class="arrow"/>
+  <text x="630" y="375" class="label">Normal</text>
+  <path d="M 840 300 L 890 300 L 890 310" class="arrow"/>
+  <path d="M 840 380 L 860 380 L 860 340 L 890 340" class="arrow"/>
+  <path d="M 950 370 L 950 500 L 440 500 L 440 540" class="arrow"/>
+  <path d="M 500 570 L 550 570" class="arrow"/>
+  <path d="M 670 570 L 720 570" class="arrow"/>
+  <path d="M 840 570 L 890 570" class="arrow"/>
+  <text x="850" y="565" class="label">Evet</text>
+  <path d="M 780 600 L 780 630" class="arrow"/>
+  <text x="790" y="620" class="label">Hayır</text>
+  <path d="M 780 690 L 780 710 L 440 710 L 440 730" class="arrow"/>
+  <path d="M 950 600 L 950 710 L 610 710 L 610 730" class="arrow"/>
+  <path d="M 500 760 L 550 760" class="arrow"/>
+  <path d="M 670 760 L 720 760" class="arrow"/>
+  <path d="M 840 760 L 900 760" class="arrow"/>
+</svg>

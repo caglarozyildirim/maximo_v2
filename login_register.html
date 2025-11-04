@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steelcase - Login / Register</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .modal-overlay {
+            background: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            max-width: 700px;
+            width: 100%;
+            display: flex;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        .close-btn:hover {
+            color: #333;
+        }
+
+        .modal-section {
+            flex: 1;
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-section:first-child {
+            border-right: 1px solid #e0e0e0;
+        }
+
+        .modal-section h2 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .modal-section p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .note-text {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: #0066cc;
+            color: white;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background: #0052a3;
+        }
+
+        .login-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .register-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (max-width: 768px) {
+            .modal-container {
+                flex-direction: column;
+            }
+
+            .modal-section:first-child {
+                border-right: none;
+                border-bottom: 1px solid #e0e0e0;
+            }
+
+            .modal-section {
+                padding: 30px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="modal-overlay">
+        <div class="modal-container">
+            <button class="close-btn">✕</button>
+
+            <!-- Login Section -->
+            <div class="modal-section login-section">
+                <h2>Already have a Steelcase Account?</h2>
+                <p>Log in to your Steelcase.com or Steelcase OneLogin account to access additional features.</p>
+                <p class="note-text">Steelcase Dealers and Employees must log in to access Village extranet content.</p>
+                <button class="btn btn-primary">LOG IN</button>
+            </div>
+
+            <!-- Register Section -->
+            <div class="modal-section register-section">
+                <h2>Register</h2>
+                <p>Not registered for Steelcase.com?</p>
+                <p>Create an account to access additional features.</p>
+                <button class="btn btn-primary">REGISTER</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
