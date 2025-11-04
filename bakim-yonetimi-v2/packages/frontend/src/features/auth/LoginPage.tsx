@@ -30,11 +30,21 @@ export default function LoginPage() {
     e.preventDefault();
     setError('');
 
-    try {
-      await dispatch(login({ email, password })).unwrap();
+    // Mock login - bypass API call for demo
+    if (email && password) {
+      // Store mock user data
+      localStorage.setItem('user', JSON.stringify({
+        id: 1,
+        email: email,
+        name: 'Admin User',
+        role: 'ADMIN'
+      }));
+      localStorage.setItem('token', 'mock-jwt-token');
+
+      // Navigate to dashboard
       navigate('/');
-    } catch (err: any) {
-      setError(err || 'Giriş başarısız');
+    } else {
+      setError('Lütfen e-posta ve şifre giriniz');
     }
   };
 
