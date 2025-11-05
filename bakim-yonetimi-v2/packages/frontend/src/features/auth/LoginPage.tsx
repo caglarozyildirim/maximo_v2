@@ -24,7 +24,7 @@ import {
   Security
 } from '@mui/icons-material';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { login } from './authSlice';
+import { setUser } from './authSlice';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -51,16 +51,16 @@ export default function LoginPage() {
         role: 'ADMIN'
       };
 
+      const mockToken = 'mock-jwt-token';
+
       localStorage.setItem('user', JSON.stringify(mockUser));
-      localStorage.setItem('token', 'mock-jwt-token');
+      localStorage.setItem('token', mockToken);
 
-      // Dispatch to Redux
-      dispatch(login({ email, password }));
+      // Dispatch to Redux with mock data (no API call)
+      dispatch(setUser({ user: mockUser, token: mockToken }));
 
-      // Small delay to ensure state is updated
-      setTimeout(() => {
-        navigate('/', { replace: true });
-      }, 100);
+      // Navigate to dashboard
+      navigate('/', { replace: true });
     } else {
       setError('Lütfen e-posta ve şifre giriniz');
     }
