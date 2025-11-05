@@ -43,16 +43,24 @@ export default function LoginPage() {
     // Mock login - bypass API call for demo
     if (email && password) {
       // Store mock user data
-      localStorage.setItem('user', JSON.stringify({
+      const mockUser = {
         id: 1,
         email: email,
-        name: 'Admin User',
+        firstName: 'Admin',
+        lastName: 'User',
         role: 'ADMIN'
-      }));
+      };
+
+      localStorage.setItem('user', JSON.stringify(mockUser));
       localStorage.setItem('token', 'mock-jwt-token');
 
-      // Navigate to dashboard
-      navigate('/');
+      // Dispatch to Redux
+      dispatch(login({ email, password }));
+
+      // Small delay to ensure state is updated
+      setTimeout(() => {
+        navigate('/', { replace: true });
+      }, 100);
     } else {
       setError('Lütfen e-posta ve şifre giriniz');
     }

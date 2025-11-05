@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Box, Menu, MenuItem, Divider } from '@mui/material';
+import { Box, Menu, MenuItem, Divider, Drawer, IconButton, useMediaQuery, useTheme } from '@mui/material';
 import {
   Dashboard as DashboardIcon,
   Assignment,
@@ -11,7 +11,9 @@ import {
   AccountBalance,
   Warning,
   Factory,
-  Logout
+  Logout,
+  Menu as MenuIcon,
+  Close as CloseIcon
 } from '@mui/icons-material';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { logout } from '../../features/auth/authSlice';
@@ -33,10 +35,13 @@ interface ModernLayoutProps {
 
 export default function ModernLayout({ children }: ModernLayoutProps) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.auth);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -48,7 +53,17 @@ export default function ModernLayout({ children }: ModernLayoutProps) {
 
   const handleLogout = () => {
     dispatch(logout());
+    setMobileMenuOpen(false);
     navigate('/login');
+  };
+
+  const handleMobileMenuToggle = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  const handleMobileMenuItemClick = (path: string) => {
+    navigate(path);
+    setMobileMenuOpen(false);
   };
 
   const getUserInitials = () => {
@@ -80,26 +95,40 @@ export default function ModernLayout({ children }: ModernLayoutProps) {
             </div>
           </div>
 
-          <div className="navbar-menu">
-            {menuItems.map((item) => (
-              <a
-                key={item.path}
-                href={item.path}
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate(item.path);
-                }}
-                className={`nav-link ${isActive(item.path) ? 'active' : ''}`}
-              >
-                <item.Icon sx={{ fontSize: '1.25rem' }} /> {item.text}
-              </a>
-            ))}
-          </div>
+          {/* Desktop Menu */}
+          {!isMobile && (
+            <div className="navbar-menu">
+              {menuItems.map((item) => (
+                <a
+                  key={item.path}
+                  href={item.path}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate(item.path);
+                  }}
+                  className={`nav-link ${isActive(item.path) ? 'active' : ''}`}
+                >
+                  <item.Icon sx={{ fontSize: '1.25rem' }} /> {item.text}
+                </a>
+              ))}
+            </div>
+          )}
 
           <div className="navbar-user">
-            <span className="user-name">
-              {user?.firstName} {user?.lastName}
-            </span>
+            {!isMobile && (
+              <span className="user-name">
+                {user?.firstName} {user?.lastName}
+              </span>
+            )}
+            {isMobile && (
+              <IconButton
+                onClick={handleMobileMenuToggle}
+                sx={{ color: 'var(--gray-700)' }}
+                edge="end"
+              >
+                {mobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
+              </IconButton>
+            )}
             <div
               className="user-avatar"
               onClick={handleMenuOpen}
@@ -110,6 +139,56 @@ export default function ModernLayout({ children }: ModernLayoutProps) {
           </div>
         </div>
       </nav>
+
+      {/* Mobile Drawer Menu */}
+      <Drawer
+        anchor="right"
+        open={mobileMenuOpen}
+        onClose={handleMobileMenuToggle}
+        PaperProps={{
+          sx: {
+            width: '80%',
+            maxWidth: '300px',
+            pt: 2,
+          },
+        }}
+      >
+        <Box sx={{ px: 2, pb: 2 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
+            <Box sx={{ fontWeight: 700, fontSize: '1.125rem', color: 'var(--gray-900)' }}>
+              Menu
+            </Box>
+            <IconButton onClick={handleMobileMenuToggle} size="small">
+              <CloseIcon />
+            </IconButton>
+          </Box>
+          <Divider sx={{ mb: 2 }} />
+          {menuItems.map((item) => (
+            <Box
+              key={item.path}
+              onClick={() => handleMobileMenuItemClick(item.path)}
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 1.5,
+                p: 1.5,
+                mb: 0.5,
+                borderRadius: '8px',
+                cursor: 'pointer',
+                backgroundColor: isActive(item.path) ? 'var(--primary-50)' : 'transparent',
+                color: isActive(item.path) ? 'var(--primary-dark)' : 'var(--gray-600)',
+                fontWeight: isActive(item.path) ? 700 : 600,
+                '&:hover': {
+                  backgroundColor: 'var(--gray-100)',
+                },
+              }}
+            >
+              <item.Icon sx={{ fontSize: '1.25rem' }} />
+              <Box>{item.text}</Box>
+            </Box>
+          ))}
+        </Box>
+      </Drawer>
 
       {/* User Menu */}
       <Menu
