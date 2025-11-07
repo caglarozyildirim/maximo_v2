@@ -30,18 +30,18 @@ const Dashboard = () => {
     completed: list.filter((jr) => jr.status === 'COMPLETED').length,
   };
 
-  // Chart colors
+  // MAN Design Guide Colors
   const colors = {
-    blue: '#3B82F6',
-    green: '#10B981',
-    yellow: '#F59E0B',
-    red: '#EF4444',
-    purple: '#8B5CF6',
-    cyan: '#06B6D4',
-    orange: '#F97316',
-    pink: '#EC4899',
-    indigo: '#6366F1',
-    teal: '#14B8A6'
+    blue: '#4B96D2',      // MAN Blue
+    green: '#91B900',     // MAN Green
+    yellow: '#FFCD00',    // MAN Yellow
+    red: '#E40045',       // MAN Red
+    purple: '#764ba2',    // Purple (kullanım için)
+    cyan: '#4B96D2',      // MAN Blue variant
+    orange: '#F97316',    // Orange (kullanım için)
+    pink: '#E40045',      // MAN Red variant
+    indigo: '#303C49',    // MAN Anthracite
+    teal: '#91B900'       // MAN Green variant
   };
 
   const doughnutOptions = {
@@ -191,12 +191,12 @@ const Dashboard = () => {
       <div className="stats-grid">
         <div className="stat-card">
           <div className="stat-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Assignment style={{ fontSize: '2rem', color: '#3B82F6' }} />
+            <Assignment style={{ fontSize: '2rem', color: '#4B96D2' }} />
           </div>
           <div>
             <div className="stat-label">İş Talepleri</div>
             <div className="stat-value">{dashboardMockData.stats.totalJobRequests}</div>
-            <div style={{ fontSize: '0.75rem', color: '#DC2626', marginTop: '0.25rem', fontWeight: 600 }}>
+            <div style={{ fontSize: '0.75rem', color: '#E40045', marginTop: '0.25rem', fontWeight: 600 }}>
               {dashboardMockData.stats.pendingJobRequests} onay bekliyor
             </div>
           </div>
@@ -204,12 +204,12 @@ const Dashboard = () => {
 
         <div className="stat-card gray">
           <div className="stat-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Inventory style={{ fontSize: '2rem', color: '#6B7280' }} />
+            <Inventory style={{ fontSize: '2rem', color: '#6E7E8D' }} />
           </div>
           <div>
             <div className="stat-label">Varlık Sayısı</div>
             <div className="stat-value">1,247</div>
-            <div style={{ fontSize: '0.75rem', color: '#3B82F6', marginTop: '0.25rem', fontWeight: 600 }}>
+            <div style={{ fontSize: '0.75rem', color: '#4B96D2', marginTop: '0.25rem', fontWeight: 600 }}>
               {dashboardMockData.stats.overdueAssignments} zimmet gecikmiş
             </div>
           </div>
@@ -217,12 +217,12 @@ const Dashboard = () => {
 
         <div className="stat-card">
           <div className="stat-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Build style={{ fontSize: '2rem', color: '#667eea' }} />
+            <Build style={{ fontSize: '2rem', color: '#E40045' }} />
           </div>
           <div>
             <div className="stat-label">Bakım İşleri</div>
             <div className="stat-value">89</div>
-            <div style={{ fontSize: '0.75rem', color: '#DC2626', marginTop: '0.25rem', fontWeight: 600 }}>
+            <div style={{ fontSize: '0.75rem', color: '#E40045', marginTop: '0.25rem', fontWeight: 600 }}>
               {dashboardMockData.stats.criticalMaintenanceOverdue} kritik gecikmiş
             </div>
           </div>
@@ -230,12 +230,12 @@ const Dashboard = () => {
 
         <div className="stat-card gray">
           <div className="stat-icon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <ReportProblem style={{ fontSize: '2rem', color: '#DC2626' }} />
+            <ReportProblem style={{ fontSize: '2rem', color: '#E40045' }} />
           </div>
           <div>
             <div className="stat-label">Arıza Kayıtları</div>
             <div className="stat-value">{dashboardMockData.stats.openIncidents + dashboardMockData.stats.inProgressIncidents}</div>
-            <div style={{ fontSize: '0.75rem', color: '#F59E0B', marginTop: '0.25rem', fontWeight: 600 }}>
+            <div style={{ fontSize: '0.75rem', color: '#FFCD00', marginTop: '0.25rem', fontWeight: 600 }}>
               {dashboardMockData.stats.openIncidents} açık, {dashboardMockData.stats.inProgressIncidents} devam ediyor
             </div>
           </div>
@@ -243,10 +243,10 @@ const Dashboard = () => {
       </div>
 
       {/* KRİTİK UYARILAR PANEL */}
-      <div className="modern-card" style={{ marginBottom: '2rem', border: '2px solid #FEF3C7', backgroundColor: '#FFFBEB' }}>
-        <div className="card-header" style={{ borderBottom: '1px solid #FDE68A' }}>
+      <div className="modern-card" style={{ marginBottom: '2rem', border: '2px solid #FFF8DB', backgroundColor: '#FFFEF5' }}>
+        <div className="card-header" style={{ borderBottom: '1px solid #FFEEAA' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <Warning style={{ fontSize: '1.75rem', color: '#F59E0B' }} />
+            <Warning style={{ fontSize: '1.75rem', color: '#FFCD00' }} />
             <span style={{ fontWeight: 700, color: '#92400E' }}>Kritik Uyarılar ve Bekleyen İşlemler</span>
           </div>
         </div>
@@ -259,8 +259,8 @@ const Dashboard = () => {
                 alignItems: 'flex-start',
                 gap: '0.75rem',
                 padding: '1rem',
-                backgroundColor: '#FEE2E2',
-                borderLeft: '4px solid #EF4444',
+                backgroundColor: '#FFE5EF',
+                borderLeft: '4px solid #E40045',
                 borderRadius: '6px',
                 cursor: 'pointer',
                 transition: 'all 0.2s'
@@ -277,10 +277,10 @@ const Dashboard = () => {
             >
               <div style={{ fontSize: '1.25rem', paddingTop: '0.125rem' }}>🔴</div>
               <div style={{ flex: 1 }}>
-                <div style={{ fontWeight: 600, color: '#991B1B', marginBottom: '0.25rem' }}>
+                <div style={{ fontWeight: 600, color: '#C00038', marginBottom: '0.25rem' }}>
                   Kritik Bakım Gecikmiş ({dashboardMockData.stats.criticalMaintenanceOverdue} Varlık)
                 </div>
-                <div style={{ fontSize: '0.875rem', color: '#7F1D1D', marginBottom: '0.5rem' }}>
+                <div style={{ fontSize: '0.875rem', color: '#C00038', marginBottom: '0.5rem' }}>
                   {dashboardMockData.criticalMaintenance.map((m, i) => (
                     <div key={i}>
                       • <strong>{m.assetTitle}</strong>: {m.daysOverdue} gün gecikmiş - {m.description}
@@ -288,7 +288,7 @@ const Dashboard = () => {
                   ))}
                 </div>
               </div>
-              <div style={{ fontSize: '0.75rem', color: '#991B1B', fontWeight: 600 }}>→</div>
+              <div style={{ fontSize: '0.75rem', color: '#C00038', fontWeight: 600 }}>→</div>
             </div>
 
             {/* Uyarı 2 - Bekleyen Onaylar */}
@@ -298,8 +298,8 @@ const Dashboard = () => {
                 alignItems: 'flex-start',
                 gap: '0.75rem',
                 padding: '1rem',
-                backgroundColor: '#FEF3C7',
-                borderLeft: '4px solid #F59E0B',
+                backgroundColor: '#FFF8DB',
+                borderLeft: '4px solid #FFCD00',
                 borderRadius: '6px',
                 cursor: 'pointer',
                 transition: 'all 0.2s'
@@ -316,10 +316,10 @@ const Dashboard = () => {
             >
               <div style={{ fontSize: '1.25rem', paddingTop: '0.125rem' }}>⏰</div>
               <div style={{ flex: 1 }}>
-                <div style={{ fontWeight: 600, color: '#92400E', marginBottom: '0.25rem' }}>
+                <div style={{ fontWeight: 600, color: '#DFAD00', marginBottom: '0.25rem' }}>
                   Bekleyen Onaylar ({dashboardMockData.stats.pendingJobRequests} İş Talebi)
                 </div>
-                <div style={{ fontSize: '0.875rem', color: '#78350F' }}>
+                <div style={{ fontSize: '0.875rem', color: '#DFAD00' }}>
                   Toplam tutar: <strong>{dashboardMockData.pendingApprovals.reduce((sum, p) => sum + p.estimatedCost, 0).toLocaleString('tr-TR')} TL</strong>
                   {' • '}
                   Ortalama bekleme: <strong>{Math.round(dashboardMockData.pendingApprovals.reduce((sum, p) => sum + p.waitingDays, 0) / dashboardMockData.pendingApprovals.length)} gün</strong>
@@ -327,7 +327,7 @@ const Dashboard = () => {
                   En acil: <strong>{dashboardMockData.pendingApprovals.sort((a, b) => b.waitingDays - a.waitingDays)[0]?.title}</strong> ({dashboardMockData.pendingApprovals.sort((a, b) => b.waitingDays - a.waitingDays)[0]?.waitingDays} gün)
                 </div>
               </div>
-              <div style={{ fontSize: '0.75rem', color: '#92400E', fontWeight: 600 }}>→</div>
+              <div style={{ fontSize: '0.75rem', color: '#DFAD00', fontWeight: 600 }}>→</div>
             </div>
 
             {/* Uyarı 3 - Zimmet Takibi */}
@@ -337,8 +337,8 @@ const Dashboard = () => {
                 alignItems: 'flex-start',
                 gap: '0.75rem',
                 padding: '1rem',
-                backgroundColor: '#DBEAFE',
-                borderLeft: '4px solid #3B82F6',
+                backgroundColor: '#E8F4FC',
+                borderLeft: '4px solid #4B96D2',
                 borderRadius: '6px',
                 cursor: 'pointer',
                 transition: 'all 0.2s'
@@ -353,18 +353,18 @@ const Dashboard = () => {
                 e.currentTarget.style.boxShadow = 'none';
               }}
             >
-              <Assessment style={{ fontSize: '1.5rem', paddingTop: '0.125rem', color: '#1E40AF' }} />
+              <Assessment style={{ fontSize: '1.5rem', paddingTop: '0.125rem', color: '#2B76B2' }} />
               <div style={{ flex: 1 }}>
-                <div style={{ fontWeight: 600, color: '#1E40AF', marginBottom: '0.25rem' }}>
+                <div style={{ fontWeight: 600, color: '#2B76B2', marginBottom: '0.25rem' }}>
                   Zimmet Takibi Gerekli ({dashboardMockData.stats.overdueAssignments} Gecikmiş)
                 </div>
-                <div style={{ fontSize: '0.875rem', color: '#1E3A8A' }}>
+                <div style={{ fontSize: '0.875rem', color: '#2B76B2' }}>
                   En uzun gecikme: <strong>{dashboardMockData.overdueAssignments.sort((a, b) => b.daysOverdue - a.daysOverdue)[0]?.assetTitle}</strong> ({dashboardMockData.overdueAssignments.sort((a, b) => b.daysOverdue - a.daysOverdue)[0]?.daysOverdue} gün)
                   {' • '}
                   Yüksek değerli: <strong>Lenovo Laptop</strong> (20 gün gecikmiş)
                 </div>
               </div>
-              <div style={{ fontSize: '0.75rem', color: '#1E40AF', fontWeight: 600 }}>→</div>
+              <div style={{ fontSize: '0.75rem', color: '#2B76B2', fontWeight: 600 }}>→</div>
             </div>
 
             {/* Uyarı 4 - Bütçe Aşımı Riski */}
@@ -374,8 +374,8 @@ const Dashboard = () => {
                 alignItems: 'flex-start',
                 gap: '0.75rem',
                 padding: '1rem',
-                backgroundColor: '#FEE2E2',
-                borderLeft: '4px solid #F97316',
+                backgroundColor: '#FFE5EF',
+                borderLeft: '4px solid #E40045',
                 borderRadius: '6px',
                 cursor: 'pointer',
                 transition: 'all 0.2s'
@@ -392,10 +392,10 @@ const Dashboard = () => {
             >
               <div style={{ fontSize: '1.25rem', paddingTop: '0.125rem' }}>💸</div>
               <div style={{ flex: 1 }}>
-                <div style={{ fontWeight: 600, color: '#C2410C', marginBottom: '0.25rem' }}>
+                <div style={{ fontWeight: 600, color: '#C00038', marginBottom: '0.25rem' }}>
                   Bütçe Aşımı Riski ({dashboardMockData.stats.budgetRiskCenters} Masraf Merkezi)
                 </div>
-                <div style={{ fontSize: '0.875rem', color: '#9A3412', marginBottom: '0.5rem' }}>
+                <div style={{ fontSize: '0.875rem', color: '#C00038', marginBottom: '0.5rem' }}>
                   {dashboardMockData.budgetRiskCostCenters.map((cc, i) => (
                     <div key={i}>
                       • <strong>{cc.costCenterName}</strong>: %{cc.utilizationPercentage} kullanım ({cc.remainingBudget.toLocaleString('tr-TR')} TL kaldı)
@@ -403,7 +403,7 @@ const Dashboard = () => {
                   ))}
                 </div>
               </div>
-              <div style={{ fontSize: '0.75rem', color: '#C2410C', fontWeight: 600 }}>→</div>
+              <div style={{ fontSize: '0.75rem', color: '#C00038', fontWeight: 600 }}>→</div>
             </div>
           </div>
         </div>
