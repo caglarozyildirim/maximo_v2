@@ -29,13 +29,56 @@ import CostCenterList from './pages/CostCenters/CostCenterList';
 import CostCenterDetail from './pages/CostCenters/CostCenterDetail';
 import CostCenterForm from './pages/CostCenters/CostCenterForm';
 
+// MAN Design Guide - Kurumsal Renk Paleti
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#667eea',
+      main: '#E40045',      // MAN Red
+      light: '#FF1A5A',     // MAN Red Light
+      dark: '#C00038',      // MAN Red Dark
+      contrastText: '#fff',
     },
     secondary: {
-      main: '#764ba2',
+      main: '#303C49',      // MAN Anthracite
+      light: '#6E7E8D',     // MAN 60%
+      dark: '#1A2128',
+      contrastText: '#fff',
+    },
+    info: {
+      main: '#4B96D2',      // MAN Blue
+      light: '#E8F4FC',
+      dark: '#2B76B2',
+      contrastText: '#fff',
+    },
+    success: {
+      main: '#91B900',      // MAN Green
+      light: '#F0F8E6',
+      dark: '#719900',
+      contrastText: '#fff',
+    },
+    warning: {
+      main: '#FFCD00',      // MAN Yellow
+      light: '#FFF8DB',
+      dark: '#DFAD00',
+      contrastText: '#000',
+    },
+    error: {
+      main: '#E40045',      // MAN Red
+      light: '#FFE5EF',
+      dark: '#C00038',
+      contrastText: '#fff',
+    },
+    grey: {
+      50: '#F8F9FA',
+      100: '#F1F3F5',
+      200: '#CAD0D8',       // MAN 20%
+      300: '#D9DDDF',
+      400: '#ADB5BC',
+      500: '#6E7E8D',       // MAN 60%
+      600: '#5A6872',
+      700: '#475159',
+      800: '#303C49',       // MAN Anthracite
+      900: '#1A2128',
     },
   },
   typography: {
@@ -47,6 +90,23 @@ const theme = createTheme({
         root: {
           textTransform: 'none',
           fontWeight: 600,
+          borderRadius: '10px',
+        },
+        containedPrimary: {
+          background: 'linear-gradient(135deg, #E40045 0%, #C00038 100%)',
+          '&:hover': {
+            background: 'linear-gradient(135deg, #FF1A5A 0%, #E40045 100%)',
+            boxShadow: '0 10px 25px rgba(228, 0, 69, 0.35)',
+          },
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          borderRadius: '16px',
+          boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05)',
+          border: '1px solid #CAD0D8',
         },
       },
     },
